@@ -126,11 +126,23 @@ class vector
     // return element be la position dyalo dayr b7al Vector::at ghi at ila mal9atch katred exception
     reference operator[] (size_type n){return (this->v[n]);}
     const_reference operator[] (size_type n) const{return (this->v[n]);}
-    reference at (size_type n){ if (n > this->size()) throw std::out_of_range("out of range"); return (this->_v[n]);}
-
+    reference at (size_type n){ if (n > this->size()) throw std::out_of_range("out of range"); return (this->v[n]);}
+    const_reference at (size_type n){ if (n > this->size()) throw std::out_of_range("out of range"); return (this->v[n]);}
+    reference front(){return (*(this->v))};// return direct refernce withit iterator
+    reference back(){return (this->v[this->size() - 1]);} // return direct refernce withot iterator
+	const_reference front() const{return (*(this->v));}
+    const_reference back() const{return (this->v[this->size() - 1]);}
 
 // *** fin element access
 
+// *** modifiers
+
+    // Delete last elemnt remove lat element n9so size container be 1 
+    void pop_back(){if (!this->size())return ;this->_alloc.destroy(&this->_v[--this->_size]);}
+
+
+
+// *** fin modifires
 
 };
 
