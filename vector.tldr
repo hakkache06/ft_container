@@ -1,0 +1,236 @@
+{
+  "document": {
+    "id": "doc",
+    "name": "New Document",
+    "version": 15.5,
+    "pages": {
+      "page": {
+        "id": "page",
+        "name": "Page 1",
+        "childIndex": 1,
+        "shapes": {
+          "0264c017-5b02-4449-0bd5-0a2a00ebf78d": {
+            "id": "0264c017-5b02-4449-0bd5-0a2a00ebf78d",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 2,
+            "point": [
+              530.56,
+              -17.9
+            ],
+            "rotation": 0,
+            "text": "Vector",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "1062579d-c718-44c8-2470-ff41d46106dd": {
+            "id": "1062579d-c718-44c8-2470-ff41d46106dd",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 3,
+            "point": [
+              251.21,
+              52.59
+            ],
+            "rotation": 0,
+            "text": "- tableaux dont la taille peut changer",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "5f6cd808-adb4-41ff-12d1-8d38db952740": {
+            "id": "5f6cd808-adb4-41ff-12d1-8d38db952740",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 4,
+            "point": [
+              247.33999999999992,
+              78.31
+            ],
+            "rotation": 0,
+            "text": "- utiliser des emplacements de stockage contigus pour leurs éléments",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "f099730e-28c3-4858-1939-ecb51583a70c": {
+            "id": "f099730e-28c3-4858-1939-ecb51583a70c",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 5,
+            "point": [
+              247.59,
+              103.24
+            ],
+            "rotation": 0,
+            "text": "- leurs éléments sont également accessibles en utilisant  des pointeurs ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "7ea124fa-a27e-410f-3f28-415641820f5d": {
+            "id": "7ea124fa-a27e-410f-3f28-415641820f5d",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 6,
+            "point": [
+              247.91,
+              127.95
+            ],
+            "rotation": 0,
+            "text": "- leur taille peut changer dynamiquement ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "56f886c0-c572-47f6-01ae-208b61795c6e": {
+            "id": "56f886c0-c572-47f6-01ae-208b61795c6e",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 7,
+            "point": [
+              248.82,
+              156.32
+            ],
+            "rotation": 0,
+            "text": "- utiliser un tableau alloué dynamiquement pour stocker leurs éléments",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "194abba4-91ad-4eef-2c98-0d3937585d72": {
+            "id": "194abba4-91ad-4eef-2c98-0d3937585d72",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 8,
+            "point": [
+              249.33,
+              182.2
+            ],
+            "rotation": 0,
+            "text": "- Ce tableau peut avoir besoin d'être réalloué afin d'augmenter \nsa taille lorsque de nouveaux éléments sont insérés",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "92d05fa8-2555-4cda-221b-929a6395caeb": {
+            "id": "92d05fa8-2555-4cda-221b-929a6395caeb",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              227.19,
+              28.46
+            ],
+            "size": [
+              682.65,
+              362.57
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "72bc917d-a8fe-43e9-0d61-69482b31eba9": {
+            "id": "72bc917d-a8fe-43e9-0d61-69482b31eba9",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 9,
+            "point": [
+              243.2,
+              235.79
+            ],
+            "rotation": 0,
+            "text": "- allouer un nouveau tableau et d'y déplacer tous les éléments",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 0.9466187555858402,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          }
+        },
+        "bindings": {}
+      }
+    },
+    "pageStates": {
+      "page": {
+        "id": "page",
+        "selectedIds": [],
+        "camera": {
+          "point": [
+            0,
+            0
+          ],
+          "zoom": 1
+        }
+      }
+    },
+    "assets": {}
+  },
+  "assets": {}
+}
