@@ -137,9 +137,58 @@ class vector
 
 // *** modifiers
 
-    // Delete last elemnt remove lat element n9so size container be 1 
-    void pop_back(){if (!this->size())return ;this->_alloc.destroy(&this->_v[--this->_size]);}
 
+    // pop back Delete last elemnt remove lat element n9so size container be 1 
+    void pop_back(){if (!this->size())return ;this->alloc.destroy(&this->v[--this->size]);}
+    // push_back add new element at end of the vector
+    void push_back (const value_type& val)
+	{
+		if (this->size() == this->capacity())
+		{
+			this->reserve((this->capacity() * 2) + (this->capacity() == 0));
+		}
+			this->alloc.construct(&this->_v[this->_size++], val);
+	}
+
+   // public member function insert 3 types
+   // iterator insert (iterator position, const value_type& val); insert element before the element fe position mo7dada
+   // incresing the container by size
+    iterator insert (iterator position, const value_type& val)
+	{
+			size_type p;
+			pos = this->_prepare_insert(position, 1);
+			this->alloc.construct(&this->v[p], val);
+			++this->_size;
+			return (iterator(&this->v[p]));
+		}
+ 
+    //     void insert (iterator position, size_type n, const value_type& val);
+    void insert (iterator position,size_type n, const value_type& val)
+		{
+			size_type pos;
+			size_type i;
+
+			pos = (this->_prepare_insert(position, n));
+			i = n;
+			while (i--)
+				this->alloc.construct(&this->v[pos--], val);
+			this->size += n;
+		}
+
+
+    // template <class InputIterator>    void insert (iterator position, InputIterator first, InputIterator last);
+    template <class InputIterator>
+	void insert (iterator position,InputIterator first,InputIterator last,typename ft::enable_if<!(ft::is_integral<InputIterator>::value), InputIterator>::type = InputIterator())
+	{
+		size_type pos;
+		size_type distance;
+		distance = std::distance(first, last);
+
+	    pos = this->_prepare_insert(position, distance);
+		while (first != last--)
+			this->alloc.construct(&this->v[pos--], *(last));
+		this->size += distance;
+	}
 
 
 // *** fin modifires
