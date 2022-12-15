@@ -4,9 +4,12 @@
 #include "iterator_traits.hpp"
 namespace ft
 {
-
+/*
+Random-access iterators are iterators that can be used to access 
+elements at an arbitrary offset position relative to the element they point to, offering the same functionality as pointers.
+*/
 template <typename T>
-class random_access_iterator : public ft::iterator_traits<ft::iterator<std::random_access_iterator_tag, T> >
+class random_access_iterator : public ft::iterator_traits<ft::iterator<std::random_access_iterator_tag, T>>
 {
     public:
     /// Membre Type

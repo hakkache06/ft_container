@@ -1,6 +1,5 @@
 
-
-///  
+///  Traits class defining properties of iterators.
 # pragma once
 
 namespace ft

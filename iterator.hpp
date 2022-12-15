@@ -1,6 +1,10 @@
 
 /// This is a base class template that can be used to derive iterator classes from it
-//
+// In C++, we can use multiple template parameters and even use default arguments for those parameters.
+
+//An iterator is any object that, pointing to some element in a range of elements 
+//(such as an array or a container), has the ability to iterate through the elements of that range using a set of operators (with at least the increment (++) and dereference (*) operators).
+
 
 # pragma once
 #include <cstddef>
