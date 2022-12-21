@@ -4,18 +4,18 @@
 #include "iterator_traits.hpp"
 
 namespace ft {
-
+//This class reverses the direction in which a bidirectional or random-access iterator iterates through a range.
 template <class Iterator>
 class reverse_iterator
 {
 	public:
     // Member types
-		typedef	Iterator													iterator_type;
-		typedef typename ft::iterator_traits<Iterator>::iterator_category	iterator_category;
-		typedef typename ft::iterator_traits<Iterator>::value_type			value_type;
-		typedef typename ft::iterator_traits<Iterator>::difference_type		difference_type;
-		typedef typename ft::iterator_traits<Iterator>::pointer				pointer;
-		typedef typename ft::iterator_traits<Iterator>::reference			reference;
+		typedef	Iterator												iterator_type; // Iterator's type
+		typedef typename ft::iterator_traits<Iterator>::iterator_category	iterator_category; // Preserves Iterator's category
+		typedef typename ft::iterator_traits<Iterator>::value_type			value_type; // Preserves Iterator's value type
+		typedef typename ft::iterator_traits<Iterator>::difference_type		difference_type;//Preserves Iterator's difference type
+		typedef typename ft::iterator_traits<Iterator>::pointer				pointer;//Preserves Iterator's pointer type
+		typedef typename ft::iterator_traits<Iterator>::reference			reference;//Preserves Iterator's reference type
 	private:
 		iterator_type	pointer_it;
 
@@ -27,12 +27,17 @@ class reverse_iterator
                 */
                explicit	reverse_iterator (iterator_type it) : pointer_it(it)
 		       {
+				//Constructs a reverse iterator from some original iterator it
+				//. The behavior of the constructed object replicates the original, except that it iterates through its pointed elements in the reverse order.
 		       }
                // Copy
             template <class U>
   		    reverse_iterator (const reverse_iterator<U>& u) : pointer_it(u.base())
 		    {
+				// Constructs a reverse iterator from some other reverse iterator. The constructed object keeps the same sense of iteration as rev_it.
 		    }
+
+			// Return base iterator
             // return copy of the base iterator
             iterator_type base() const
 		    {
@@ -44,7 +49,7 @@ class reverse_iterator
 			// Dereference iterator
             reference operator*() const
 		    {
-			    iterator_type it(this->pointer_it);
+			    iterator_type it = this->pointer_it;
 			    return (*(--it));
 		    }
 
@@ -55,14 +60,20 @@ class reverse_iterator
 		    {
 			    return (reverse_iterator(this->pointer_it - n));
 		    }
+
+			reverse_iterator &operator=(reverse_iterator const &rhs)
+			{
+				this->pointer_it = rhs.base();
+				return (*this);
+			}
+
 			// Increment iterator position
 			// 1 - post-increment returns *this.
 			// 2 - pre-increment returns the value *this had before the call
-
 			// post-increment
 			reverse_iterator  operator++(int)
 			{
-				reverse_iterator it(*this);
+				reverse_iterator it = *this;
 				--this->pointer_it;
 				return (it);
 			}
@@ -72,6 +83,7 @@ class reverse_iterator
 			--this->pointer_it;
 			return (*this);
 			}
+
 			// Advances the reverse_iterator by n element positions.
 			// return The reverse iterator itself (*this).
 			reverse_iterator& operator+= (difference_type n)
@@ -86,27 +98,21 @@ class reverse_iterator
 			{
 				return (reverse_iterator(this->pointer_it + n));
 			}
-
-			reverse_iterator &operator=(reverse_iterator const &rhs)
-			{
-				this->pointer_it = rhs.base();
-				return (*this);
-			}
-
+	
 			// Decreases the reverse_iterator by one position.
 			// The pre-decrement version (1) returns *this.
 			// The post-decrement version (2) returns the value *this had before the call.
 				// post-increment
 			reverse_iterator  operator--(int)
 			{
-				reverse_iterator it (*this);
+				reverse_iterator it = *this;
 				++this->pointer_it;
 				return (it);
 			}
 			// pre-increment
 			reverse_iterator& operator--()
 			{
-				++this->pointer_itr;
+				++this->pointer_it;
 				return (*this);
 			}
 			// Retrocede iterator

@@ -1,16 +1,19 @@
 
-#include "reverse_iterator.hpp"
+#include "random_access_iterator.hpp"
 
-#include <iostream>
-#include <vector> 
+#include <iostream>     // std::cout
+#include <iterator>     // std::reverse_iterator
+#include <vector>       // std::vector
+
 using namespace std;
-int main()
-{
 
-	std::vector<int> myvector;
-  		for (int i=0; i<10; i++) myvector.push_back(i);
+int main () {
+  std::vector<int> myvector;
+  for (int i=0; i<10; i++) myvector.push_back(i);  // myvector: 0 1 2 3 4 5 6 7 8 9
 
-      ft::reverse_iterator<std::vector<int>::iterator> from,until;
-        from = myvector.rbegin();
-         until = myvector.rend();
+  typedef std::vector<int>::iterator iter_type;
+
+
+
+  return 0;
 }

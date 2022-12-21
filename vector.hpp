@@ -2,6 +2,7 @@
 
 # include <memory>
 # include <stdexcept>
+# include <sfinae.hpp>
 
 namespace ft
 {
@@ -11,10 +12,17 @@ class vector
 {
     private:
     // les attrubites
-        value_type		*v;
-	    size_type		capacity;
-	    size_type		size;
-	    allocator_type	alloc;
+        value_type		*buffer_v;
+	    size_type		var_capacity;
+	    size_type		var_size;
+	    allocator_type	var_alloc;
+
+		void	destroy_array(std::size_t start, std::size_t end)
+		{
+				for (; start < end; start++)
+					this->alloc.destroy(&this->v[start]);
+		}
+
     public:
     // Member types
 		typedef typename ft::random_access_iterator<value_type>			iterator;
@@ -34,43 +42,54 @@ class vector
 		typedef typename allocator_type::size_type						size_type; //	an unsigned integral type that can represent any non-negative value of difference_type
 
     public:
+		//Assign vector content
 
         // Member functions
         //++++++++++++++++++++++++++++++++++++
 
         //construct/copy/destroy:
-        //default constructor
-        explicit Vector(const allocator_type& alloc = allocator_type()): v(nullptr), capacity(0), size(0), alloc(alloc){}
-        // constructor 
-        explicit Vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()): capacity(n), size(0), alloc(alloc)
+        //default constructor (1) empty container constructor (default constructor) Constructs an empty container, with no elements
+        explicit Vector(const allocator_type& alloc = allocator_type()): buffer_v(NULL), var_capacity(0), var_size(0), var_alloc(alloc){}
+        // constructor fill constructor Constructs a container with n elements. Each element is a copy of val.
+        explicit Vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 		{
-			this->v = this->alloc.allocate(n);
-			this->assign(n, val);
+			 this->var_alloc = alloc;
+                this->buffer_v = this->var_alloc.allocate(n);
+                for (size_type i = 0 ; i < n ; i++)
+                  this->var_alloc.construct(&this->buffer_v /* pointer p*/, val); // Constructs an element object on the location pointed by p.
+                  var_size = n;
+                  var_capacity = n;
 		}
-        //vector(const vector<T,Allocator>& x);
-        Vector(const Vector& vecto): capacity(0), size(0), alloc(vecto.get_allocator()){(*this) = vecto;}
+		//vector(const vector<T,Allocator>& x);
+        Vector(const Vector& vecto): var_capacity(0), var_size(0), buffer_alloc(vecto.get_allocator()){(*this) = vecto;}
 
+		// range constructor
+		// Substitution Failure Is Not An Error
+		template <class InputIterator>
+         	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+			 {
+
+
+			 }
+
+
+		
         // destroy all conatainer
         ~Vector(void)
 		{
             for (size_type i = 0; i < this->size(); i++)
-                this->alloc.destroy(&this->v[i]);
-			this->alloc.deallocate(this->v, this->capacity());
+                this->buffer_alloc.destroy(&this->v[i]);
+			this->buffer_alloc.deallocate(this->v, this->capacity());
 		}
-
         //+++++++++++++++++++++++++++++++++++++++++
-
-
 // *** capacity
-
-
-        size_type size() const{return (this->_size);} // number element or object in vector
-        size_type capacity() const{return (this->_capacity);} // size allocation storage li kayen
-        size_type max_size() const{return (this->_alloc.max_size());} // max element l y9do ykono fe container number machi dima kaysawi capacity katb9a chi 7aja mekhbya
+        size_type size() const{return (this->size);} // number element or object in vector
+        size_type capacity() const{return (this->capacity);} // size allocation storage li kayen
+        size_type max_size() const{return (this->alloc.max_size());} // max element l y9do ykono fe container number machi dima kaysawi capacity katb9a chi 7aja mekhbya
         // change size dyal conatiner be n element ila kan n < me capacity kansghroh l n li b9a kaydestroya 
         //ila kan l3kess kanzido fe capacity
 
-        /*
+        
         void resize(size_type n, value_type val = value_type())
 		{
 			if (n > this->capacity())
@@ -88,7 +107,7 @@ class vector
 			}
 			this->size = n;
 		}
-        */
+        
         //// check container wach empty
         bool empty() const
 		{
@@ -96,6 +115,8 @@ class vector
 		}
         //  tbdel capacity 
         void reserve (size_type n){if (n <= this->capacity())return ;this->_realloc(n);}
+
+
 
 // *** fin capacity
 
@@ -160,11 +181,11 @@ class vector
 			this->alloc.construct(&this->v[p], val);
 			++this->_size;
 			return (iterator(&this->v[p]));
-		}
+	}
  
     //     void insert (iterator position, size_type n, const value_type& val);
     void insert (iterator position,size_type n, const value_type& val)
-		{
+	{
 			size_type pos;
 			size_type i;
 
@@ -173,9 +194,7 @@ class vector
 			while (i--)
 				this->alloc.construct(&this->v[pos--], val);
 			this->size += n;
-		}
-
-
+	}
     // template <class InputIterator>    void insert (iterator position, InputIterator first, InputIterator last);
     template <class InputIterator>
 	void insert (iterator position,InputIterator first,InputIterator last,typename ft::enable_if<!(ft::is_integral<InputIterator>::value), InputIterator>::type = InputIterator())
@@ -190,7 +209,23 @@ class vector
 		this->size += distance;
 	}
 
+	void assign (size_type n, const value_type& val)
+	{
+		if (n < this->size())
+			this->destroy_array(n, this->size());
+		if (n > this->capacity())
+			this->reserve(n);
+		this->destroy_array(0, this->size());
+		this->size = n;
+		for (size_type i = 0; i < n; i++)
+			this->alloc.construct(&this->v[i], val);
 
+	}
+
+	allocator_type get_allocator() const
+	{
+			return (this->buffer_alloc);
+	}
 // *** fin modifires
 
 };
