@@ -53,24 +53,30 @@ class vector
         // constructor fill constructor Constructs a container with n elements. Each element is a copy of val.
         explicit Vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 		{
-			 this->var_alloc = alloc;
-                this->buffer_v = this->var_alloc.allocate(n);
-                for (size_type i = 0 ; i < n ; i++)
-                  this->var_alloc.construct(&this->buffer_v /* pointer p*/, val); // Constructs an element object on the location pointed by p.
-                  var_size = n;
-                  var_capacity = n;
+			this->var_alloc = alloc;
+            this->buffer_v = this->var_alloc.allocate(n);
+            for (size_type i = 0 ; i < n ; i++)
+            	this->var_alloc.construct(&this->buffer_v /* pointer p*/, val); // Constructs an element object on the location pointed by p.
+            var_size = n;
+            var_capacity = n;
 		}
 		//vector(const vector<T,Allocator>& x);
         Vector(const Vector& vecto): var_capacity(0), var_size(0), buffer_alloc(vecto.get_allocator()){(*this) = vecto;}
 
 		// range constructor
 		// Substitution Failure Is Not An Error
-		template <class InputIterator>
-         	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
-			 {
-
-
-			 }
+		
+		 template <class InputIterator>
+         	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
+			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = InputIterator()): var_alloc(alloc)
+              {
+                size_t n = last - first;
+                buffer_v = var_alloc.allocate(n);
+                for (size_t i = 0 ; i < n ; i++)
+                  var_alloc.construct(&buffer_v[i], first[i]);
+                  var_size = n;
+                  var_capacity = n;
+              }
 
 
 		
