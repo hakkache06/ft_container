@@ -8,30 +8,26 @@
 using namespace std;
 
 
-struct A { using type = int; };
-
-struct C
-{
-  using value_type = int;
-  //using type = int;
+struct B { 
+  using value_type = int; 
+  using type = int;
 };
-
 
 template<class T>
 void foo(typename T::type value)
 {
-   std::cout << "value " << std::endl;
+  std::cout << "type";
 }
 
 template<class T>
 void foo(typename T::value_type value)
 {
+    std::cout << "value_type";
 
-   std::cout << "value_type " << std::endl;
 }
 
 int main () {
   
-  foo<C>(3);
+  foo<B>(3);
   return 0;
 }
