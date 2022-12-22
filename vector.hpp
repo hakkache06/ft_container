@@ -44,9 +44,9 @@ class vector
 
         //construct/copy/destroy:
         //default constructor (1) empty container constructor (default constructor) Constructs an empty container, with no elements
-        explicit Vector(const allocator_type& alloc = allocator_type()): buffer_v(NULL), var_capacity(0), var_size(0), var_alloc(alloc){}
+        explicit vector(const allocator_type& alloc = allocator_type()): buffer_v(NULL), var_capacity(0), var_size(0), var_alloc(alloc){}
         // constructor fill constructor Constructs a container with n elements. Each element is a copy of val.
-        explicit Vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+        explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 		{
 			this->var_alloc = alloc;
             this->buffer_v = this->var_alloc.allocate(n);
@@ -56,7 +56,7 @@ class vector
             var_capacity = n;
 		}
 		//vector(const vector<T,Allocator>& x); copy Construct
-        Vector(const Vector& vecto): var_capacity(0), var_size(0), buffer_alloc(vecto.get_allocator()){(*this) = vecto;}
+        vector(const Vector& vecto): var_capacity(0), var_size(0), var_alloc(vecto.get_allocator()){(*this) = vecto;}
 
 		// range constructor
 		// Substitution Failure Is Not An Error
@@ -74,7 +74,7 @@ class vector
               }
 		
         // destroy all conatainer
-        ~Vector(void)
+        ~vector(void)
 		{
             for (size_type i = 0; i < this->size(); i++)
                 this->buffer_alloc.destroy(&this->v[i]);
@@ -88,7 +88,12 @@ class vector
         // change size dyal conatiner be n element ila kan n < me capacity kansghroh l n li b9a kaydestroya 
         //ila kan l3kess kanzido fe capacity
 // resize(n, valeur) insère des éléments à la queue du vecteur
-        
+    
+		allocator_type get_allocator() const
+		{
+			return (this->var_alloc);
+		}
+
         void resize(size_type n, value_type val = value_type()) // X
 		{
 			if (n > this->capacity())
@@ -130,7 +135,7 @@ class vector
 			if (n > var_capacity)
             {
             	pointer tmp = var_alloc.allocate(n);
-            	for ( size_t i = 0 ; i < _size ; i++)
+            	for ( size_t i = 0 ; i <var _size ; i++)
             	{
               	var_alloc.construct(&tmp[i],buffer_v[i]);
               	var_alloc.destroy(&buffer_v[i]);
@@ -375,22 +380,82 @@ class vector
 /// erase  Supprime un élément ou une plage d'éléments aux positions spécifiées dans le vecteur.
 // type 1
 
-		iterator erase (iterator position)
-		{
-			size_type distance;
-			size_type i;
+	iterator erase (iterator position)
+	{
+		size_type distance;
+		size_type i;
 
-			distance = std::distance(this->begin(), position);
-			this->var_alloc.destroy(&this->buffer_v[distance]);
-			i = distance;
-			for (; i < this->size() - 1; i++)
-				this->buffer_v[i] = this->buffer_v[i + 1];
-			this->_alloc.destroy(&this->buffer_v[i]);
-			--this->var_size;
-			return (iterator(&this->buffer_v[distance]));
-		}
+		distance = std::distance(this->begin(), position);
+		this->var_alloc.destroy(&this->buffer_v[distance]);
+		i = distance;
+		for (; i < this->size() - 1; i++)
+			this->buffer_v[i] = this->buffer_v[i + 1];
+		this->_alloc.destroy(&this->buffer_v[i]);
+		--this->var_size;
+		return (iterator(&this->buffer_v[distance]));
+	}
+
+// type 2 range
+
+	iterator erase(iterator first, iterator last)
+    {
+        size_t distance = std::distance(first,last);
+    	for (size_t i = 0 ; i < distance ; i++)
+        {
+        	erase(first);
+        }
+        return first;
+              
+    }
+
+	template <class T, class Alloc>
+	void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y)
+	{
+		x.swap(y);
+	}
 
 // *** fin modifires
+
+	// relational operators (vector)
+	template <class T, class Alloc>
+bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	if (lhs.size() != rhs.size())
+		return (false);
+	return (ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+}
+template <class T, class Alloc>
+bool operator!= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	return !(lhs == rhs);
+}
+
+template <class T, class Alloc>
+bool operator<  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	return (ft::lexicographical_compare(
+			lhs.begin(),lhs.end(),
+			rhs.begin(), rhs.end()));
+}
+
+template <class T, class Alloc>
+bool operator<= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	return (!(rhs < lhs));
+}
+
+template <class T, class Alloc>
+bool operator>  (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	return (rhs < lhs);
+}
+
+template <class T, class Alloc>
+bool operator>= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
+{
+	return (!(rhs > lhs));
+
+}
 
 };
 
