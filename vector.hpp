@@ -1,32 +1,21 @@
 # pragma once
 
-# include <memory>
-# include <stdexcept>
-# include <sfinae.hpp>
+#include <stdexcept>
+#include "iterator.hpp"    
+#include "random_access_iterator.hpp" 
+#include "reverse_iterator.hpp"    
+#include "sfinae.hpp"
 
 namespace ft
 {
 
 template < class T, class Alloc = std::allocator<T> >
-class vector
+class Vector
 {
-    private:
-    // les attrubites
-        value_type		*buffer_v;
-	    size_type		var_capacity;
-	    size_type		var_size;
-	    allocator_type	var_alloc;
-
 
     public:
     // Member types
-		typedef typename ft::random_access_iterator<value_type>			iterator;
-		typedef typename ft::random_access_iterator<const value_type>	const_iterator;
-		typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
-		typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
- 
-        // Part Allocation
-		typedef T											value_type;
+				typedef T											value_type;
 		typedef Alloc													allocator_type;
 		typedef typename allocator_type::reference						reference;
 		typedef typename allocator_type::const_reference				const_reference;
@@ -35,34 +24,47 @@ class vector
 		typedef typename allocator_type::difference_type				difference_type; // usually the same as ptrdiff_t
 
 		typedef typename allocator_type::size_type						size_type; //	an unsigned integral type that can represent any non-negative value of difference_type
+		typedef typename ft::random_access_iterator<value_type>			iterator;
+		typedef typename ft::random_access_iterator<const value_type>	const_iterator;
+		typedef typename ft::reverse_iterator<iterator>					reverse_iterator;
+		typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+ 
+        // Part Allocation
+
+	private:
+    // les attrubites
+        value_type		*buffer_v;
+	    size_type		var_capacity;
+	    size_type		var_size;
+	    allocator_type	var_alloc;
 
     public:
-		//Assign vector content
+		//Assign Vector content
 
         // Member functions
         //++++++++++++++++++++++++++++++++++++
 
         //construct/copy/destroy:
         //default constructor (1) empty container constructor (default constructor) Constructs an empty container, with no elements
-        explicit vector(const allocator_type& alloc = allocator_type()): buffer_v(NULL), var_capacity(0), var_size(0), var_alloc(alloc){}
+        explicit Vector(const allocator_type& alloc = allocator_type()): buffer_v(NULL), var_capacity(0), var_size(0), var_alloc(alloc){}
         // constructor fill constructor Constructs a container with n elements. Each element is a copy of val.
-        explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+        explicit Vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
 		{
 			this->var_alloc = alloc;
             this->buffer_v = this->var_alloc.allocate(n);
             for (size_type i = 0 ; i < n ; i++)
-            	this->var_alloc.construct(&this->buffer_v /* pointer p*/, val); // Constructs an element object on the location pointed by p.
+            	this->var_alloc.construct(&this->buffer_v, val); // Constructs an element object on the location pointed by p.
             var_size = n;
             var_capacity = n;
 		}
-		//vector(const vector<T,Allocator>& x); copy Construct
-        vector(const Vector& vecto): var_capacity(0), var_size(0), var_alloc(vecto.get_allocator()){(*this) = vecto;}
+		//Vector(const Vector<T,Allocator>& x); copy Construct
+        Vector(const Vector& vecto): var_capacity(0), var_size(0), var_alloc(vecto.get_allocator()){(*this) = vecto;}
 
 		// range constructor
 		// Substitution Failure Is Not An Error
 		
 		 template <class InputIterator>
-         	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
+         	Vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(), 
 			typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type = InputIterator()): var_alloc(alloc)
               {
                 size_t n = last - first;
@@ -74,16 +76,16 @@ class vector
               }
 		
         // destroy all conatainer
-        ~vector(void)
+        ~Vector(void)
 		{
             for (size_type i = 0; i < this->size(); i++)
-                this->buffer_alloc.destroy(&this->v[i]);
-			this->buffer_alloc.deallocate(this->v, this->capacity());
+                this->var_alloc.destroy(&this->buffer_v[i]);
+			this->var_alloc.deallocate(this->buffer_v, this->capacity());
 		}
         //+++++++++++++++++++++++++++++++++++++++++
 // *** capacity 
-        size_type size() const{return (this->size);} // X number element or object in vector // Renvoie la taille actuelle
-        size_type capacity() const{return (this->capacity);} //  X Renvoie la taille potentielle ou la capacité de stockage size allocation storage li kayen // 
+        size_type size() const{return (this->var_size);} // X number element or object in Vector // Renvoie la taille actuelle
+        size_type capacity() const{return (this->var_capacity);} //  X Renvoie la taille potentielle ou la capacité de stockage size allocation storage li kayen // 
         size_type max_size() const{return (this->var_alloc.max_size());} // X Renvoie la taille maximale  max element l y9do ykono fe container number machi dima kaysawi capacity katb9a chi 7aja mekhbya
         // change size dyal conatiner be n element ila kan n < me capacity kansghroh l n li b9a kaydestroya 
         //ila kan l3kess kanzido fe capacity
@@ -105,7 +107,7 @@ class vector
 			{
 				if (n < this->size())
 					for (size_type i = n; i < this->size() - 1; i++)
-						this->var_alloc.destroy(&this->v[i]);
+						this->var_alloc.destroy(&this->buffer_v[i]);
 				else
 					this->fill_array(this->size(), n, val);
 			}
@@ -135,13 +137,13 @@ class vector
 			if (n > var_capacity)
             {
             	pointer tmp = var_alloc.allocate(n);
-            	for ( size_t i = 0 ; i <var _size ; i++)
+            	for ( size_t i = 0 ; i <var_size ; i++)
             	{
               	var_alloc.construct(&tmp[i],buffer_v[i]);
               	var_alloc.destroy(&buffer_v[i]);
             	}
             if (this->capacity())
-				this->_alloc.deallocate(this->buffer_v, this->capacity());
+				this->var_alloc.deallocate(this->buffer_v, this->capacity());
 			this->buffer_v = tmp;
 			this->var_capacity = n;
             }
@@ -191,17 +193,39 @@ class vector
 
     const_reference operator[] (size_type n) const{return (this->buffer_v[n]);}
 
-    reference at (size_type n){ if (n > this->size()) throw std::out_of_range("out of range"); return (this->buffer_v[n]);}
+    reference at (size_type n)
+	{ 
+		if (n > this->size()) 
+			throw std::out_of_range("out of range"); 
+		return (this->buffer_v[n]);
+	}
 
-    const_reference at (size_type n){ if (n > this->size()) throw std::out_of_range("out of range"); return (this->buffer_v[n]);}
+    const_reference at (size_type n) const
+	{ 
+		if (n > this->size())
+		 throw std::out_of_range("out of range");
+		return (this->buffer_v[n]);
+	}
 
-    reference front(){return (*(this->buffer_v))};// return direct refernce withit iterator
+    reference front()
+	{
+		return (*(this->buffer_v));
+	}// return direct refernce withit iteracleartor
 
-    reference back(){return (this->buffer_v[this->size() - 1]);} // return direct refernce withot iterator
+    reference back()
+	{
+		return (this->buffer_v[this->size() - 1]);
+	} // return direct refernce withot iterator
 
-	const_reference front() const{return (*(this->buffer_v));}
+	const_reference front() const
+	{
+		return (*(this->buffer_v));
+	}
 
-    const_reference back() const{return (this->buffer_v[this->size() - 1]);}
+    const_reference back() const
+	{
+		return (this->buffer_v[this->size() - 1]);
+	}
 
 // *** fin element access
 
@@ -211,7 +235,7 @@ class vector
 		// type 1 void assign (size_type n, const value_type& val);
 		// n Nombre de copies d'un élément inséré dans le vecteur.
 		// val Valeur de l'élément inséré dans le vecteur.
-		void assign (size_type n, const value_type& val);
+		void assign (size_type n, const value_type& val)
 		{
 			
 			for(size_t i = 0 ; i < var_size ; i++)
@@ -220,13 +244,13 @@ class vector
 
             if (n > var_capacity)
             {
-                if (!buffer_var)
+                if (!buffer_v)
                     var_alloc.deallocate(buffer_v, var_capacity);
                 var_capacity = n;
-                var_buff = var_alloc.allocate(var_capacity);
+                buffer_v = var_alloc.allocate(var_capacity);
             }
             for (size_t i = 0 ; i < var_size ; i++)
-                var_alloc.construct(&buff_var[i], val);
+                var_alloc.construct(&buffer_v[i], val);
 		}
 		// type 2 assign insère une plage d’éléments spécifiée du vecteur d’origine dans un vecteur, ou insère des copies d’un nouvel élément de valeur spécifié dans un vecteur.
 
@@ -240,17 +264,17 @@ class vector
                   var_alloc.destroy(&buffer_v[i]);
                 if (!buffer_v)
                   var_alloc.deallocate(buffer_v, var_capacity);
-                buffer_var = var_alloc.allocate(n);
+                buffer_v = var_alloc.allocate(n);
                 var_capacity = n;
               }
               for (size_t i = 0 ; i < n ; i++)
-                var_alloc.construct(&buffer_var[i], first[i]);
+                var_alloc.construct(&buffer_v[i], first[i]);
             var_size = n;
             }
 
 	// fin assign
 
-	// vector::push_back  Ajoute un élément à la fin du vecteur.
+	// Vector::push_back  Ajoute un élément à la fin du vecteur.
 
 		void push_back (const value_type& val)
 		{
@@ -258,12 +282,12 @@ class vector
 			{
 				this->reserve((this->capacity() * 2) + (this->capacity() == 0)); // maymkench reserveiw 0  donc capacity = 0 zid 1
 			}
-			this->var_alloc.construct(&this->_v[this->var_size++], val);
+			this->var_alloc.construct(&this->buffer_v[this->var_size++], val);
 		}
 
 	// fin push_back
 
-   // vector::pop_back Removes the last element in the vector, 
+   // Vector::pop_back Removes the last element in the Vector, 
 
 		void pop_back()
 		{
@@ -296,7 +320,7 @@ class vector
             var_alloc.construct(&buffer_v[i + n - 1], buffer_v[i - 1]);
         }
         for (size_type i = index; i < index + n; i++)
-            var_alloc.construct(&buff_v[i], x);
+            var_alloc.construct(&buffer_v[i], x);
         var_size += n;
     }
 
@@ -306,7 +330,7 @@ class vector
 	iterator insert(iterator position, const value_type& x)
     {
          size_t pos = 0;
-        len = std::distance(begin(),position);
+        pos = std::distance(begin(),position);
 
         if (var_size >= var_capacity)
         {
@@ -315,7 +339,7 @@ class vector
         else
             reserve (var_capacity * 2);            
         }
-        for (size_t i = var_size ; i > len ; i--)
+        for (size_t i = var_size ; i > pos ; i--)
         {
            buffer_v[i] = buffer_v[i - 1];
         }
@@ -333,7 +357,7 @@ class vector
            pos = std::distance(begin(), position);
          if (var_size + n > var_capacity)
          {
-            if (n > _size)
+            if (n > var_size)
              reserve(n + var_size);
            else
              reserve(var_capacity * 2);
@@ -359,7 +383,8 @@ class vector
 
 	void swap (Vector& x)
 	{
-			size_type		tmp_capacity;
+		value_type		*tmp_v;
+		size_type		tmp_capacity;
 		size_type		tmp_size;
 		allocator_type	tmp_alloc;
 
@@ -407,6 +432,7 @@ class vector
         return first;
               
     }
+};
 
 	template <class T, class Alloc>
 	void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y)
@@ -416,8 +442,8 @@ class vector
 
 // *** fin modifires
 
-	// relational operators (vector)
-	template <class T, class Alloc>
+	//relational operators (Vector)
+template <class T, class Alloc>
 bool operator== (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
 {
 	if (lhs.size() != rhs.size())
@@ -454,10 +480,6 @@ template <class T, class Alloc>
 bool operator>= (const Vector<T,Alloc>& lhs, const Vector<T,Alloc>& rhs)
 {
 	return (!(rhs > lhs));
-
 }
-
-};
-
 
 }

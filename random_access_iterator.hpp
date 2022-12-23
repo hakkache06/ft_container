@@ -2,7 +2,6 @@
 
 #include "iterator.hpp"
 #include "iterator_traits.hpp"
-# include <iterator>
 
 namespace ft
 {
@@ -21,8 +20,6 @@ class random_access_iterator : public ft::iterator_traits<ft::iterator<std::rand
         typedef typename ft::iterator_traits<ft::iterator<std::random_access_iterator_tag, T> >::reference reference;
         typedef typename ft::iterator_traits<ft::iterator<std::random_access_iterator_tag, T> >::iterator_category iterator_category;
 
-    private:
-        value_type *pointer_it;
 
     public:
         random_access_iterator(pointer ptr = nullptr) : pointer_it(ptr)
@@ -43,7 +40,6 @@ class random_access_iterator : public ft::iterator_traits<ft::iterator<std::rand
         {
             return (random_access_iterator<const value_type>(pointer_it));
         }
-
         value_type *p() const
         {
             return (this->pointer_it);
@@ -142,70 +138,79 @@ class random_access_iterator : public ft::iterator_traits<ft::iterator<std::rand
 		{
 			return (*(this->pointer_it + n));
 		}
+
+        // iterator_type base() const
+		// {
+		// 	return (this->pointer_it);
+		// }
+
+
+        private:
+        value_type *pointer_it;
 };
 
-// template <class Iterator>
-// random_access_iterator<Iterator> operator+ (
-// 	typename random_access_iterator<Iterator>::difference_type n,
-// 	const random_access_iterator<Iterator>& it)
-// {
-// 	return (it + n);
-// }
+template <class Iterator>
+random_access_iterator<Iterator> operator+ (
+	typename random_access_iterator<Iterator>::difference_type n,
+	const random_access_iterator<Iterator>& it)
+{
+	return (it + n);
+}
 
-// template <class Iterator>
-// random_access_iterator<Iterator> operator- (
-// 	typename random_access_iterator<Iterator>::difference_type n,
-// 	const random_access_iterator<Iterator>& it)
-// {
-// 	return (it - n);
-// }
+template <class Iterator>
+random_access_iterator<Iterator> operator- (
+	typename random_access_iterator<Iterator>::difference_type n,
+	const random_access_iterator<Iterator>& it)
+{
+	return (it - n);
+}
 
-// template <class Iterator>
-// bool operator==(
-// 	const random_access_iterator<Iterator>& lhs,
-// 	const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() == rhs.base());
-// }
+template <class Iterator>
+bool operator==(
+	const random_access_iterator<Iterator>& lhs,
+	const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() == rhs.p());
+}
 
-// template <class Iterator>
-// bool operator!= (
-// 	const random_access_iterator<Iterator>& lhs,
-//     const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() != rhs.base());
-// }
+template <class Iterator>
+bool operator!= (
+	const random_access_iterator<Iterator>& lhs,
+    const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() != rhs.p());
+}
 
-// template <class Iterator>
-// bool operator< (
-// 	const random_access_iterator<Iterator>& lhs,
-//     const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() < rhs.base());
-// }
+template <class Iterator>
+bool operator< (
+	const random_access_iterator<Iterator>& lhs,
+    const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() < rhs.p());
+}
 
-// template <class Iterator>
-// bool operator<= (
-// 	const random_access_iterator<Iterator>& lhs,
-//     const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() <= rhs.base());
-// }
+template <class Iterator>
+bool operator<= (
+	const random_access_iterator<Iterator>& lhs,
+    const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() <= rhs.p());
+}
 
-// template <class Iterator>
-// bool operator> (
-// 	const random_access_iterator<Iterator>& lhs,
-//     const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() > rhs.base());
-// }
+template <class Iterator>
+bool operator> (
+	const random_access_iterator<Iterator>& lhs,
+    const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() > rhs.p());
+}
 
-// template <class Iterator>
-// bool operator>= (
-// 	const random_access_iterator<Iterator>& lhs,
-//     const random_access_iterator<Iterator>& rhs)
-// {
-// 	return (lhs.base() >= rhs.base());
-// }
+template <class Iterator>
+bool operator>= (
+	const random_access_iterator<Iterator>& lhs,
+    const random_access_iterator<Iterator>& rhs)
+{
+	return (lhs.p() >= rhs.p());
+}
 
-};
+}
