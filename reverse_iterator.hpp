@@ -156,77 +156,77 @@ reverse iterators	equivalent used onbase iterators
 >=						<=
 
 */
-	template <class Iterator>
-	bool operator==(
-	const reverse_iterator<Iterator>& x,
-	const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() == y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator==(
+// 	const reverse_iterator<Iterator>& x,
+// 	const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() == y.base());
+// 	}
 
-	template <class Iterator>
-	bool operator!= (
-		const reverse_iterator<Iterator>& x,
-    	const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() != y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator!= (
+// 		const reverse_iterator<Iterator>& x,
+//     	const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() != y.base());
+// 	}
 
-	template <class Iterator>
-	bool operator< (
-		const reverse_iterator<Iterator>& x,
-    	const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() > y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator< (
+// 		const reverse_iterator<Iterator>& x,
+//     	const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() > y.base());
+// 	}
 
-	template <class Iterator>
-	bool operator<= (
-		const reverse_iterator<Iterator>& x,
-    	const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() >= y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator<= (
+// 		const reverse_iterator<Iterator>& x,
+//     	const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() >= y.base());
+// 	}
 
-	template <class Iterator>
-	bool operator> (
-		const reverse_iterator<Iterator>& x,
-    	const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() < y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator> (
+// 		const reverse_iterator<Iterator>& x,
+//     	const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() < y.base());
+// 	}
 
-	template <class Iterator>
-	bool operator>= (
-		const reverse_iterator<Iterator>& x,
-    const reverse_iterator<Iterator>& y)
-	{
-		return (x.base() <= y.base());
-	}
+// 	template <class Iterator>
+// 	bool operator>= (
+// 		const reverse_iterator<Iterator>& x,
+//     const reverse_iterator<Iterator>& y)
+// 	{
+// 		return (x.base() <= y.base());
+// 	}
 
-	// addition operator template function
-	//Returns a reverse iterator pointing to the element located n positions away from the element pointed to by rev_it.
+// 	// addition operator template function
+// 	//Returns a reverse iterator pointing to the element located n positions away from the element pointed to by rev_it.
 
-	template <class Iterator>
-	reverse_iterator<Iterator> operator+ (
-	typename reverse_iterator<Iterator>::difference_type n,
-	const reverse_iterator<Iterator>& rev_it)
-	{
-		return (rev_it + n);
-	}
+// 	template <class Iterator>
+// 	reverse_iterator<Iterator> operator+ (
+// 	typename reverse_iterator<Iterator>::difference_type n,
+// 	const reverse_iterator<Iterator>& rev_it)
+// 	{
+// 		return (rev_it + n);
+// 	}
 
-///Returns the distance between lhs and rhs.
+// ///Returns the distance between lhs and rhs.
 
-	template <class Iterator>
-	reverse_iterator<Iterator> operator- (
-	const reverse_iterator<Iterator>& lhs,
-	const reverse_iterator<Iterator>& rev_it)
-	{
-		return (lhs - rev_it);
-	}
+// 	template <class Iterator>
+// 	reverse_iterator<Iterator> operator- (
+// 	const reverse_iterator<Iterator>& lhs,
+// 	const reverse_iterator<Iterator>& rev_it)
+// 	{
+// 		return (lhs - rev_it);
+// 	}
 
 	
-};
+}
 
 /*
 

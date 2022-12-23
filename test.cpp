@@ -3,31 +3,21 @@
 
 #include <iostream>     // std::cout
 #include "iterator.hpp"    // std::reverse_iterator
-#include "vector.hpp"       // std::vector
+#include "Vector.hpp"       // std::vector
 
 using namespace std;
 
 
-struct B { 
-  using value_type = int; 
-  using type = int;
-};
-
-template<class T>
-void foo(typename T::type value)
-{
-  std::cout << "type";
-}
-
-template<class T>
-void foo(typename T::value_type value)
-{
-    std::cout << "value_type";
-
-}
 
 int main () {
-  
-  foo<B>(3);
-  return 0;
+
+   ft::Vector <int> v1;
+
+   v1.push_back( 10 );
+   v1.push_back( 20 );
+
+   const int &i = v1.at( 0 );
+   int &j = v1.at( 1 );
+   cout << "The first element is " << i << endl;
+   cout << "The second element is " << j << endl;
 }
