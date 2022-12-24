@@ -1,21 +1,51 @@
+#pragma once
 
-///  Traits class defining properties of iterators.
-//Note that any custom class will have a valid instantiation of iterator_traits if it publicly inherits the base class std::iterator.
-
-# pragma once
+#include <iostream>
 
 namespace ft
 {
+    template <	class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
+	struct iterator {
+		typedef T			value_type;
+		typedef Distance	difference_type;
+		typedef Pointer		pointer;
+		typedef Reference	reference;
+		typedef Category	iterator_category;
+	};
 
-template <class iterator>
-struct iterator_traits {
+    // For general iterator
+    template <class Iterator>
+    class iterator_traits
+    {
+        public:
+            typedef typename Iterator::value_type value_type;
+            typedef typename Iterator::difference_type difference_type;
+            typedef typename Iterator::pointer pointer;
+            typedef typename Iterator::reference reference;
+            typedef typename Iterator::iterator_category iterator_category;
+    };
 
-	typedef typename iterator::value_type			value_type; // The type of the element the iterator can point to.
-	typedef typename iterator::difference_type		difference_type; // Type to express the result of subtracting one iterator from another.
-	typedef typename iterator::iterator_category	iterator_category; //  random_access_iterator_tag // 
-	typedef typename iterator::pointer				pointer; // The type of a pointer to an element the iterator can point to.
-	typedef typename iterator::reference			reference; // The type of a reference to an element the iterator can point to.
+    // For native pointer
+    template <typename T>
+    class iterator_traits<T*>
+    {
+        public:
+            typedef T value_type;
+            typedef ptrdiff_t difference_type;
+            typedef T* pointer;
+            typedef T& reference;
+            typedef std::random_access_iterator_tag iterator_category;
+    };
 
-};
-
+    // For const native pointer
+    template <typename T>
+    class iterator_traits<const T*>
+    {
+        public:
+            typedef T value_type;
+            typedef ptrdiff_t difference_type;
+            typedef const T* pointer;
+            typedef const T& reference;
+            typedef std::random_access_iterator_tag iterator_category;
+    };
 };
