@@ -382,27 +382,6 @@ class Vector
 
 
 
-	void swap (Vector& x)
-	{
-		value_type		*tmp_v;
-		size_type		tmp_capacity;
-		size_type		tmp_size;
-		allocator_type	tmp_alloc;
-
-		tmp_v = x.buffer_v;
-		tmp_capacity = x.var_capacity;
-		tmp_size = x.var_size;
-		tmp_alloc = x.var_alloc;
-			x.buffer_v = this->buffer_v;
-		x.var_capacity = this->var_capacity;
-		x.var_size = this->var_size;
-		x.var_alloc = this->var_alloc;
-		this->var_v = tmp_v;
-		this->var_capacity = tmp_capacity;
-		this->var_size = tmp_size;
-			this->var_alloc = tmp_alloc;
-	}
-
 /// erase  Supprime un élément ou une plage d'éléments aux positions spécifiées dans le vecteur.
 // type 1
 
@@ -435,11 +414,11 @@ class Vector
     }
 };
 
-	template <class T, class Alloc>
-	void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y)
-	{
+template <class T, class Alloc>
+void swap (Vector<T,Alloc>& x, Vector<T,Alloc>& y)
+{
 		x.swap(y);
-	}
+}
 
 // *** fin modifires
 
