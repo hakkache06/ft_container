@@ -115,11 +115,6 @@ class Vector
 			this->size = n;
 		}
         
-        //// check container wach empty
-        bool empty() const // X
-		{
-			return (this->size() == 0);
-		}
         //  tbdel capacity  Réserve plus d'emplacements de mémoire
         void reserve (size_type n) // X
 		{
