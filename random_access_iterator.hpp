@@ -35,9 +35,9 @@ namespace ft {
         return * this;
       }
       random_access_iterator operator++(int) {
-        random_access_iterator prev(_pointer);
+        random_access_iterator tmp(_pointer);
         _pointer++;
-        return prev;
+        return tmp;
       }
       random_access_iterator & operator--() {
         --_pointer;
@@ -45,9 +45,9 @@ namespace ft {
       }
 
       random_access_iterator operator--(int) {
-        random_access_iterator prev(_pointer);
+        random_access_iterator tmp(_pointer);
         _pointer--;
-        return prev;
+        return tmp;
       }
       random_access_iterator & operator += (difference_type n) {
         _pointer += n;
