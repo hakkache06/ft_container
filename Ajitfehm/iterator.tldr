@@ -172,8 +172,8 @@
             "parentId": "page",
             "childIndex": 6,
             "point": [
-              228.25,
-              298.95
+              220.7,
+              293.43
             ],
             "size": [
               669.9,
@@ -200,11 +200,171 @@
             "parentId": "page",
             "childIndex": 7,
             "point": [
-              316.62,
-              318.27
+              309.07,
+              312.75
             ],
             "rotation": 0,
             "text": "In C++, it is possible to define a base class for iterators \nthat provides a common interface for all iterator types.\n \n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "5f006fd4-eb68-4986-0cda-d8e6e3480e71": {
+            "id": "5f006fd4-eb68-4986-0cda-d8e6e3480e71",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 8,
+            "point": [
+              116.91,
+              427.02
+            ],
+            "size": [
+              928.08,
+              237.02
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "6210d63b-f908-477e-37f5-b0bae1f30ee0": {
+            "id": "6210d63b-f908-477e-37f5-b0bae1f30ee0",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 9,
+            "point": [
+              519.09,
+              433.85
+            ],
+            "rotation": 0,
+            "text": "TDPRC",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "7582e081-6991-4333-1caf-83297b08d44b": {
+            "id": "7582e081-6991-4333-1caf-83297b08d44b",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 10,
+            "point": [
+              160.83,
+              465.01
+            ],
+            "rotation": 0,
+            "text": "typdef  T  value_type  / Type of elements pointed by the iterator.",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "bf93def6-c2ad-444d-0dc7-5dd67c68cdcb": {
+            "id": "bf93def6-c2ad-444d-0dc7-5dd67c68cdcb",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 11,
+            "point": [
+              158.3,
+              498.46
+            ],
+            "rotation": 0,
+            "text": "typdef   Distance  differnce_type  / Type to represent the difference between two iterators.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "a8899471-e0cb-4c7f-0afd-6b9abd288be0": {
+            "id": "a8899471-e0cb-4c7f-0afd-6b9abd288be0",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 12,
+            "point": [
+              155.28,
+              533.01
+            ],
+            "rotation": 0,
+            "text": "typdef   Pointer  pointer / Type to represent a pointer to an element pointed by the iterator.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "136684dc-bda9-4b06-342a-060a467e9bb5": {
+            "id": "136684dc-bda9-4b06-342a-060a467e9bb5",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 13,
+            "point": [
+              155.84,
+              569.96
+            ],
+            "rotation": 0,
+            "text": "typdef   Refernce  refernce / Type to represent a reference to an element pointed by the iterator.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "9cc0dff2-7bfa-46b5-0a16-82b84246c921": {
+            "id": "9cc0dff2-7bfa-46b5-0a16-82b84246c921",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 14,
+            "point": [
+              155.54,
+              604.42
+            ],
+            "rotation": 0,
+            "text": "typedef Category  iterator_category / Type",
             "style": {
               "color": "black",
               "size": "small",
