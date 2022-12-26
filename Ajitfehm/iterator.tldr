@@ -374,6 +374,849 @@
               "font": "script",
               "textAlign": "middle"
             }
+          },
+          "81ab5f92-b81d-47e2-0cec-477c3cb8f4a8": {
+            "id": "81ab5f92-b81d-47e2-0cec-477c3cb8f4a8",
+            "type": "arrow",
+            "name": "Arrow",
+            "parentId": "page",
+            "childIndex": 15,
+            "point": [
+              572.89,
+              680.46
+            ],
+            "rotation": 0,
+            "bend": 0.00017776614661837173,
+            "handles": {
+              "start": {
+                "id": "start",
+                "index": 0,
+                "point": [
+                  0.99,
+                  0
+                ],
+                "canBind": true
+              },
+              "end": {
+                "id": "end",
+                "index": 1,
+                "point": [
+                  0,
+                  57.21
+                ],
+                "canBind": true
+              },
+              "bend": {
+                "id": "bend",
+                "index": 2,
+                "point": [
+                  0.5,
+                  28.61
+                ]
+              }
+            },
+            "decorations": {
+              "end": "arrow"
+            },
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "9f6c7fdc-2734-4e9e-17e4-ce1be22bc1b2": {
+            "id": "9f6c7fdc-2734-4e9e-17e4-ce1be22bc1b2",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 16,
+            "point": [
+              363.11,
+              777.5
+            ],
+            "size": [
+              430.36,
+              65.66
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "e8ddcb1d-96f7-46ed-044d-9fa5004b032a": {
+            "id": "e8ddcb1d-96f7-46ed-044d-9fa5004b032a",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 17,
+            "point": [
+              487.52,
+              787.92
+            ],
+            "rotation": 0,
+            "text": "iterator_Category",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "209d0120-9e22-4d2b-1f83-e9ef0ecd2303": {
+            "id": "209d0120-9e22-4d2b-1f83-e9ef0ecd2303",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 19,
+            "point": [
+              -248.96,
+              963.52
+            ],
+            "size": [
+              334.93,
+              142.88
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "9ade5c16-c0c0-479d-3e4b-7a42f3e8e468": {
+            "id": "9ade5c16-c0c0-479d-3e4b-7a42f3e8e468",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 20,
+            "point": [
+              186.16,
+              969.65
+            ],
+            "size": [
+              329.19,
+              135.56
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "b62d6671-1997-40c7-3589-d01cca5b174d": {
+            "id": "b62d6671-1997-40c7-3589-d01cca5b174d",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 21,
+            "point": [
+              580.65,
+              973.87
+            ],
+            "size": [
+              399.69,
+              125.11
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "79c0a425-280d-4625-3cc3-1e03f38c3f9e": {
+            "id": "79c0a425-280d-4625-3cc3-1e03f38c3f9e",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 22,
+            "point": [
+              1013.37,
+              977.82
+            ],
+            "size": [
+              356.38,
+              118.33
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "5a164e7c-6f21-479f-1756-133ae5045273": {
+            "id": "5a164e7c-6f21-479f-1756-133ae5045273",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 23,
+            "point": [
+              -265.24,
+              1359.1
+            ],
+            "size": [
+              562.23,
+              341.47
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "436b753c-6636-44e3-02d2-b99de1f47b2c": {
+            "id": "436b753c-6636-44e3-02d2-b99de1f47b2c",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 24,
+            "point": [
+              -175.41,
+              893.57
+            ],
+            "rotation": 0,
+            "text": "Input iterators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "2f8f62ae-eaab-434b-2cac-871ac2803f12": {
+            "id": "2f8f62ae-eaab-434b-2cac-871ac2803f12",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 25,
+            "point": [
+              -234.55,
+              1003.93
+            ],
+            "rotation": 0,
+            "text": "These iterators allow you to \nread elements from a container",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "0114ce14-f331-4725-0b41-efc8e16ba1c0": {
+            "id": "0114ce14-f331-4725-0b41-efc8e16ba1c0",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 26,
+            "point": [
+              271.15,
+              895.64
+            ],
+            "rotation": 0,
+            "text": "Output iterators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "d7e11cb5-516e-46ec-33ac-9d79e6d4bda2": {
+            "id": "d7e11cb5-516e-46ec-33ac-9d79e6d4bda2",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 26,
+            "point": [
+              202.65,
+              1001.23
+            ],
+            "rotation": 0,
+            "text": "These iterators allow you to \nwrite elements from a container",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "1df618e9-3ce5-4263-10a2-f5e7c7b7a658": {
+            "id": "1df618e9-3ce5-4263-10a2-f5e7c7b7a658",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 27,
+            "point": [
+              -165.47,
+              1064.75
+            ],
+            "rotation": 0,
+            "text": "connot modify",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "9c5cd8de-7683-4f0d-07e0-3aa8f3185a0b": {
+            "id": "9c5cd8de-7683-4f0d-07e0-3aa8f3185a0b",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 28,
+            "point": [
+              283.42,
+              1059.51
+            ],
+            "rotation": 0,
+            "text": "connot read",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "b679dc48-f3b4-4541-3738-410d17ff9524": {
+            "id": "b679dc48-f3b4-4541-3738-410d17ff9524",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 29,
+            "point": [
+              698.94,
+              899.06
+            ],
+            "rotation": 0,
+            "text": "Forward iterators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "6223a5f0-ac82-4e08-04e2-616e6abee6cd": {
+            "id": "6223a5f0-ac82-4e08-04e2-616e6abee6cd",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 27,
+            "point": [
+              581.91,
+              993.71
+            ],
+            "rotation": 0,
+            "text": "These iterators allow you to \nwrite and read elements from a container",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "78fc72a4-6783-4ddc-2af0-dcfc91e0d873": {
+            "id": "78fc72a4-6783-4ddc-2af0-dcfc91e0d873",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 30,
+            "point": [
+              684.22,
+              1057.04
+            ],
+            "rotation": 0,
+            "text": "support (++) (--) ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "0cae9c2c-03d2-4c9f-0ab3-1ff8137ad1ef": {
+            "id": "0cae9c2c-03d2-4c9f-0ab3-1ff8137ad1ef",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 30,
+            "point": [
+              1072.5,
+              901.48
+            ],
+            "rotation": 0,
+            "text": "Bidirectional iterators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "bdd79ae7-0160-4a80-1d1c-27e3fc8d006f": {
+            "id": "bdd79ae7-0160-4a80-1d1c-27e3fc8d006f",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 30,
+            "point": [
+              1075.4,
+              1020.31
+            ],
+            "rotation": 0,
+            "text": "also support (++) (--) ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "f21cecce-7069-45f8-0dc3-bbba7ebd5371": {
+            "id": "f21cecce-7069-45f8-0dc3-bbba7ebd5371",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 30,
+            "point": [
+              -118.64,
+              1296.43
+            ],
+            "rotation": 0,
+            "text": "Random-access iterators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "86989ea2-a742-4637-2874-975f5abe4320": {
+            "id": "86989ea2-a742-4637-2874-975f5abe4320",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 31,
+            "point": [
+              -216.03,
+              1407.91
+            ],
+            "rotation": 0,
+            "text": "These iterators allow you to access elements\n in a container using random access",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1.044037397557585,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "9bb265a7-746f-4c9f-3545-76d6bd34c455": {
+            "id": "9bb265a7-746f-4c9f-3545-76d6bd34c455",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 32,
+            "point": [
+              -222.43,
+              1487.36
+            ],
+            "rotation": 0,
+            "text": "using an index to access an element in an array",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1.044037397557585,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "c53a9746-283f-4e69-038a-3f18053b36e9": {
+            "id": "c53a9746-283f-4e69-038a-3f18053b36e9",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 33,
+            "point": [
+              -169.91,
+              1541.45
+            ],
+            "rotation": 0,
+            "text": "They support all iterator operations",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1.044037397557585,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "b37d8a23-8caf-4785-22ee-5b83cbc01b66": {
+            "id": "b37d8a23-8caf-4785-22ee-5b83cbc01b66",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 34,
+            "point": [
+              -173.56,
+              1606.03
+            ],
+            "rotation": 0,
+            "text": "including the increment, decrement, \nand arithmetic operators",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1.044037397557585,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "af43cc22-b9e4-4a28-06ca-31b844c9f076": {
+            "id": "af43cc22-b9e4-4a28-06ca-31b844c9f076",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 35,
+            "point": [
+              -288.28,
+              759.65
+            ],
+            "size": [
+              1722.02,
+              456.51
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "bbdbc272-8eb9-40e4-1636-277a067589f1": {
+            "id": "bbdbc272-8eb9-40e4-1636-277a067589f1",
+            "type": "arrow",
+            "name": "Arrow",
+            "parentId": "page",
+            "childIndex": 36,
+            "point": [
+              305.404925436639,
+              1540.8020050994478,
+              0.5
+            ],
+            "rotation": 0,
+            "bend": -0.000058864973332087194,
+            "handles": {
+              "start": {
+                "id": "start",
+                "index": 0,
+                "point": [
+                  0,
+                  0
+                ],
+                "canBind": true
+              },
+              "end": {
+                "id": "end",
+                "index": 1,
+                "point": [
+                  169.88,
+                  0.23
+                ],
+                "canBind": true
+              },
+              "bend": {
+                "id": "bend",
+                "index": 2,
+                "point": [
+                  84.94,
+                  0.12
+                ]
+              }
+            },
+            "decorations": {
+              "end": "arrow"
+            },
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "7e54dcaf-172d-4edc-3c8b-cc4a0c821f0c": {
+            "id": "7e54dcaf-172d-4edc-3c8b-cc4a0c821f0c",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 37,
+            "point": [
+              498.79,
+              1350.19
+            ],
+            "size": [
+              718,
+              369.59
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "ee1677aa-6780-4cb4-0e2d-f05f0476bacc": {
+            "id": "ee1677aa-6780-4cb4-0e2d-f05f0476bacc",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 38,
+            "point": [
+              510.73,
+              1376.94
+            ],
+            "rotation": 0,
+            "text": "++i : Move the iterator to the next element in the container.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "6f310087-baf6-45d4-3c05-5f4ae8b7cf52": {
+            "id": "6f310087-baf6-45d4-3c05-5f4ae8b7cf52",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 39,
+            "point": [
+              509.73,
+              1419.91
+            ],
+            "rotation": 0,
+            "text": "--i : Move the iterator to the previous element in the container.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "4ad2b39e-5bc0-4833-1aa0-3b1965ad3b54": {
+            "id": "4ad2b39e-5bc0-4833-1aa0-3b1965ad3b54",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 40,
+            "point": [
+              509.05,
+              1466.48
+            ],
+            "rotation": 0,
+            "text": "i += n : Move the iterator forward by n elements.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "bcfdea52-2feb-4030-2e06-f426400c2189": {
+            "id": "bcfdea52-2feb-4030-2e06-f426400c2189",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 41,
+            "point": [
+              507.93,
+              1507.58
+            ],
+            "rotation": 0,
+            "text": "i -= n : Move the iterator backward by n elements.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "4de1e277-ece1-41ef-2d8e-5e0e21304c3e": {
+            "id": "4de1e277-ece1-41ef-2d8e-5e0e21304c3e",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 42,
+            "point": [
+              500.77,
+              1543.08
+            ],
+            "rotation": 0,
+            "text": "i[n] : Access the element at position n relative to the current iterator position.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "aaf33070-24ec-4da8-0045-bf1a70afe0e0": {
+            "id": "aaf33070-24ec-4da8-0045-bf1a70afe0e0",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 43,
+            "point": [
+              501.2,
+              1589.76
+            ],
+            "rotation": 0,
+            "text": "i1 - i2 : Calculate the distance between two iterators.\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
           }
         },
         "bindings": {}
