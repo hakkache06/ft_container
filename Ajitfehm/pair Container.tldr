@@ -8,7 +8,218 @@
         "id": "page",
         "name": "Page 1",
         "childIndex": 1,
-        "shapes": {},
+        "shapes": {
+          "cea39c7e-565f-46c9-3218-d20f1e723e77": {
+            "id": "cea39c7e-565f-46c9-3218-d20f1e723e77",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 1,
+            "point": [
+              313.3,
+              174.04
+            ],
+            "size": [
+              390.31,
+              96.05
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "a0a0c686-fbca-42e0-297f-887c9cf31e6e": {
+            "id": "a0a0c686-fbca-42e0-297f-887c9cf31e6e",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 2,
+            "point": [
+              433.58,
+              179.59
+            ],
+            "rotation": 0,
+            "text": "Pair Container",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "0ace03c7-3586-4542-1881-110fed4c987d": {
+            "id": "0ace03c7-3586-4542-1881-110fed4c987d",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 3,
+            "point": [
+              324.77,
+              221.72
+            ],
+            "rotation": 0,
+            "text": "exemple : val = {\"EmployseeName\",1234}",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "bcd54927-59f6-4ccc-33e7-1cb410a6a99c": {
+            "id": "bcd54927-59f6-4ccc-33e7-1cb410a6a99c",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 4,
+            "point": [
+              404.05,
+              278.2
+            ],
+            "rotation": 0,
+            "text": "pair <String,int> p",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "bc8951d7-6ad5-40f0-35a5-d8946e32ccfe": {
+            "id": "bc8951d7-6ad5-40f0-35a5-d8946e32ccfe",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 5,
+            "point": [
+              404.33,
+              316.76
+            ],
+            "rotation": 0,
+            "text": "p.first",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "d8004849-5103-4afe-19cf-58b7ee551723": {
+            "id": "d8004849-5103-4afe-19cf-58b7ee551723",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 6,
+            "point": [
+              398.78,
+              350.27
+            ],
+            "rotation": 0,
+            "text": "p.second",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "e89daa48-44b1-4a56-3bac-fa837bf52ea8": {
+            "id": "e89daa48-44b1-4a56-3bac-fa837bf52ea8",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 7,
+            "point": [
+              291.23,
+              402.18
+            ],
+            "size": [
+              431.08,
+              69.17
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "a6eeaa57-655a-4d9e-1042-aece20ed2e10": {
+            "id": "a6eeaa57-655a-4d9e-1042-aece20ed2e10",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 8,
+            "point": [
+              302.78,
+              416.34
+            ],
+            "rotation": 0,
+            "text": "pair<int ,string> p = make_pair(123,\"test\")",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "1532a8c5-ff7a-49e5-3f6d-fe26b29d04b1": {
+            "id": "1532a8c5-ff7a-49e5-3f6d-fe26b29d04b1",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 9,
+            "point": [
+              323.37,
+              123.55
+            ],
+            "rotation": 0,
+            "text": "template <class T1, class T2> struct pair;\n ",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          }
+        },
         "bindings": {}
       }
     },
