@@ -218,6 +218,78 @@
               "font": "script",
               "textAlign": "middle"
             }
+          },
+          "3d6c00b0-ef79-4d85-037d-a401efbd1dbb": {
+            "id": "3d6c00b0-ef79-4d85-037d-a401efbd1dbb",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 10,
+            "point": [
+              297.28,
+              520.36
+            ],
+            "size": [
+              370.04,
+              264.94
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "dcdbb973-5c2c-4d28-1257-fc9765fb0d82": {
+            "id": "dcdbb973-5c2c-4d28-1257-fc9765fb0d82",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 11,
+            "point": [
+              350.8,
+              528.71
+            ],
+            "rotation": 0,
+            "text": "template <class T1 , class T2>\nstruct pair \n{\n  typdef  T1 first_type;\ntypdef T2 second_type;\n \n}",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "9e8757ce-9056-454b-1e4d-4554d7dff80e": {
+            "id": "9e8757ce-9056-454b-1e4d-4554d7dff80e",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 12,
+            "point": [
+              323.49,
+              730.49
+            ],
+            "rotation": 0,
+            "text": "initialization / copy / default",
+            "style": {
+              "color": "black",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1,
+              "font": "script",
+              "textAlign": "middle"
+            }
           }
         },
         "bindings": {}

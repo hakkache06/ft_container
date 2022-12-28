@@ -19,6 +19,14 @@ namespace ft
     class Avl
     {
         // Member types
+        public:
+
+        typedef Key key_type;
+        typedef T   mapped_type;
+        typedef typename ft::pair<const key_type,mapped_type>  value_type;
+        typedef Alloc   allocator_type;
+        typedef size_t  size_type;
+
         
 
 
