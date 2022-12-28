@@ -16,7 +16,7 @@ namespace ft
     // struct node
     // {
     //     typedef key_type    key_type;
-    //     node    *parent;
+    //     node    *root;
     //     node    *left;
     //     node    *right;
     //     size_type           heghit;
@@ -24,7 +24,7 @@ namespace ft
 
     //     void    node_init()
     //     {
-    //         this->parent = NULL;
+    //         this->root = NULL;
     //         this->left = NULL;
     //         this->right = NULL;
     //         this->value = NULL;
@@ -33,7 +33,7 @@ namespace ft
 
     //     node(mapped_type data)
     //     {
-    //         this->parent = NULL;
+    //         this->root = NULL;
     //         this->left = NULL;
     //         this->right = NULL;
     //         this->value = data;
@@ -62,7 +62,7 @@ namespace ft
 
         struct node
         {
-            node    *parent;
+            node    *root;
             node    *left;
             node    *right;
 
@@ -74,7 +74,7 @@ namespace ft
             {
                 this->left = NULL;
                 this->right = NULL;
-                this->parent = NULL;
+                this->root = NULL;
                 this->heghit = 0;
                 this->value = NULL;
             }
@@ -107,19 +107,72 @@ namespace ft
                 new_node->value = this->_alloc.allocate(1);
                 this->_alloc.construct(new_node->value,val);
                 new_node->heghit = 1;
-                new_node->parent = NULL;
+                new_node->root = NULL;
                 return (new_node);
             }
-            // blance_factor
+            
+            node *deallocate_node(node *root)
+			{
+				this->_alloc.destroy(root->value);
+				this->_alloc.deallocate(root->value, 1);
+				this->_alloc_node.destroy(root);
+				this->_alloc_node.deallocate(root, 1);
+				root = NULL;
 
+				return (root);
+			}
+            // blance_factor
+            // balanced factor = hegit(subtreeleft) - heghit(subtreeright) = 0,1 balanced
             int     node_is_blanced(node *root)
             {
                 int is_balanced = 0
 
                 is_balanced = (root->left) ? (root->left->heghit) : 0;
-                is_balanced -= (root->right) ? (root->right->heghit) : 0;
+                is_balanced -= (root->right) ? (root->right->heghit): 0;
             }
-                //if (|std::abs(node_is_blanced(root)) != 0 || 1 not balanced
+                //if (|std::abs(node_is_blanced(root)) != (0 || 1) not balanced
+            node *max_node(node *root)
+				{
+					if (root && root->right)
+						return (root->right->max_node());
+					return (root);
+				}
+            node *min_node(node *root)
+			{
+					if (root && root->left)
+						return (root->left->min_node());
+					return (root);
+			}
+
+        //heghit Tree
+
+    int calcule_height(Node *parent)
+    {
+       if(parent->left && parent->right)
+       {
+            if (parent->left->height < parent->right->height)
+                return parent->right->height + 1;
+            else return  parent->left->height + 1;
+        }
+        else if(parent->left && parent->right == NULL)
+        {
+           return parent->left->height + 1;
+        }
+        else if(parent->left == NULL && parent->right)
+        {
+            return parent->right->height + 1;
+         }
+         return 0;
+    }
+
+            // DD GG Rotation simple
+            // DG GD Rotation double
+
+            node    *RG(node *root)
+            {
+                node *temp = root->left;
+            }
+
 
 
 		private:
