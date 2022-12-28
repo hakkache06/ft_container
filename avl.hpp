@@ -181,6 +181,14 @@ namespace ft
                 if(noda==NULL)
                     return 0;
                 return (noda->heghit);
+                
+            }
+            int heghit_node(node *noda)
+            {
+                if(noda==NULL)
+                    return 0;
+                return (noda->heghit);
+                
             }
 
 		private:
