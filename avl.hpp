@@ -27,10 +27,57 @@ namespace ft
         typedef Alloc   allocator_type;
         typedef size_t  size_type;
 
-        
+    struct node
+    {
+        typedef key_type    key_type;
+        node    *parent;
+        node    *left;
+        node    *right;
+        size_type           heghit;
+        value_type          *value;
 
+        void    node_init()
+        {
+            this->parent = NULL;
+            this->left = NULL;
+            this->right = NULL;
+            this->value = NULL;
+            this->heghit = 0;
+        }
 
+        node(mapped_type data)
+        {
+            this->parent = NULL;
+            this->left = NULL;
+            this->right = NULL;
+            this->value = data;
+            this->heghit = 1;
+        }
 
+    };
+
+        public :
+
+       		AVL(void)
+			{
+				this->root = this->_alloc_node.allocate(1);
+				this->root = init();
+				this->root  = this->root;
+				this->root = NULL;
+			}
+
+			~AVL()
+			{
+			}
+
+    
+        public :
+
+            node													*root;
+		private:
+			allocator_type											_alloc;
+			typename allocator_type::template rebind<node>::other	_alloc_node;
+			Compare	
 
 
     };
