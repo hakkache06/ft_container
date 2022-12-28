@@ -92,6 +92,8 @@ namespace ft
 				this->root = this->_alloc_node.allocate(1);
 				this->root = node_init();
                 this->root->left = NULL;
+                this->root->right = NULL;
+
 			}
 
 			~avl()
@@ -146,34 +148,40 @@ namespace ft
 
         //heghit Tree
 
-    int calcule_height(Node *parent)
-    {
-       if(parent->left && parent->right)
-       {
-            if (parent->left->height < parent->right->height)
-                return parent->right->height + 1;
-            else return  parent->left->height + 1;
-        }
-        else if(parent->left && parent->right == NULL)
-        {
-           return parent->left->height + 1;
-        }
-        else if(parent->left == NULL && parent->right)
-        {
-            return parent->right->height + 1;
-         }
-         return 0;
-    }
+    // int calcule_height(Node *parent)
+    // {
+    //    if(parent->left && parent->right)
+    //    {
+    //         if (parent->left->height < parent->right->height)
+    //             return parent->right->height + 1;
+    //         else return  parent->left->height + 1;
+    //     }
+    //     else if(parent->left && parent->right == NULL)
+    //     {
+    //        return parent->left->height + 1;
+    //     }
+    //     else if(parent->left == NULL && parent->right)
+    //     {
+    //         return parent->right->height + 1;
+    //      }
+    //      return 0;
+    // }
 
             // DD GG Rotation simple
             // DG GD Rotation double
 
-            node    *RG(node *root)
+            // node    *RG(node *root)
+            // {
+            //     node *temp = root->left;
+            // }
+
+
+            int heghit_node(node *noda)
             {
-                node *temp = root->left;
+                if(noda==NULL)
+                    return 0;
+                return (noda->heghit);
             }
-
-
 
 		private:
 			allocator_type											_alloc;
