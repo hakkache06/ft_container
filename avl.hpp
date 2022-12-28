@@ -65,19 +65,19 @@ namespace ft
             node    *root;
             node    *left;
             node    *right;
+            node    *parent;
 
             size_type           heghit;
             value_type          *value;
-            Compare             _compare;
 
-            void    node_init(void)
-            {
-                this->left = NULL;
-                this->right = NULL;
-                this->root = NULL;
-                this->heghit = 0;
-                this->value = NULL;
-            }
+            // void    node_init(void)
+            // {
+            //     this->left = NULL;
+            //     this->right = NULL;
+            //     this->root = NULL;
+            //     this->heghit = 0;
+            //     this->value = NULL;
+            // }
         };
         
          node													*root;
@@ -86,32 +86,6 @@ namespace ft
         public :
 
 
-            //default constructor
-       		avl(void)
-			{
-				this->root = this->_alloc_node.allocate(1);
-				this->root = node_init();
-                this->root->left = NULL;
-                this->root->right = NULL;
-
-			}
-
-			~avl()
-			{
-			}
-
-            node    *new_node_create( value_type const val)
-            {
-                node *new_node;
-
-                new_node = this->_alloc_node.allocate(1);
-                new_node->node_init();
-                new_node->value = this->_alloc.allocate(1);
-                this->_alloc.construct(new_node->value,val);
-                new_node->heghit = 1;
-                new_node->root = NULL;
-                return (new_node);
-            }
             
             node *deallocate_node(node *root)
 			{
@@ -139,12 +113,7 @@ namespace ft
 						return (root->right->max_node());
 					return (root);
 				}
-            node *min_node(node *root)
-			{
-					if (root && root->left)
-						return (root->left->min_node());
-					return (root);
-			}
+
 
         //heghit Tree
 
@@ -180,18 +149,46 @@ namespace ft
             {
                 if(noda==NULL)
                     return 0;
-                return (noda->heghit);
-                
+                return (noda->heghit);    
             }
-            int heghit_node(node *noda)
+            int max_two_val(int a,int b)
             {
-                if(noda==NULL)
-                    return 0;
-                return (noda->heghit);
-                
+                return(a>b) ? a : b;
             }
 
+            node    *new_node_create(const value_type &val , node *parent = NULL)
+            {
+                node *new_node;
+
+                new_node = _alloc_node.allocate(1);
+                _alloc.construct(new_node->value,val);
+                new_node->right = NULL;
+                new_node->left  = NULL;
+                new_node->heghit = 1;
+                new_node->parent = parent ;
+                return (new_node);
+            }
+
+            int     get_balance(node *noda)
+            {
+                    if(noda==NULL)
+                        return 0;
+                    return(heghit_node(noda->left) - heghit_node(noda->right));
+            }
+
+            node *min_node(node *noda)
+			{
+					node *temp;
+
+                    while (temp->left!=NULL)
+                        temp = temp->left;
+                    return temp;   
+			}
+    
+
 		private:
+            node    *_root;
+            node    _last_node;
 			allocator_type											_alloc;
 			typename allocator_type::template rebind<node>::other	_alloc_node;
 			Compare	                                                _compare;

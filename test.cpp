@@ -1,9 +1,6 @@
 #ifndef MAP_HPP
 #define MAP_HPP
 
-#include "Algorithm.hpp"
-#include "Identifiers.hpp"
-#include "MapIterator.hpp"
 #include <utility>
 #include <iomanip>
 #include <math.h>
@@ -837,4 +834,4 @@ namespace ft
 }
 
 #endif
-Footer
+
