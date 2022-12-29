@@ -11756,18 +11756,18 @@
               "textAlign": "middle"
             }
           },
-          "9e40e8a2-8135-473f-258f-ac0861d14b00": {
-            "id": "9e40e8a2-8135-473f-258f-ac0861d14b00",
+          "5c85f1e7-4b41-43fb-2180-5e99a43b0812": {
+            "id": "5c85f1e7-4b41-43fb-2180-5e99a43b0812",
             "type": "text",
             "name": "Text",
             "parentId": "page",
             "childIndex": 434,
             "point": [
-              -612.4351778521277,
-              10878.635670558
+              -773.1293092498847,
+              10732.346736244795
             ],
             "rotation": 0,
-            "text": "- check ",
+            "text": "if root == null \nreturn root \nif (val,fisrt < node->left",
             "style": {
               "color": "black",
               "size": "small",
