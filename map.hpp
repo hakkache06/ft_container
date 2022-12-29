@@ -50,6 +50,28 @@ namespace ft
         >
     class map
     {
+
+        private :
+            struct node
+            {
+                node    *root;
+                node    *left;
+                node    *right;
+                node    *parent;
+
+                size_type           heghit;
+                value_type          *value;
+
+                // void    node_init(void)
+                // {
+                //     this->left = NULL;
+                //     this->right = NULL;
+                //     this->root = NULL;
+                //     this->heghit = 0;
+                //     this->value = NULL;
+                // }
+            };
+
         // Member types
         public:
 
@@ -58,32 +80,38 @@ namespace ft
         typedef typename ft::pair<const key_type,mapped_type>  value_type;
         typedef Alloc   allocator_type;
         typedef size_t  size_type;
-        
-
-        struct node
-        {
-            node    *root;
-            node    *left;
-            node    *right;
-            node    *parent;
-
-            size_type           heghit;
-            value_type          *value;
-
-            // void    node_init(void)
-            // {
-            //     this->left = NULL;
-            //     this->right = NULL;
-            //     this->root = NULL;
-            //     this->heghit = 0;
-            //     this->value = NULL;
-            // }
-        };
+        typedef ptrdiff_t difference_type;
+        typedef typename Alloc::reference reference;
+        typedef typename Alloc::const_reference const_reference;
+        typedef typename Alloc::pointer pointer;
+        typedef typename Alloc::const_pointer const_pointer;
+        typedef typename ft::reverse_iterator < iterator > reverse_iterator;
+        typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
+        //typedef typename ft::bidirectional_iterator<node, key_compare> iterator;
 
         public :
 
+        // Construct 
 
-            
+        
+
+
+        private :
+
+
+
+            node *allocate_tree_node()
+            {
+                node *root;
+
+                root = this->_alloc_node.allocate(1);
+                root->right = NULL;
+                root->left = NULL;
+                root->parent = NULL;
+                std::memset(&root->val, 0, sizeof(root->val));
+                return node;
+            }
+
             node *deallocate_node(node *root)
 			{
 				this->_alloc.destroy(root->value);
