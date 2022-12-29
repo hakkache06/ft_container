@@ -48,7 +48,7 @@ namespace ft
         class Compare = std::less<Key>, /*   */
         class Alloc = std::allocator<ft::pair<const Key,T> > /*   */
         >
-    class Avl
+    class map
     {
         // Member types
         public:
@@ -79,9 +79,6 @@ namespace ft
             //     this->value = NULL;
             // }
         };
-        
-         node													*root;
-
 
         public :
 
@@ -144,6 +141,7 @@ namespace ft
             //     node *temp = root->left;
             // }
 
+        private :
 
             int heghit_node(node *noda)
             {
@@ -184,8 +182,38 @@ namespace ft
                         temp = temp->left;
                     return temp;   
 			}
-    
 
+            node  *LR(node *noda)
+            {
+                node *y = noda->right; // B
+                node *t2 = y->left;    // C
+                y->left = noda;
+                x->right = t2; 
+
+                x->height = max_two_val(heghit_node(x->left),heghit_node(x->right)) + 1;
+                y->height = max_two_val(heghit_node(y->left),heghit_node(y->right)) + 1;
+
+                return (y);
+            }
+
+
+            node  *LRI(node *y)
+            {
+                node *x = y->left; // B
+                node *t2 = x->right;    // C
+                x->right = y; 
+                y->left = t2;
+
+                y->height = max_two_val(heghit_node(y->left),heghit_node(y->right)) + 1;
+                x->height = max_two_val(heghit_node(x->left),heghit_node(x->right)) + 1;
+
+                return (x);
+            }
+    
+            node *insert_node(node * root, const value_type &val)
+            {
+
+            }
 		private:
             node    *_root;
             node    _last_node;

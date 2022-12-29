@@ -22,6 +22,9 @@
         "utility": "cpp",
         "__bit_reference": "cpp",
         "deque": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "list": "cpp"
     }
 }
