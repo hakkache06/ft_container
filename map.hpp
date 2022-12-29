@@ -174,14 +174,26 @@ namespace ft
                     return(heghit_node(noda->left) - heghit_node(noda->right));
             }
 
-            node *min_node(node *noda)
-			{
-					node *temp;
 
-                    while (temp->left!=NULL)
-                        temp = temp->left;
-                    return temp;   
-			}
+            node *min_node(node *temp)
+            {
+                if (temp)
+                {
+                    while (temp->left)
+                        temp= temp->left;
+                }
+                return (temp);
+            }
+
+            mode *max_node(node *temp)
+            {
+                if (temp)
+                {
+                    while (temp->right)
+                        temp = temp->right;
+                }
+                return (temp);
+            }
 
             node  *LR(node *noda)
             {
@@ -210,10 +222,63 @@ namespace ft
                 return (x);
             }
     
-            node *insert_node(node * root, const value_type &val)
+            node *insert_node(node *node, const value_type &val,node *parent = NULL)
             {
+                int balance;
+                // find correct position
+                if (node == NULL)
+                    return (new_node_create(val,parent));
+                if (val.first < node->val.first)
+                        node->left = insert_node(node->left,val,node);
+                else if (val->first > node->val.first)
+                        node->right = insert_node(node->right,val,node);
+                else
+                    return node; 
+                //
+
+                // balance Tree
+                    node->height = 1 + max_two_val(heghit_node(node->left,node->right));
+
+                    balance = get_balance(node);
+
+                    if(balance > 1 && val.first < node->left->val.first)
+                        return (LRI(node)); // single Right Rotation
+                    if(balance < -1 && val.first > node->right.val.first)
+                        return (LR(node));// single left rotation
+                    if (balance < -1 && val.first < node->right.val.first)
+                    {
+                        node->right = LRI(node->right); // RL
+                        return LR(node);
+                    }
+                    if (balance > 1 && val.first > node->left.val.fisrt)
+                    {
+                        node->left = LR(node->left);
+                        return LRI(node);
+                    }      
+                    return node ;
+                ///
+            }
+
+            node    *delete_node(node *root, const key_type &key)
+            {
+                    if(root == NULL)
+                        return root;
+                    if (key < root->val.fist)
+                        root->left = delete_node(root->left,key);
+                    else if (key > root.val.fisrt)
+                        root->right = delete_node(root->right,key);
+                    else
+                    {
+                        if((root->left == NULL )|| (root->right == NULL))
+                        {
+
+                        }
+                    }
+
+                    
 
             }
+
 		private:
             node    *_root;
             node    _last_node;

@@ -8,7 +8,7 @@
 namespace ft
 {
     template <class Key, class T, 
-              class Compare = less<Key>,
+              class Compare = std::less<Key>,
               class Alloc = std::allocator<std::pair<Key, T> > >
     class map
     {
