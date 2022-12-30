@@ -232,15 +232,6 @@ class AVL{
     }
 
 
-        void print(nodaaa<T> *node)
-        {
-            if(node != NULL)
-            print(nodaaa->left);
-            std::cout << node->_pair.first << std::endl;
-            print(nodaa->right);
-
-        }
-
     void dellocate_node(nodaaa<T> *node){
         if (node){
             dellocate_node(node->_left);
@@ -263,8 +254,6 @@ class AVL{
     }
 
        
-
-
     public:
       nodaaa<T> *_head;
       nodaaa<T> *_last_node;

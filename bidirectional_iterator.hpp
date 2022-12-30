@@ -2,11 +2,12 @@
 # include "./iterator.hpp"
 # include "./iterator_traits.hpp"
 # include <iterator>
+# include <iostream>
 
 namespace ft
 {
 
-template<typename Node, typename T>
+template<typename node, typename T>
 class bidirectional_iterator : public ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >
 {
 	public:
@@ -16,7 +17,7 @@ class bidirectional_iterator : public ft::iterator_traits<ft::iterator<std::bidi
         typedef typename ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >::reference			reference;
         typedef typename ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >::iterator_category	iterator_category;
 	private:
-		Node	*pointer_iter;
+		node	*pointer_iter;
 
 	public:
 		bidirectional_iterator(Node *ptr = NULL) : pointer_iter(ptr)
