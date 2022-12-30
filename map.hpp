@@ -117,13 +117,47 @@ namespace ft
             (*this) = x;
         }
 
-        ~Map (void)
-		{
-			this->_tree.clear(true);
-		}
-
         // iterator 
 
+        iterator begin()
+        {
+            return iterator(min_node());
+        }
+        const_iterator begin() const
+        {
+            return const_iterator(min_node());
+        }
+
+        iterator end()
+        {
+            if (tree_size(_node))
+                return(iterator(_node->parent));
+            return iterator(_node);
+        }
+        
+        const_iterator end()
+        {
+            if (tree_size(_node))
+                return(const_iterator(_node->parent));
+            return const_iterator(_node);
+        }
+        
+        reverse_iterator rbegin()
+		{
+			return (reverse_iterator(this->end()));
+		}
+        const_reverse_iterator rbegin() const
+		{
+			return (const_reverse_iterator(this->end()));
+		}
+        reverse_iterator rend()
+		{
+			return (reverse_iterator(this->begin()));
+		}
+        const_reverse_iterator rend() const
+		{
+			return (const_reverse_iterator(this->begin()));
+		}
 
         ////
         // Reverse iterator /////////////////////////////////
@@ -420,6 +454,12 @@ namespace ft
          return 0;
     }
 
+    int     node_is_blanced(node *root)
+    {
+        int is_balanced = 
+        is_balanced = (root->left) ? (root->left->heghit) : 0;
+        is_balanced -= (root->right) ? (root->right->heghit): 0;
+    }
    
     //// AVL  rightrotate left trotate inser allocate max min treesize hegight
 		private:
@@ -429,18 +469,10 @@ namespace ft
 			typename allocator_type::template rebind<node>::other	_alloc_node;
 			Compare	                                                _compare;
             size_type                                               _size;
-
-
     };
 
 }
-
-
-
-
     //     private :
-
-
 
     //         node *allocate_tree_node()
     //         {
