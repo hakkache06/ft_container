@@ -25,6 +25,13 @@
         "stack": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "__tree": "cpp",
+        "atomic": "cpp",
+        "iomanip": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "random": "cpp",
+        "system_error": "cpp"
     }
 }
