@@ -5,18 +5,39 @@
 #include <algorithm>
 # include <functional>
 # include <iostream>
-# include "nodaaa.hpp"
+#include "nodda.hpp"
+using namespace std;
 
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
 /// AVL Tree implementation using C | AVL Tree Code | rotations in AVL Tree | LL RR LR RL rotation // https://www.youtube.com/watch?v=L0cDtyphZRc
 
+// class value_compare
+//           : public binary_function<value_type,value_type,bool> {
+//         friend class AVL;
+//         protected:
+//           Compare comp;
+//           value_compare(Compare c) : comp(c) {}
+//         public:
+//           bool operator()(const value_type& x, const value_type& y) const {
+//             return comp(x.first, y.first);
+// } };
+
 //AVL Tree
-template <class T, class Compare ,class Alloc = std::allocator<nodaaa<T> > >
+
+template <class T ,class Alloc = std::allocator<nodaaa<T> > >
 class AVL{
     public:
-        typedef typename T::first_type ftype;
+        typedef typename T::first_type   pair_first_pair;
         typedef typename Alloc::template rebind<T>::other _node_alloc; // alloc node
         typedef Alloc											allocator_type;
         typedef size_t                                          size_type;
+
+    public:
+        nodaaa<T> *_head;
+        nodaaa<T> *_last_node;
+        Alloc _alloc;
+        size_type _size;
+
 
     AVL()
     {
@@ -34,7 +55,7 @@ class AVL{
         _head = ref._head;
         _last_node = ref._last_node;
         _alloc = ref._alloc;
-        _key_compare = ref._key_compare;
+       // _key_compare = ref._key_compare;
         _size = ref._size;
     }
     
@@ -77,9 +98,9 @@ class AVL{
         return (a > b) ? a : b;
     }
 
-    bool key_comp(nodaaa<T> *n1, nodaaa<T> *n2){
-        return (n1->_pair.first > n2->_pair.first);
-    }
+    // bool key_comp(nodaaa<T> *n1, nodaaa<T> *n2){
+    //     return (n1->_pair.first > n2->_pair.first);
+    // }
 
     nodaaa<T> *allocate_new_node(T _pair)
     {
@@ -127,32 +148,39 @@ class AVL{
         nodaaa<T> *insert (nodaaa <T> *node, T pair){
         if (node == NULL){
             _size++;
-             return (newnode(pair));
+             return (allocate_new_node(pair));
         }
-        if (_key_compare(pair.first, node->_pair.first)){
+        if (pair.first < node->pair.first){
             nodaaa<T> *leftchild = insert(node->left, pair);
             node->left = leftchild;
             leftchild->parent  = node;
         }
-        else if (_key_compare(node->_pair.first, pair.first)){
+        else if (pair.first > node->pair.first ){
             nodaaa<T> *rightchild = insert(node->right, pair);
             node->right = rightchild;
             rightchild->parent  = node;
         }
         else 
             return (node);
-        node->_height = 1 + max(height(node->left), height(node->right));
+
+        node->height = 1 + max(height(node->left), height(node->right));
+
         int balance = getBalance(node);
 
-        if (balance > 1 && _key_compare(pair.first, node->pair.first))
+        /// second cases
+        if (balance > 1 && pair.first < node->left->pair.first)
             return (rightRotate(node));
-        if (balance < -1 && _key_compare(node->pair.first, pair.first))
-            return (leftRotate(node));
-        if (balance > 1 && _key_compare(node->pair.first, pair.first)){
-            node->_eft = leftRotate(node->_left);
+       
+        if (balance > 1 &&  pair.first > node->left->pair.first ){
+            node->left = leftRotate(node->left);
             return (rightRotate(node));
         }
-        if (balance < -1 && _key_compare(pair.first, node->pair.first)){
+
+
+        /// First cases
+        if (balance < -1 &&  pair.first > node->right->pair.first )
+            return (leftRotate(node));
+        if (balance < -1 && pair.first < node->pair->right.first){
             node->right = rightRotate(node->right);
             return (leftRotate(node));
         }
@@ -171,13 +199,13 @@ class AVL{
         is_balanced -= (root->right) ? (root->right->heghit): 0;
     }
 
-    nodaaa<T> *deletenode(nodaaa<T> *node, ftype first){
+    nodaaa<T> *deletenode(nodaaa<T> *node,  pair_first_pair first){
         if (node == NULL)
             return (node);
-        if (_key_compare(first, node->_pair.first)){
+        if (first, node->_pair.first){
             node->_left = deletenode(node->_left, first);
         }
-        else if (_key_compare(node->_pair.first, first)){
+        else if (node->_pair.first, first){
             node->_right = deletenode(node->_right, first);
         }
         else {
@@ -241,26 +269,35 @@ class AVL{
         }
     }
 
-        nodaaa<T> *find_key(nodaaa<T> *node, ftype first) {
+        nodaaa<T> *find_key(nodaaa<T> *node,  pair_first_pair first) {
         if (node == NULL)
             return (NULL);
-        if (node->_pair.first == first)
-            return (node);
-        nodaaa<T> *n1 = find(node->_left, first);
+        if (node->pair.first == first)
+            return(node);
+        nodaaa<T> *n1 = find(node->left, first);
         if (n1)
             return (n1);
-        nodaaa<T> *n2 = find(node->_right, first);
+        nodaaa<T> *n2 = find(node->right, first);
         return (n2);
     }
 
-       
-    public:
-      nodaaa<T> *_head;
-      nodaaa<T> *_last_node;
-      Alloc _alloc;
-      Compare _key_compare;
-      size_type _size;
-    // size_t _capacity;
+
+// void printTree(nodaaa<T> *root, string indent, bool last) {
+//   if (root != nullptr) {
+//     cout << indent;
+//     if (last) {
+//       cout << "R----";
+//       indent += "   ";
+//     } else {
+//       cout << "L----";
+//       indent += "|  ";
+//     }
+//     cout << root->pair.second << endl;
+//     printTree(root->left, indent, false);
+//     printTree(root->right, indent, true);
+//   }
+
+
 };
 
 
