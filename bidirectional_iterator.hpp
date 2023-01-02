@@ -1,5 +1,5 @@
 # pragma once
-# include "./iterator.hpp"
+//# include "./iterator.hpp"
 # include "./iterator_traits.hpp"
 # include <iterator>
 # include <iostream>
@@ -7,7 +7,7 @@
 namespace ft
 {
 
-template<typename node, typename T>
+template<typename U, typename T>
 class bidirectional_iterator : public ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >
 {
 	public:
@@ -17,10 +17,10 @@ class bidirectional_iterator : public ft::iterator_traits<ft::iterator<std::bidi
         typedef typename ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >::reference			reference;
         typedef typename ft::iterator_traits<ft::iterator<std::bidirectional_iterator_tag, T> >::iterator_category	iterator_category;
 	private:
-		node	*pointer_iter;
+		U	*pointer_iter;
 
 	public:
-		bidirectional_iterator(Node *ptr = NULL) : pointer_iter(ptr)
+		bidirectional_iterator(U *ptr = NULL) : pointer_iter(ptr)
 		{
 		}
 
@@ -28,9 +28,9 @@ class bidirectional_iterator : public ft::iterator_traits<ft::iterator<std::bidi
 		{
 		}
 
-		operator bidirectional_iterator<Node, const value_type>()
+		operator bidirectional_iterator<U, const value_type>()
 		{
-			return (bidirectional_iterator<Node, const value_type>(this->pointer_iter));
+			return (bidirectional_iterator<U, const value_type>(this->pointer_iter));
 		}
 
 		value_type *base()

@@ -11,14 +11,14 @@ using namespace std;
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
 /// AVL Tree implementation using C | AVL Tree Code | rotations in AVL Tree | LL RR LR RL rotation // https://www.youtube.com/watch?v=L0cDtyphZRc
 
-// class pairue_compare
-//           : public binary_function<pairue_type,pairue_type,bool> {
+// class value_compare
+//           : public binary_function<value_type,value_type,bool> {
 //         friend class AVL;
 //         protected:
 //           Compare comp;
-//           pairue_compare(Compare c) : comp(c) {}
+//           value_compare(Compare c) : comp(c) {}
 //         public:
-//           bool operator()(const pairue_type& x, const pairue_type& y) const {
+//           bool operator()(const value_type& x, const value_type& y) const {
 //             return comp(x.first, y.first);
 // } };
 
@@ -198,76 +198,41 @@ class AVL{
         is_balanced -= (root->right) ? (root->right->heghit): 0;
     }
 
-  
-        node<T> *deletenode(node<T> *root, pair_first_pair key)
-        {
-        
-        // Position node 
-            if (root == NULL)
-                return root;
+    nodaaa<T> *deletenode(nodaaa<T> *node,  pair_first_pair first){
 
-            if (key < root->pair.first)) 
-                root->left = deletenode(root->left, key);
+        if (node == NULL)
+            return (node);
 
-            else if (root->pair.first > key))
-                root->right = deletenode(root->right, key);
-        ///
-            else
+        if (first < node->pair.first){
+            node->left = deletenode(node->left, first);
+        }
+        else if (first > node->pair.first){
+            node->right = deletenode(node->right, first);
+
+        }
+        else {
+            if ((node->left == NULL) || (node->right == NULL)){
+                nodaaa<T> *temp = node->left ? node->left : node->right;
+
+                if (temp == NULL){
+                    temp = node;
+                    node = NULL;
+                }
+                else{
+                    *node = *temp;
+                }
+                     --_size;
+                    _alloc.destroy(temp);
+                    _alloc.deallocate(temp,1);
+    
+            }else
             {
-            // if have child    
-                if ((root->left == NULL) ||(root->right == NULL))
-                {
-                    node *temp = root->left ? root->left : root->right;
+                nodaaa<T> *temp  = min_node(node->right);
+                node->pair = temp->pair;
+                node->right = deletenode(node->right,temp->pair.first);
 
-                    if (temp == NULL)
-                    {
-                        temp = root;
-                        root = NULL;
-                    }
-                    else // have child one
-                    {
-                        temp->parent = root->parent;
-                        *root = *temp;
-                    } 
-                    _alloc_node.destroy(temp);
-                    _alloc_node.deallocate(temp, 1);
-                }
-                else // node to be deleted have 2 child
-                {
-                    node *temp = min_node(root->right);
-                    root->pair = temp->pair;
-                    root->right = deletenode(root->right,temp->pair.first);
-                }
             }
-
-                                      // balanced node
-                if (root == NULL)
-                    return root;
-                root->height = 1 + max(height(root->left), height(root->right));
-                int balance = getBalance(root);
-
-                if (balance > 1 && getBalance(root->left) >= 0)
-                    return LRI(root);
-
-                if (balance > 1 && getBalance(root->left) < 0)
-                {
-                    root->left = leftRotate(root->left);
-                    return LRI(root);
-                }
-                if (balance < -1 &&
-                    getBalance(root->right) <= 0)
-                    return LR(root);
-                if (balance < -1 &&
-                    getBalance(root->right) > 0)
-                {
-                    root->right = rightRotate(root->right);
-                    return LR(root);
-                }
-                return root;
-
-    //     }
-
-
+        }
         if (node == NULL)
             return (node);
 
@@ -388,11 +353,11 @@ void affiche(nodaaa<T>* root)
     //         return n->height;
     //     }
 
-    //     node *Createnewnode(const pairue_type &pair, node *parent = NULL)
+    //     node *Createnewnode(const value_type &val, node *parent = NULL)
     //     {
     //         node *node;
     //         node = _alloc_node.allocate(1);
-    //         _allocator_type.construct(&node->pair, pair);
+    //         _allocator_type.construct(&node->val, val);
     //         node->right = NULL;
     //         node->left = NULL;
     //         node->parent = parent;
@@ -402,17 +367,17 @@ void affiche(nodaaa<T>* root)
 
 
 
-    //     node *insert_node(node *node, const pairue_type &pair, node *parent = NULL)
+    //     node *insert_node(node *node, const value_type &val, node *parent = NULL)
     //     {
     //         if (node == NULL)
-    //             return (Createnewnode(pair, parent)); 
-    //         if (_comp(pair.first, node->pair.first))
+    //             return (Createnewnode(val, parent)); 
+    //         if (_comp(val.first, node->val.first))
     //         {
-    //             node->left = insert_node(node->left, pair, node);
+    //             node->left = insert_node(node->left, val, node);
     //         }
-    //         else if (_comp(node->pair.first, pair.first))
+    //         else if (_comp(node->val.first, val.first))
     //         {
-    //             node->right = insert_node(node->right, pair, node); 
+    //             node->right = insert_node(node->right, val, node); 
     //         }
     //         else 
     //             return node;
@@ -421,19 +386,19 @@ void affiche(nodaaa<T>* root)
     //         int balance = getBalance(node);
 
     //         // Left Left Case
-    //         if (balance > 1 && _comp(pair.first, node->left->pair.first)) //pair.first < node->left->pair.first
+    //         if (balance > 1 && _comp(val.first, node->left->val.first)) //val.first < node->left->val.first
     //             return rightRotate(node);
     //         // Right Right Case
-    //         if (balance < -1 && _comp(node->right->pair.first, pair.first)) // pair.first > node->right->pair.first
+    //         if (balance < -1 && _comp(node->right->val.first, val.first)) // val.first > node->right->val.first
     //             return leftRotate(node);
     //         // Left Right Case
-    //         if (balance > 1 && _comp(node->left->pair.first, pair.first)) // pair.first > node->left->pair.first
+    //         if (balance > 1 && _comp(node->left->val.first, val.first)) // val.first > node->left->val.first
     //         {
     //             node->left = leftRotate(node->left);
     //             return rightRotate(node);
     //         }
     //         // Right Left Case
-    //         if (balance < -1 && _comp(pair.first, node->right->pair.first)) // pair.first < node->right->pair.first
+    //         if (balance < -1 && _comp(val.first, node->right->val.first)) // val.first < node->right->val.first
     //         {
     //             node->right = rightRotate(node->right);
     //             return leftRotate(node);

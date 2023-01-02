@@ -7,7 +7,8 @@
 # include <iostream>
 #include "pair.hpp"
 #include "vector.hpp"
-//#include "iterator.hpp"
+#include "bidirectional_iterator.hpp"
+#include "reverse_iterator.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
 namespace ft
@@ -36,10 +37,11 @@ namespace ft
         typedef typename Alloc::const_reference const_reference;
         typedef typename Alloc::pointer pointer;
         typedef typename Alloc::const_pointer const_pointer;
+        typedef	nodaaa<value_type> _node;
 
         //// iterator 
-        //typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
-		//typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
+        typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
+		typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
 
         //typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         //typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
@@ -55,7 +57,6 @@ namespace ft
       size_type _size;
     // size_t _capacity;
  
-
         // class value compare
         // class value_compare: public std::binary_function<value_type,value_type,bool> 
         // {
@@ -92,7 +93,6 @@ namespace ft
       
 
     private:
-		typedef	nodaaa<value_type> _node;
 		typedef typename allocator_type::template rebind<_node>::other		_avl_allocator;
 		AVL<value_type> avl_tree;    
 

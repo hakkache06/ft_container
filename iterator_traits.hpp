@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "iterator.hpp"
+
 namespace ft {
   template < class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T * , class Reference = T & >
     struct iterator {
@@ -21,5 +23,7 @@ namespace ft {
       typedef typename Iterator::reference reference;
       typedef typename Iterator::iterator_category iterator_category;
     };
+
+  
 
 };

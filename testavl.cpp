@@ -30,7 +30,7 @@ int main()
 
    ft::pair<int,int> f8;
    f8.second = 78;
-   f8.first = 8; 
+   f8.first = 5; 
 
 
  
@@ -47,17 +47,19 @@ int main()
 
          
 
-        // second_node = avl_tree.deletenode(second_node,1);
-                 
+         second_node = avl_tree.deletenode(second_node,5);
+                  second_node = avl_tree.deletenode(second_node,2);
+                                    second_node = avl_tree.deletenode(second_node,3);
+
+
+                          second_node = avl_tree.insert(second_node , f5);
+
 
 
 
       //avl_tree.printTree(second_node,"",true);
  
       avl_tree.affiche(second_node);
-
-
-
 
    
 
