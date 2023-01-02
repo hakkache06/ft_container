@@ -6,39 +6,56 @@
 
 int main()
 {
+
+ AVL<ft::pair<int,int> > avl_tree;
+ nodaaa <ft::pair<int,int> > *second_node;
   
     ft::pair<int,int> f1;
-    f1.first = 2;
-    f1.second =45;
-
-    ft::pair<int,int> f2;
-    f2.first = 3;
-    f2.second =5;
-
-
-    ft::pair<int,int> f3;
-    f3.first = 4;
-    f3.second =78;
-
-    ft::pair<int,int> f4;
-    f4.first = 5;
-    f4.second =23;
-
+    f1.second = 40;
+    f1.first = 1;  
   
 
-    AVL<ft::pair<int,int> > avl_tree;
+   ft::pair<int,int> f4;
+   f4.second = 45;
+   f4.first = 2;  
+
+     ft::pair<int,int> f5;
+   f5.second = 17;
+   f5.first = 3; 
 
 
-    nodaaa <ft::pair<int,int> > *first_node;
+       ft::pair<int,int> f6;
+   f6.second = 20;
+   f6.first = 4; 
+
+   ft::pair<int,int> f8;
+   f8.second = 78;
+   f8.first = 8; 
 
 
-   first_node = avl_tree.insert(first_node , f1);
-//   first_node = avl_tree.insert(first_node , f2);
-//   first_node = avl_tree.insert(first_node , f3);
-//   first_node = avl_tree.insert(first_node , f4);
+ 
 
-        //cout << first_node->pair.first << endl;
-        //cout << first_node->pair.second << endl;
+   //       ft::pair<int,int> f5;
+   //  f5.second = 10;
+   //  f5.first = 5;  
+
+         second_node = avl_tree.insert(second_node , f1);
+         second_node = avl_tree.insert(second_node , f4);
+         second_node = avl_tree.insert(second_node , f5);
+         second_node = avl_tree.insert(second_node , f6);
+         second_node = avl_tree.insert(second_node , f8);
+
+         
+
+        // second_node = avl_tree.deletenode(second_node,1);
+                 
+
+
+
+      //avl_tree.printTree(second_node,"",true);
+ 
+      avl_tree.affiche(second_node);
+
 
 
 
