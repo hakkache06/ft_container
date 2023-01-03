@@ -38,7 +38,6 @@ namespace ft
         typedef typename Alloc::pointer pointer;
         typedef typename Alloc::const_pointer const_pointer;
         typedef	nodaaa<value_type> _node;
-
         //// iterator 
         typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
 		typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
@@ -76,9 +75,7 @@ namespace ft
         // Construct empty
         explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
         {
-            avl_tree._alloc = alloc;
-            avl_tree._last_node = avl_tree._alloc.allocate(1);
-            avl_tree._alloc.construct(avl_tree._last_node,nodaaa<value_type>());
+            
         }
 
         // ~map()
@@ -90,10 +87,15 @@ namespace ft
         // {
             
         // }
-      
+        
+
+      // iterator  begin()
+      // {
+      //     return min_node();
+      // }
 
     private:
-		typedef typename allocator_type::template rebind<_node>::other		_avl_allocator;
+		//typedef typename allocator_type::template rebind<_node>::other		_avl_allocator;
 		AVL<value_type> avl_tree;    
 
     };

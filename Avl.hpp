@@ -28,7 +28,7 @@ template <class T ,class Alloc = std::allocator<nodaaa<T> > >
 class AVL{
     public:
         typedef typename T::first_type   pair_first_pair;
-        typedef typename Alloc::template rebind<nodaaa <T> >::other _node_alloc; // alloc node
+        //typedef typename Alloc::template rebind<nodaaa <T> >::other _node_alloc; // alloc node
         typedef Alloc											allocator_type;
         typedef size_t                                          size_type;
 

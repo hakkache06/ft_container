@@ -45,21 +45,16 @@ int main()
          second_node = avl_tree.insert(second_node , f6);
          second_node = avl_tree.insert(second_node , f8);
 
-         
-
-         second_node = avl_tree.deletenode(second_node,5);
-                  second_node = avl_tree.deletenode(second_node,2);
-                                    second_node = avl_tree.deletenode(second_node,3);
-
-
-                          second_node = avl_tree.insert(second_node , f5);
-
 
 
 
       //avl_tree.printTree(second_node,"",true);
  
-      avl_tree.affiche(second_node);
+      //avl_tree.affiche(second_node);
+      
+      cout << avl_tree.min_node(second_node)->pair.first << "]";
+       cout << avl_tree.max_node(second_node)->pair.first << "]";
+
 
    
 
