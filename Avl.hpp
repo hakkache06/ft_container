@@ -336,7 +336,15 @@ void affiche(nodaaa<T,alloc>* root)
     print2DUtil(root, 0);
 }
 
+    nodaaa<T,Alloc> parent_node(nodaaa<T,Alloc> root, pair_first_pair k)
+    {
 
+        if(root == ull || node->pair.first = k)
+            return null;
+        
+        if((root->left != null && node->left->pair.first == k) || )
+
+    }
 
 
 };
