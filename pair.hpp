@@ -3,28 +3,29 @@
 namespace ft {
 
   template < class T1, class T2 >
-    struct pair {
+    class pair {
+
+      public:
       typedef T1 first_type;
       typedef T2 second_type;
-
-      first_type first;
-      second_type second;
+      
+        first_type first;
+        second_type second;
 
       //(1) default constructor
       pair(): first(), second() {}
 
       // (2) copy / move constructor (and implicit conversion)
       template < class U, class V >
-        pair(const pair < U, V > & pr) {
-          first = pr.first;
-          second = pr.second;
+        pair(const pair < U, V > & pr): first(pr.first),second(pr.second) {
+          //rachid 
+          // first = pr.first;
+          // second = pr.second;   dy3atli me 7yati nhar
         }
 
       //(3) initialization constructor
       pair(const first_type & a,
-        const second_type & b) {
-        first = a;
-        second = b;
+        const second_type & b) : first(a),second(b) {
       }
 
       //pair::operator=

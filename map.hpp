@@ -37,11 +37,10 @@ namespace ft
         typedef typename Alloc::const_reference const_reference;
         typedef typename Alloc::pointer pointer;
         typedef typename Alloc::const_pointer const_pointer;
-        typedef	nodaaa<value_type> _node;
+        typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
-		typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
-
+        //typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
+		//typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
         //typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         //typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
         //fin iterator
@@ -49,11 +48,12 @@ namespace ft
 
        
     public:
-      nodaaa<T> *_head;
-      nodaaa<T> *_last_node;
+     
+      //nodaaa<T> *_last_node;
       Alloc _alloc;
       Compare _key_compare;
       size_type _size;
+      
     // size_t _capacity;
  
         // class value compare
@@ -88,15 +88,23 @@ namespace ft
             
         // }
         
+        void  insertmap(const value_type &x)
+        {
+            avl_tree._head = avl_tree.insert(avl_tree._head,x);
+        }
 
+        void    affiche2()
+        {
+            this->avl_tree.affiche(avl_tree._head);
+        }
       // iterator  begin()
       // {
       //     return min_node();
       // }
 
     private:
-		//typedef typename allocator_type::template rebind<_node>::other		_avl_allocator;
-		AVL<value_type> avl_tree;    
+    
+  		AVL<value_type,Alloc> avl_tree;    
 
     };
 
