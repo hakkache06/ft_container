@@ -5,7 +5,7 @@
 ///	typedef ft::const_map_ite<value_type, value_compare> const_iterator;
 namespace ft{
 
-template <class T, class kc>
+template <class T, class Alloc>
 class map_ite : public tree_iterator<T, Alloc>{
 
 public:
@@ -22,26 +22,27 @@ public:
         *this = src;
     };
     map_ite(nodaa<T,Alloc> *node){
-        this->_avlIt._head = node;
+        this->avl_tree_iter._head = node;
     }
     pointer operator->()const{
-        return&(this->avl_tree._head->_pair);
+        return&(this->avl_tree_iter._head->pair);
     }
     reference operator*()const{
-        return (this->avl_tree._head->_pair);
+        return (this->avl_tree_iter._head->pair);
     }
 	map_ite	&operator++() { tree_iterator<T, Alloc>::operator++(); return *this; };
-	map_ite	&operator--() { tree_iterator<T, kc>::operator--(); return *this; };
+	// map_ite	&operator--() { tree_iterator<T, Alloc>::operator--(); return *this; };
+
 	map_ite	operator++(int) {
 		map_ite tmp(*this);
 		operator++();
 		return tmp;
 	};
-	map_ite	operator--(int)  {
-		map_ite tmp(*this);
-		operator--();
-		return tmp;
-	};
+	// map_ite	operator--(int)  {
+	// 	map_ite tmp(*this);
+	// 	operator--();
+	// 	return tmp;
+	// };
 };
 
 }; 

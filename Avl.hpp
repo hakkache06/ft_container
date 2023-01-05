@@ -38,7 +38,7 @@ class AVL{
         nodaaa<T,alloc> *_head;
         _noode_alloc  alloc_noode;
         size_type _size;
-        nodaaa<T,alloc> *_parent;
+        nodaaa<T,alloc> *_root;
 
 
     AVL()
@@ -339,6 +339,42 @@ void affiche(nodaaa<T,alloc>* root)
     // Pass initial space count as 0
     print2DUtil(root, 0);
 }
+
+nodaaa<T,alloc> *parent_noode( pair_first_pair k)
+{
+
+        if(_head == NULL || _head->pair->first == k)
+            return NULL;
+            
+        if ((_head->left != NULL && _head->left->pair->first == k) || (_head->right != NULL && _head->right->pair->first == k))
+                return _head;
+        nodaaa<T,alloc> *noode  = parent_noode(_head->left,k);
+        if (noode != NULL)
+         return noode;
+        noode = parent_noode(_head->right,k);
+    return noode;            
+
+}
+    
+    nodaaa<T,alloc>     iter()
+    {
+        if(_head ==  nullptr)
+            return (*this);
+        if (_head->right != nullptr)
+        {
+            _head = min_noode(_head->right);
+        }else
+        {
+            nodaaa<T,alloc> *parent = parent_noode(_head,_head->pair->first);
+            while (parent != nullptr && _head == parent->right)
+            {
+                _head = parent;
+                parent = parent_noode(parent,parent->pair->first);
+            }
+        }
+        return (*this);
+    }
+
 
 };
 

@@ -11,6 +11,7 @@
 //#include "reverse_iterator.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
+//#include "map_ite.hpp"
 namespace ft
 {
   
@@ -37,9 +38,9 @@ namespace ft
         typedef typename Alloc::const_reference const_reference;
         typedef typename Alloc::pointer pointer;
         typedef typename Alloc::const_pointer const_pointer; 
-        typedef	nodaaa<value_type,Alloc> _node;
+        //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::map_ite<value_type, value_compare> iterator;
+        typedef ft::tree_iterator<value_type, Alloc, AVL<value_type,Alloc> > iterator;
 ///	typedef ft::const_map_ite<value_type, value_compare> const_iterator;
 
         // typedef typename ft::reverse_iterator < iterator > reverse_iterator;
@@ -103,12 +104,12 @@ namespace ft
 
        iterator  begin()
        {
-           return iterator(avl_tree.min_noode(avl_tree._head));
+           return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
         }
 
         iterator  end()
        {
-           return iterator(nullptr);
+           return iterator(nullptr,avl_tree);
         }
 
     private:

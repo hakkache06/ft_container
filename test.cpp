@@ -13,19 +13,21 @@ int main()
     ito.insertmap(ft::make_pair(3,44)) ;
     ito.insertmap(ft::make_pair(4,44)) ;
     ito.insertmap(ft::make_pair(5,44)) ;
+
     ito.insertmap(ft::make_pair(0,44)) ;
 
     
+    //ito.affiche2();
 
-
-     ft::map<int,int>::iterator it = ito.begin();
-
-    cout << it->first << "\n" ;
-    it++;
-    // cout << it->first << "\n" ;
-
-
-    // ito.affiche2();
     
+      for (ft::map<int,int>::iterator it=ito.begin(); it!=ito.end(); ++it)
+    std::cout << it->first << " => " << it->second << '\n';
+
+    
+
+
+
+
+    // itp = 11 ; if(itp->right != null)  itp = 19 ; while(itp->left)  it=itp<-left
 
 }
