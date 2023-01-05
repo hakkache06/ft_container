@@ -36,7 +36,7 @@ namespace ft
         typedef typename Alloc::reference reference;
         typedef typename Alloc::const_reference const_reference;
         typedef typename Alloc::pointer pointer;
-        typedef typename Alloc::const_pointer const_pointer;
+        typedef typename Alloc::const_pointer const_pointer; 
         typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
         typedef typename    ft::tree_iterator<value_type,Alloc> iterator;
@@ -107,7 +107,7 @@ namespace ft
 
         iterator  end()
        {
-           return nullptr;
+           return iterator(nullptr);
         }
 
     private:

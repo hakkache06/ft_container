@@ -32,17 +32,17 @@ class  nodaaa
                 height = 1;
             };
 
-            // nodaaa & operator = (const nodaaa  & ref) {
-            //     parent = ref.parent;
-            //     left = ref.left;
-            //     right = ref.right;
-            //     height = ref.height;
-            //     return ( * this);
-            // };
+            nodaaa & operator = (const nodaaa  & ref) {
+                parent = ref.parent;
+                left = ref.left;
+                right = ref.right;
+                height = ref.height;
+                return ( * this);
+            };
 
-            // nodaaa(const nodaaa& ref): pair(ref.pair) {
-            //     *this = ref;
-            // }
+            nodaaa(const nodaaa& ref): pair(ref.pair) {
+                *this = ref;
+            }
             ~nodaaa() {};
             
             // size_t     szie_heghit()

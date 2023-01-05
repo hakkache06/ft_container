@@ -35,19 +35,19 @@ namespace ft
         ~tree_iterator(){
         }
         
-        const tree_iterator& operator++()
+        tree_iterator& operator++()
         {
             if(avl_tree_iter._head == nullptr)
                 return (*this);
 
-            if (avl_tree_iter->right._head != nullptr)
+            if (avl_tree_iter._head->right != nullptr)
             {
-                   avl_tree_iter._head = avl_tree_iter.min_noode(avl_tree_iter->right);
+                   avl_tree_iter._head = avl_tree_iter.min_noode(avl_tree_iter._head->right);
                    return avl_tree_iter._head;
             }
             else
             {   
-                 nodaaa<T,Alloc> *parent = avl_tree_iter.parent_noode(avl_tree_iter._head);
+                 nodaaa<T,Alloc> *parent = avl_tree_iter.parent_noode(avl_tree_iter._head,avl_tree_iter._head->pair->first);
 
                   if (avl_tree_iter->right == NULL && avl_tree_iter._head == parent->left)
                   {
@@ -60,7 +60,7 @@ namespace ft
                     while (parent != nullptr && avl_tree_iter._head == parent->right)
                     {
                         avl_tree_iter._head = parent;
-                        parent = avl_tree_iter.parent_noode(parent);
+                        parent = avl_tree_iter.parent_noode(avl_tree_iter._head,parent->pair->first);
                     }
                         avl_tree_iter._head = parent;
                   }
@@ -69,10 +69,10 @@ namespace ft
         }
 
         pointer operator->()const{
-            return&(this->avl_tree_iter._head->_pair);
+            return (this->avl_tree_iter._head->pair);
         }
         reference operator*()const{
-            return (this->avl_tree_iter._head->_pair);
+            return (this->avl_tree_iter._head->pair);
         }
 
 
@@ -98,11 +98,11 @@ namespace ft
     //         }
     //     }
 
-	    // const tree_iterator operator++(int){
-        //     tree_iterator tmp(*this);
-        //     operator++();
-        //     return (tmp);
-        // }
+	    const tree_iterator operator++(int){
+            tree_iterator tmp(*this);
+            operator++();
+            return (tmp);
+        }
 			
 	    // const tree_iterator operator--(int){
 		// 	tree_iterator tmp(*this);

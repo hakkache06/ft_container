@@ -58,6 +58,7 @@ class AVL{
         alloc_noode = ref.alloc_noode;
        // _key_compare = ref._key_compare;
         _size = ref._size;
+        return (*this);
     }
     
     int height(nodaaa<T,alloc> *n)
