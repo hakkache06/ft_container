@@ -340,24 +340,6 @@ void affiche(nodaaa<T,alloc>* root)
     print2DUtil(root, 0);
 }
 
-nodaaa<T,alloc> *parent_noode(nodaaa<T,alloc> *root, pair_first_pair k)
-{
-
-        if(root == NULL || root->pair->first == k)
-            return NULL;
-            
-        if ((root->left != NULL && root->left->pair->first == k) || (root->right != NULL && root->right->pair->first == k))
-                return root;
-        nodaaa<T,alloc> *noode  = parent_noode(root->left,k);
-        if (noode != NULL)
-         return noode;
-        noode = parent_noode(root->right,k);
-    return noode;            
-
-}
-
-
-
 };
 
 

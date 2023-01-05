@@ -16,19 +16,20 @@ namespace ft
         typedef const T& const_reference;
 		typedef std::bidirectional_iterator_tag iterator_category;
 
+        typedef typename T::first_type   pair_first_pair;
 
         tree_iterator(nodaaa<T,Alloc> *node){
-            this->avl_tree_iter._head = node;
+            this->_root = node;
          }
 
-        // tree_iterator(const tree_iterator &ref):avl_tree_iter(ref.avl_tree_iter){
+        // tree_iterator(const tree_iterator &ref):_root(ref._root){
         // };
 
 
         const tree_iterator &operator=(const tree_iterator &rhs){
             if (this == &rhs)
 	    	    return (*this);
-	        this->avl_tree_iter = rhs.avl_tree_iter;
+	        this->_root = rhs._root;
             return (*this);
         }
 
@@ -37,62 +38,62 @@ namespace ft
         
         tree_iterator& operator++()
         {
-            if(avl_tree_iter._head == nullptr)
+            if(_root == nullptr)
                 return (*this);
 
-            if (avl_tree_iter._head->right != nullptr)
+            if (_root->right != nullptr)
             {
-                   avl_tree_iter._head = avl_tree_iter.min_noode(avl_tree_iter._head->right);
-                   return avl_tree_iter._head;
+                   _root = min_noode(_root->right);
+                   return _root;
             }
             else
             {   
-                 nodaaa<T,Alloc> *parent = avl_tree_iter.parent_noode(avl_tree_iter._head,avl_tree_iter._head->pair->first);
+                 nodaaa<T,Alloc> *parent = parent_noode(_root,_root->pair->first);
 
-                  if (avl_tree_iter->right == NULL && avl_tree_iter._head == parent->left)
+                  if (_root->right == NULL && _root == parent->left)
                   {
-                    avl_tree_iter._head = parent;
-                    return (avl_tree_iter._head);
+                    _root = parent;
+                    return (_root);
                   }  
 
-                  else if (avl_tree_iter->right == NULL && avl_tree_iter._head == parent->right)  
+                  else if (_root->right == NULL && _root == parent->right)  
                   {
-                    while (parent != nullptr && avl_tree_iter._head == parent->right)
+                    while (parent != nullptr && _root == parent->right)
                     {
-                        avl_tree_iter._head = parent;
-                        parent = avl_tree_iter.parent_noode(avl_tree_iter._head,parent->pair->first);
+                        _root = parent;
+                        parent = parent_noode(_root,parent->pair->first);
                     }
-                        avl_tree_iter._head = parent;
+                        _root = parent;
                   }
             }
                 return (*this);
         }
 
         pointer operator->()const{
-            return (this->avl_tree_iter._head->pair);
+            return (this->_root->pair);
         }
         reference operator*()const{
-            return (this->avl_tree_iter._head->pair);
+            return (this->_root->pair);
         }
 
 
     //    const tree_iterator& operator--()
     //     {
-    //         if(avl_tree_iter._head == nullptr)
+    //         if(_root == nullptr)
     //             return (*this);
 
-    //         if (avl_tree_iter._head != nullptr)
+    //         if (_root != nullptr)
     //         {
-    //                avl_tree_iter = avl_tree_iter.min_node(avl_tree_iter->left);
+    //                _root = _root.min_node(_root->left);
     //         }else
     //         {
-    //             nodaaa<T,Alloc> *parent = avl_tree_iter.parent_noode(avl_tree_iter._head);
-    //             while (parent != nullptr && avl_tree_iter._head == parent->left)
+    //             nodaaa<T,Alloc> *parent = _root.parent_noode(_root);
+    //             while (parent != nullptr && _root == parent->left)
     //             {
-    //                 avl_tree_iter._head = parent;
-    //                 parent = avl_tree_iter.parent_noode(parent);
+    //                 _root = parent;
+    //                 parent = _root.parent_noode(parent);
     //             }   
-    //             avl_tree_iter = parent;
+    //             _root = parent;
     //                 return (*this);
 
     //         }
@@ -110,20 +111,46 @@ namespace ft
         //     return (tmp);
 		// } 
 
+    nodaaa<T,Alloc> *parent_noode(nodaaa<T,Alloc> *root, pair_first_pair k)
+    {
+
+        if(root == NULL || root->pair->first == k)
+            return NULL;
+            
+        if ((root->left != NULL && root->left->pair->first == k) || (root->right != NULL && root->right->pair->first == k))
+                return root;
+        nodaaa<T,Alloc> *noode  = parent_noode(root->left,k);
+        if (noode != NULL)
+         return noode;
+        noode = parent_noode(root->right,k);
+    return noode;            
+
+    }
+
+    nodaaa<T,Alloc> *min_noode(nodaaa<T,Alloc> *noode) 
+    {
+        if (noode)
+        {
+            while (noode->left)
+                noode = noode->left;
+        }
+        return (noode);
+    }
+
         bool operator==(const tree_iterator &it)const{
-            return (avl_tree_iter._head == it.avl_tree_iter._head);
+            return (_root == it._root);
         };
         bool operator!=(const tree_iterator &it)const{
-            return (avl_tree_iter._head != it.avl_tree_iter._head);
+            return (_root != it._root);
         };
         bool operator==(tree_iterator &x){
-            return(this->avl_tree_iter._head == x.avl_tree_iter._head);
+            return(this->_root == x._root);
         }
         bool operator!=(tree_iterator &x){
-            return(this->avl_tree_iter._head != x.avl_tree_iter._head);
+            return(this->_root != x._root);
         }
         public:
-        AVL<T, Alloc> avl_tree_iter;
+        nodaaa<T,Alloc> _root;
     }; 
 
 }
