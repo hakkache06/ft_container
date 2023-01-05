@@ -39,7 +39,8 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef typename    ft::tree_iterator<value_type,Alloc> iterator;
+        typedef ft::map_ite<value_type, value_compare> iterator;
+///	typedef ft::const_map_ite<value_type, value_compare> const_iterator;
 
         // typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         // typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
