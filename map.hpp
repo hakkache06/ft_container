@@ -7,8 +7,8 @@
 # include <iostream>
 #include "pair.hpp"
 #include "vector.hpp"
-#include "bidirectional_iterator.hpp"
-#include "reverse_iterator.hpp"
+#include "tree_iterator.hpp"
+//#include "reverse_iterator.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
 namespace ft
@@ -39,17 +39,16 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer;
         typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        //typedef typename	ft::bidirectional_iterator<_node, value_type>		iterator;
-		//typedef typename	ft::bidirectional_iterator<_node, const value_type>	const_iterator;
-        //typedef typename ft::reverse_iterator < iterator > reverse_iterator;
-        //typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
-        //fin iterator
+        typedef typename    ft::tree_iterator<value_type,Alloc> iterator;
+
+        // typedef typename ft::reverse_iterator < iterator > reverse_iterator;
+        // typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
+        // fin iterator
 
 
        
     public:
      
-      //nodaaa<T> *_last_node;
       Alloc _alloc;
       Compare _key_compare;
       size_type _size;
@@ -83,11 +82,7 @@ namespace ft
         //     avl_tree.dellocate_node(_node); 
 		// };
         // iterator 
-        // pair<iterator, bool> insert(const value_type& x)
-        // {
-            
-        // }
-        
+    
         void  insertmap(const value_type &x)
         {
             avl_tree._head = avl_tree.insert(avl_tree._head,x);
@@ -97,10 +92,23 @@ namespace ft
         {
             this->avl_tree.affiche(avl_tree._head);
         }
-      // iterator  begin()
-      // {
-      //     return min_node();
-      // }
+
+        void    testparentnode(const value_type &x)
+        {
+
+            avl_tree._parent = avl_tree.parent_noode(avl_tree._head,x.first);
+            cout << avl_tree._parent->pair->first << "";
+        }
+
+       iterator  begin()
+       {
+           return iterator(avl_tree.min_noode(avl_tree._head));
+        }
+
+        iterator  end()
+       {
+           return nullptr;
+        }
 
     private:
     

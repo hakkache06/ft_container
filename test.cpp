@@ -4,12 +4,19 @@
 
 int main()
 {
-    ft::map<int,int> it;
+    ft::map<int,int> ito;
 
-    it.insertmap(ft::make_pair(1,12)) ;
-    it.insertmap(ft::make_pair(2,44)) ;
-    it.insertmap(ft::make_pair(3,44)) ;
+    // ft::pair<int,int> f1;
+    // f1 = ft::make_pair(1,44);
+    ito.insertmap(ft::make_pair(1,12)) ;
+    ito.insertmap(ft::make_pair(2,44)) ;
+    ito.insertmap(ft::make_pair(3,44)) ;
+    ito.insertmap(ft::make_pair(4,44)) ;
+    ito.insertmap(ft::make_pair(5,44)) ;
 
-    it.affiche2();
+
+    ft::map<int,int>::iterator it=ito.begin();
+
+    
 
 }
