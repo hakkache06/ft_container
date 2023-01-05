@@ -6,6 +6,7 @@
 # include <functional>
 # include <iostream>
 #include "nodda.hpp"
+#include "tree_iterator.hpp"
 using namespace std;
 
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/

@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "nodda.hpp"
 #include "Avl.hpp"
 namespace ft
 {
@@ -16,12 +17,12 @@ namespace ft
 		typedef std::bidirectional_iterator_tag iterator_category;
 
 
-        // tree_iterator(nodaa<T,Alloc> *node){
-        //     this->avl_tree._head = node;
-        //  }
+        tree_iterator(nodaaa<T,Alloc> *node){
+            this->avl_tree_iter._head = node;
+         }
 
-        tree_iterator(const tree_iterator &ref):avl_tree_iter(ref.avl_tree_iter){
-        };
+        // tree_iterator(const tree_iterator &ref):avl_tree_iter(ref.avl_tree_iter){
+        // };
 
 
         const tree_iterator &operator=(const tree_iterator &rhs){
