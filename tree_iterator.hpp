@@ -17,7 +17,6 @@ namespace ft
         typedef typename T::first_type   pair_first_pair;
 
         U tree;
-
         tree_iterator(nodaaa<T,Alloc> *node, U _tree){
             nodas = node;
             tree = _tree;
@@ -65,6 +64,9 @@ namespace ft
         //std::cout << tree._head->pair->first << std::endl;
         if(nodas ==  nullptr)
             return (*this);
+        if(nodas->left == NULL && nodas->right == NULL)
+            return (*this);
+
         if (nodas->left != nullptr)
         {
             nodas = min_noode(nodas->left);
@@ -80,7 +82,6 @@ namespace ft
         }
         return (*this);
     }
-
 
     const tree_iterator& operator++()
     {
@@ -115,11 +116,30 @@ namespace ft
         pointer operator -> () const {
             return & (operator * ());
       }
-	    tree_iterator operator--(int){
+	    tree_iterator operator--(int)
+        {
 			tree_iterator tmp(*this);
             operator--();
             return (tmp);
 		} 
+
+        // const tree_iterator& operator--() {
+        //     if (nodas->left) {
+        //         nodas = nodas->left;
+        //         while (nodas->right) {
+        //             nodas = nodas->right;
+        //         }
+        //     } else {
+        //         nodaaa<T,Alloc> *parent = parent_noode(tree._head,nodas->pair->first);
+        //         while (parent && parent->left == nodas) {
+        //             nodas = parent;
+        //             parent = parent_noode(tree._head,parent->pair->first);;
+        //         }
+        //         nodas = parent;
+        //     }
+        //     return *this;
+        // }
+
 
         bool operator==(const tree_iterator &it)const{
             return (nodas == it.nodas);

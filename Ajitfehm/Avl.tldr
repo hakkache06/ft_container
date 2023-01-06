@@ -21811,17 +21811,17 @@
             "parentId": "page",
             "childIndex": 700,
             "point": [
-              -994.13,
-              19841.16
+              -1124.95,
+              20321.72
             ],
             "rotation": 0,
-            "text": "Parent =  parent(0) - > 1;\n \nwhile (parent != nullptr && node = = parent->right)\n \n{\n \n \n}\nnode = 1 ;\n ",
+            "text": "parent = prent_0 = 1\n \nwhile(parent  && parent->left = node)\n{\nnode = parent;\nparent = parent _1 = 2 \n}\n ",
             "style": {
               "color": "white",
               "size": "small",
               "isFilled": false,
               "dash": "draw",
-              "scale": 2.338232438645929,
+              "scale": 5.065838619557205,
               "font": "script",
               "textAlign": "middle"
             }

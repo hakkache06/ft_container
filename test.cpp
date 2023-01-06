@@ -22,29 +22,21 @@ int main()
 
     
      ft::map<int,int>::iterator ita=ito.begin();
-          //std::cout << it->first << " => " << it->second << '\n';
-        //--it;
+    std::cout << ita->first << " => " << ita->second << '\n';
+      ita++;
+      ita++;
+      ita++;
+      ita++;
 
-          std::cout << ita->first << " p => " << ita->second << '\n';
+    ita--;
+    ita--;
+    ita--;
+    ita--;
+    std::cout << ita->first << " p => " << ita->second << '\n';
 
-              ita++;
-          std::cout << ita->first << " p => " << ita->second << '\n';
-
-            ita++;
-            std::cout << ita->first << " p => " << ita->second << '\n';
-            
-                        ita++;
-            std::cout << ita->first << " p => " << ita->second << '\n';
-                        ita++;
-            std::cout << ita->first << " p => " << ita->second << '\n';
-                        ita++;
-            std::cout << ita->first << " p => " << ita->second << '\n';
-                                 ita++;
-            std::cout << ita->first << " p => " << ita->second << '\n';
         
 
-    std::map<int,int> mymap;
-
+  std::map<int,int> mymap;
   mymap[1] = 100;
   mymap[2] = 200;
   mymap[3] = 300;
@@ -54,23 +46,19 @@ int main()
 
 
   // show content:
-  std::map<int,int>::iterator it=mymap.begin();
-  std::cout << it->first<< '\n';
-      it++;
-  std::cout << it->first<< '\n';
-      it++;
-  std::cout << it->first<< '\n';
-      it++;
-  std::cout << it->first<< '\n';
-      it++;
-  std::cout << it->first<< '\n';
-      it++;
-  std::cout << it->first<< '\n';
-  
-       it++;
-  std::cout << it->first<< '\n';
-  
-        // it++;
-  //std::cout << it->first<< '\n';
+   std::map<int,int>::iterator it = mymap.begin();
+    std::cout << it->first<< '\n';
+    it++;
+    it++;
+    it++;
+    it++;
 
+    it--;
+    it--;
+    it--;
+    it--;
+  
+    //it--;
+   std::cout << it->first<< '\n';
+  
 }
