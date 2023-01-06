@@ -1,5 +1,4 @@
-#include "map.hpp"
-#include "pair.hpp"
+
 #include <iostream>
 #include<map>
 
@@ -48,13 +47,33 @@ int main()
   /////////////////////////////////////////////////////
   // iterator insert (iterator position, const value_type& val);
 
-  ft::map<int,int> mymap;
-  ft::map<int ,int >::iterator it = mymap.begin();
-  mymap.insert(it,ft::make_pair(3,20));
-  mymap.insert(it,ft::make_pair(1,20));
-  mymap.insert(it,ft::make_pair(2,20));
+  std::map<int,int> mymap;
+  std::map<int ,int >::iterator it ;
+  mymap.insert(std::make_pair(3,20));
+  mymap.insert(std::make_pair(1,20));
+  mymap.insert(std::make_pair(2,20));
 
-  mymap.affiche2();
+  for (it = mymap.begin(); it!=mymap.end();++it)
+  {
+      std::cout << it->first << " ====>"<< it->second << "\n";
+  }
+
+
+  std::map<int,int> othermap;
+  std::map<int,int>::iterator  ita;
+  othermap.insert(mymap.begin(),mymap.end());
+  for (ita = othermap.begin(); ita!=othermap.end();++ita)
+  {
+      std::cout << ita->first << " ====>"<< ita->second << "\n";
+  }
+
+
+
+
+
+
+
+    //mymap.affiche2();
     // mymap.insert(it,std::pair<char,int>('s',300));
     // mymap.insert(it,std::pair<char,int>('d',300));
     // mymap.insert(it,std::pair<char,int>('g',300));

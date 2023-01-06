@@ -142,11 +142,11 @@ namespace ft
             return iterator(temp,avl_tree);
         }
 
-       // mapped_type& operator[] (const key_type& k)
-        //{
-        //    return (*((this->insert(make_pair(k,mapped_type()))).first));
-       // }
-        //template <class InputIterator>  void insert (InputIterator first, InputIterator last){};
+        // template <class InputIterator> 
+        // void insert (InputIterator first, InputIterator last)
+        // {
+             
+        // };
 
 
 
