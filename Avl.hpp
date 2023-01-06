@@ -498,3 +498,28 @@ nodaaa<T,alloc> *parent_noode( pair_first_pair k)
     //     is_balanced -= (root->right) ? (root->right->heghit): 0;
     // }
 
+ /*
+ 
+ void swap (AVL& x)
+			{
+				AVL tmp;
+
+				tmp.root = this->root;
+				tmp._alloc = this->_alloc;
+				tmp._alloc_node = this->_alloc_node;
+				tmp._compare = this->_compare;
+				
+				this->root = x.root;
+				this->_alloc = x._alloc;
+				this->_alloc_node = x._alloc_node;
+				this->_compare = x._compare;
+				
+				x.root = tmp.root;
+				x.root_parent = tmp.root_parent;
+				x._alloc = tmp._alloc;
+				x._alloc_node = tmp._alloc_node;
+				x._compare = tmp._compare;
+			}
+ 
+ */
+
