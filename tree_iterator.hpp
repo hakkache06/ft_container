@@ -61,7 +61,6 @@ namespace ft
 
     const tree_iterator& operator--()
     {
-        //std::cout << tree._head->pair->first << std::endl;
         if(nodas ==  nullptr)
             return (*this);
         if(nodas->left == NULL && nodas->right == NULL)

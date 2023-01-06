@@ -40,7 +40,7 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        //typedef ft::tree_iterator<value_type, Alloc, AVL<value_type,Alloc> > iterator;
+        typedef ft::tree_iterator<const value_type, Alloc, AVL<value_type,Alloc> > const_iterator;
         typedef  ft::tree_iterator<value_type, Alloc,AVL<value_type,Alloc> > iterator;
 
         // fin iterator
@@ -83,26 +83,14 @@ namespace ft
 		// };
         // iterator 
     	
-	 map (const Map& x)
-	 {
-	   (*this) = x;
-	 }
-	    
-        void  insertmap(const value_type &x)
-        {
-            avl_tree._head = avl_tree.insert(avl_tree._head,x);
-        }
+	   map (const map& x)
+	   {
+	        (*this) = x;
+	   }  
 
         void    affiche2()
         {
             this->avl_tree.affiche(avl_tree._head);
-        }
-
-        void    testparentnode(const value_type &x)
-        {
-
-            avl_tree._parent = avl_tree.parent_noode(avl_tree._head,x.first);
-            cout << avl_tree._parent->pair->first << "";
         }
 
         iterator  begin()
@@ -114,6 +102,52 @@ namespace ft
         {
            return iterator(nullptr,avl_tree);
         }
+        bool empty() const 
+        {
+            if (avl_tree.treesize()==0)
+                return  (true);
+            else    
+                return (false);       
+        }
+        size_t size() const
+        {
+            return (avl_tree.tree_size());
+        }
+
+        size_t  max_size() const
+        {
+            return (avl_tree.alloc_noode.max_size());
+        }
+        // pair<iterator,bool> insert (const value_type& val)
+        // {   
+        //        nodaaa<value_type,Alloc> *temp = avl_tree.find_key(avl_tree._head,val.first);
+        //        if(temp)
+        //         {   
+        //             avl_tree.insert(avl_tree._head,val.first);
+        //             return (pair<iterator,false>) ft;
+        //         } 
+        //     return (pair<iterator,bool>)
+
+        // }    
+        iterator insert(iterator position ,const value_type &x)
+        {
+            (void)position;
+            nodaaa <value_type,Alloc> * temp =  avl_tree.find_key(avl_tree._head,x.first);
+
+            if (temp ==NULL )
+            {
+                avl_tree._head = avl_tree.insert(avl_tree._head,x);
+                return (iterator(avl_tree._head,avl_tree));
+            }   
+            return iterator(temp,avl_tree);
+        }
+
+       // mapped_type& operator[] (const key_type& k)
+        //{
+        //    return (*((this->insert(make_pair(k,mapped_type()))).first));
+       // }
+        //template <class InputIterator>  void insert (InputIterator first, InputIterator last){};
+
 
 
     private:
@@ -123,4 +157,10 @@ namespace ft
     };
 
 }
+        // void    testparentnode(const value_type &x)
+        // {
+
+        //     avl_tree._parent = avl_tree.parent_noode(avl_tree._head,x.first);
+        //     cout << avl_tree._parent->pair->first << "";
+        // }
 

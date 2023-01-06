@@ -24,7 +24,6 @@ using namespace std;
 // } };
 
 //AVL Tree
-
 template <class T , class alloc >
 class AVL{
     public:
@@ -110,8 +109,6 @@ class AVL{
         alloc_noode.construct(noode,nodaaa<T,alloc>(_pair));
         return noode;
     }
-
-
         nodaaa<T,alloc> *rightRotate(nodaaa<T,alloc>*y)
         {
             nodaaa<T,alloc> *x = y->left;
@@ -187,8 +184,6 @@ class AVL{
         return (noode);
     }
             ////////////////////// insert //////////////////////////
-
-
 
     size_type   treesize()
     {
@@ -270,17 +265,19 @@ class AVL{
         }
     }
 
-        nodaaa<T,alloc> *find_key(nodaaa<T,alloc> *noode,  pair_first_pair first) {
-        if (noode == NULL)
-            return (NULL);
-        if (noode->pair->first == first)
-            return(noode);
-        nodaaa<T,alloc> *n1 = find(noode->left, first);
-        if (n1)
-            return (n1);
-        nodaaa<T,alloc> *n2 = find(noode->right, first);
-        return (n2);
-    }
+        nodaaa<T,alloc> *find_key(nodaaa<T,alloc> *noode,  pair_first_pair first)
+        {
+            if (noode == NULL)
+                return (NULL);
+            if (noode->pair->first == first)
+                return(noode);
+            nodaaa<T,alloc> *n1 = find_key(noode->left, first);
+            if (n1)
+                return (n1);
+            nodaaa<T,alloc> *n2 = find_key(noode->right, first);
+            return (n2);
+        }
+
 
     void printTree(nodaaa<T,alloc> *root, string indent, bool last)
      {
@@ -355,25 +352,6 @@ nodaaa<T,alloc> *parent_noode( pair_first_pair k)
     return noode;            
 
 }
-    
-    nodaaa<T,alloc>     iter()
-    {
-        if(_head ==  nullptr)
-            return (*this);
-        if (_head->right != nullptr)
-        {
-            _head = min_noode(_head->right);
-        }else
-        {
-            nodaaa<T,alloc> *parent = parent_noode(_head,_head->pair->first);
-            while (parent != nullptr && _head == parent->right)
-            {
-                _head = parent;
-                parent = parent_noode(parent,parent->pair->first);
-            }
-        }
-        return (*this);
-    }
 
 
 };

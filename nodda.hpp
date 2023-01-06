@@ -2,7 +2,8 @@
 #pragma once 
 
 #include<iostream>
-template <typename T , class alloc, class compare>
+template <typename T , class alloc>
+/// include compare
 
 //typedef value_type										value_type;
 //typedef key_type										key_type;
