@@ -2,13 +2,7 @@
 #pragma once 
 
 #include<iostream>
-template <typename T , class alloc>
-/// include compare
-
-//typedef value_type										value_type;
-//typedef key_type										key_type;
-//typedef mapped_type										mapped_type;
-//Compare													_compare;
+template <class Key,class Type, typename T , class alloc, class Compare std::less<key,Type>>
 
 class  nodaaa 
         {
@@ -19,6 +13,12 @@ class  nodaaa
             nodaaa * left;
             nodaaa * right;
             size_t height;
+            typedef Key key_type;
+            typedef Type mapped_type;
+            //////////////////////////////////////////////////////////////////////////\//
+            typedef key_type										key_type;
+            typedef mapped_type										mapped_type;
+            Compare													_compare;
             public:
 
                 // default construct nodaaa 
@@ -53,37 +53,35 @@ class  nodaaa
             }
             ~nodaaa() {};
             
-            // size_t     szie_heghit()
-            // {
-            //     return (height);
-            // }
-                
-            //return the key of the current node
-	    // key_type get_key() const
-	    // {
-	     // return (this->value->first);
-	    // }
-               //return return a reference to the value of the current node				
-                // mapped_type &get_value()
-                // {
-	        // 	return (this->value->second);
-                // }
-                //return true if they are the same key, otherwise false.
-		//bool is_equal(key_type k)
-		//{
-		//return (this->_compare(this->get_key(), k) == this->_compare(k, this->get_key()));
-		//
+        //return the key of the current node
+	        key_type get_key() const
+	        {
+	            return (this->pair>first);
+	        }
+            //return return a reference to the value of the current node				
+            mapped_type &get_value()
+            {
+	        return (this->pair->second);
+            }
+            //return true if they are the same key, otherwise false.
+		    bool is_equal(key_type k)
+		    {
+		        return (this->_compare(this->get_key(), k) == this->_compare(k, this->get_key()));
+            }
         
-      		/*
 		// compare 2 keys and return if they met the condition bellow
 		// @param k element key
 		// @return true if they met the condition, otherwise false.
 				
 		bool is_lower_bound(key_type k)
 		{
-		return ((this->_compare(this->get_key(), k)) == false); uper bound true
+		    return ((this->_compare(this->get_key(), k)) == false); 
 		}
-		*/
+        
+        bool is_upper_boud(key_type k)
+        {
+            return ((this->_compare(this->get_key(), k)) == false); 
+        }
         
         
 

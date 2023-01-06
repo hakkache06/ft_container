@@ -24,7 +24,7 @@ using namespace std;
 // } };
 
 //AVL Tree
-template <class T , class alloc >
+template <class T , class alloc>
 class AVL{
     public:
         typedef typename T::first_type   pair_first_pair;
