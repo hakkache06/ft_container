@@ -82,7 +82,12 @@ namespace ft
         //     avl_tree.dellocate_node(_node); 
 		// };
         // iterator 
-    
+    	
+	 map (const Map& x)
+	 {
+	   (*this) = x;
+	 }
+	    
         void  insertmap(const value_type &x)
         {
             avl_tree._head = avl_tree.insert(avl_tree._head,x);
