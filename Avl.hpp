@@ -24,20 +24,20 @@ using namespace std;
 // } };
 
 //AVL Tree
-template <class T , class alloc>
+template <class Key,class Type ,class T , class alloc>
 class AVL{
     public:
         typedef typename T::first_type   pair_first_pair;
       
-        typedef typename alloc::template rebind<nodaaa<T,alloc> >::other _noode_alloc; // alloc noode
+        typedef typename alloc::template rebind<nodaaa<Key,Type,T,alloc> >::other _noode_alloc; // alloc noode
         typedef alloc											allocator_type;
         typedef size_t                                          size_type;
 
     public:
-        nodaaa<T,alloc> *_head;
+        nodaaa<Key,Type,T,alloc> *_head;
         _noode_alloc  alloc_noode;
         size_type _size;
-        nodaaa<T,alloc> *_root;
+        nodaaa<Key,Type,T,alloc> *_root;
 
 
     AVL()
@@ -60,14 +60,14 @@ class AVL{
         return (*this);
     }
     
-    int height(nodaaa<T,alloc> *n)
+    int height(nodaaa<Key,Type,T,alloc> *n)
     {
         if (n == NULL)
             return 0;
         return n->height;
     }
 
-    nodaaa<T,alloc> *min_noode(nodaaa<T,alloc> *noode) 
+    nodaaa<Key,Type,T,alloc> *min_noode(nodaaa<Key,Type,T,alloc> *noode) 
     {
         if (noode)
         {
@@ -77,7 +77,7 @@ class AVL{
         return (noode);
     }
 
-    nodaaa<T,alloc> *max_noode(nodaaa<T,alloc> *noode)
+    nodaaa<Key,Type,T,alloc> *max_noode(nodaaa<Key,Type,T,alloc> *noode)
     {
         if (noode)
         {
@@ -87,7 +87,7 @@ class AVL{
         return (noode);
     }
 
-    int getBalance(nodaaa<T,alloc> *n)
+    int getBalance(nodaaa<Key,Type,T,alloc> *n)
     {
         if (n == NULL)
             return 0;
@@ -99,20 +99,20 @@ class AVL{
         return (a > b) ? a : b;
     }
 
-    // bool key_comp(nodaaa<T,alloc> *n1, nodaaa<T,alloc> *n2){
+    // bool key_comp(nodaaa<Key,Type,T,alloc> *n1, nodaaa<Key,Type,T,alloc> *n2){
     //     return (n1->_pair.first > n2->_pair.first);
     // }
 
-    nodaaa<T,alloc> *allocate_new_noode(T _pair)
+    nodaaa<Key,Type,T,alloc> *allocate_new_noode(T _pair)
     {
-        nodaaa<T,alloc> *noode = alloc_noode.allocate(1);
-        alloc_noode.construct(noode,nodaaa<T,alloc>(_pair));
+        nodaaa<Key,Type,T,alloc> *noode = alloc_noode.allocate(1);
+        alloc_noode.construct(noode,nodaaa<Key,Type,T,alloc>(_pair));
         return noode;
     }
-        nodaaa<T,alloc> *rightRotate(nodaaa<T,alloc>*y)
+        nodaaa<Key,Type,T,alloc> *rightRotate(nodaaa<Key,Type,T,alloc>*y)
         {
-            nodaaa<T,alloc> *x = y->left;
-            nodaaa<T,alloc> *T2 = x->right;
+            nodaaa<Key,Type,T,alloc> *x = y->left;
+            nodaaa<Key,Type,T,alloc> *T2 = x->right;
 
             x->right = y;
             y->left = T2;
@@ -127,10 +127,10 @@ class AVL{
             return x;
         }
 
-        nodaaa<T,alloc> *leftRotate(nodaaa<T,alloc> *x)
+        nodaaa<Key,Type,T,alloc> *leftRotate(nodaaa<Key,Type,T,alloc> *x)
         {
-            nodaaa<T,alloc>*y = x->right;
-            nodaaa<T,alloc> *T2 = y->left;
+            nodaaa<Key,Type,T,alloc>*y = x->right;
+            nodaaa<Key,Type,T,alloc> *T2 = y->left;
 
             y->left = x;
             x->right = T2;
@@ -146,7 +146,7 @@ class AVL{
         }
         
         ////////////////////// insert //////////////////////////
-        nodaaa<T,alloc> *insert (nodaaa<T,alloc> *noode, T pair){
+        nodaaa<Key,Type,T,alloc> *insert (nodaaa<Key,Type,T,alloc> *noode, T pair){
         if (noode == NULL){
             _size++;
              return (allocate_new_noode(pair));
@@ -190,14 +190,14 @@ class AVL{
         return _size;
     }
 
-    int     noode_is_blanced(nodaaa<T,alloc>*root)
+    int     noode_is_blanced(nodaaa<Key,Type,T,alloc>*root)
     {
         int is_balanced;
         is_balanced = (root->left) ? (root->left->heghit) : 0;
         is_balanced -= (root->right) ? (root->right->heghit): 0;
     }
 
-    nodaaa<T,alloc> *deletenoode(nodaaa<T,alloc> *noode,  pair_first_pair first){
+    nodaaa<Key,Type,T,alloc> *deletenoode(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first){
 
         if (noode == NULL)
             return (noode);
@@ -211,7 +211,7 @@ class AVL{
         }
         else {
             if ((noode->left == NULL) || (noode->right == NULL)){
-                nodaaa<T,alloc> *temp = noode->left ? noode->left : noode->right;
+                nodaaa<Key,Type,T,alloc> *temp = noode->left ? noode->left : noode->right;
 
                 if (temp == NULL){
                     temp = noode;
@@ -226,7 +226,7 @@ class AVL{
     
             }else
             {
-                nodaaa<T,alloc> *temp  = min_noode(noode->right);
+                nodaaa<Key,Type,T,alloc> *temp  = min_noode(noode->right);
                 noode->pair = temp->pair;
                 noode->right = deletenoode(noode->right,temp->pair.first);
 
@@ -256,7 +256,7 @@ class AVL{
     }
 
 
-    void dellocate_noode(nodaaa<T,alloc> *noode){
+    void dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
         if (noode){
             dellocate_noode(noode->left);
             dellocate_noode(noode->right);
@@ -265,21 +265,21 @@ class AVL{
         }
     }
 
-        nodaaa<T,alloc> *find_key(nodaaa<T,alloc> *noode,  pair_first_pair first)
+        nodaaa<Key,Type,T,alloc> *find_key(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first)
         {
             if (noode == NULL)
                 return (NULL);
             if (noode->pair->first == first)
                 return(noode);
-            nodaaa<T,alloc> *n1 = find_key(noode->left, first);
+            nodaaa<Key,Type,T,alloc> *n1 = find_key(noode->left, first);
             if (n1)
                 return (n1);
-            nodaaa<T,alloc> *n2 = find_key(noode->right, first);
+            nodaaa<Key,Type,T,alloc> *n2 = find_key(noode->right, first);
             return (n2);
         }
 
 
-    void printTree(nodaaa<T,alloc> *root, string indent, bool last)
+    void printTree(nodaaa<Key,Type,T,alloc> *root, string indent, bool last)
      {
         if (root != nullptr) 
         {
@@ -297,7 +297,7 @@ class AVL{
         }
     }
 
-     void printTreechekinsert(nodaaa<T,alloc> *root) {
+     void printTreechekinsert(nodaaa<Key,Type,T,alloc> *root) {
         
         if(root!=NULL)
         {
@@ -307,7 +307,7 @@ class AVL{
         }
     }
     
-    void print2DUtil(nodaaa<T,alloc>* root, int space)
+    void print2DUtil(nodaaa<Key,Type,T,alloc>* root, int space)
 {
     // Base case
     if (root == NULL)
@@ -331,13 +331,13 @@ class AVL{
 }
  
 // Wrapper over print2DUtil()
-void affiche(nodaaa<T,alloc>* root)
+void affiche(nodaaa<Key,Type,T,alloc>* root)
 {
     // Pass initial space count as 0
     print2DUtil(root, 0);
 }
 
-nodaaa<T,alloc> *parent_noode( pair_first_pair k)
+nodaaa<Key,Type,T,alloc> *parent_noode( pair_first_pair k)
 {
 
         if(_head == NULL || _head->pair->first == k)
@@ -345,7 +345,7 @@ nodaaa<T,alloc> *parent_noode( pair_first_pair k)
             
         if ((_head->left != NULL && _head->left->pair->first == k) || (_head->right != NULL && _head->right->pair->first == k))
                 return _head;
-        nodaaa<T,alloc> *noode  = parent_noode(_head->left,k);
+        nodaaa<Key,Type,T,alloc> *noode  = parent_noode(_head->left,k);
         if (noode != NULL)
          return noode;
         noode = parent_noode(_head->right,k);

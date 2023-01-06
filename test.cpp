@@ -1,23 +1,20 @@
 
 #include <iostream>
 #include<map>
-
+#include "pair.hpp"
+#include "map.hpp"
 int main()
 {
-    //ft::map<int,int> ito;
+    ft::map<int,int> ito;
 
-    // ft::pair<int,int> f1;
-    // f1 = ft::make_pair(1,44);
-    // ito.insertmap(ft::make_pair(1,12)) ;
-    // ito.insertmap(ft::make_pair(2,44)) ;
-    // ito.insertmap(ft::make_pair(3,44)) ;
-    // ito.insertmap(ft::make_pair(4,44)) ;
-    // ito.insertmap(ft::make_pair(5,44)) ;
+    ito.insert(ft::make_pair(4,44)) ;
+    ito.insert(ft::make_pair(5,44)) ;
+    ito.inser(ft::make_pair(1,12)) ;
 
-    // ito.insertmap(ft::make_pair(0,44)) ;
+    ito.insertmap(ft::make_pair(0,44)) ;
 
     
-    // ito.affiche2();
+    ito.affiche2();
 
     
     // ft::map<int,int>::iterator ita=ito.begin();
@@ -47,25 +44,25 @@ int main()
   /////////////////////////////////////////////////////
   // iterator insert (iterator position, const value_type& val);
 
-  std::map<int,int> mymap;
-  std::map<int ,int >::iterator it ;
-  mymap.insert(std::make_pair(3,20));
-  mymap.insert(std::make_pair(1,20));
-  mymap.insert(std::make_pair(2,20));
+  // std::map<int,int> mymap;
+  // std::map<int ,int >::iterator it ;
+  // mymap.insert(std::make_pair(3,20));
+  // mymap.insert(std::make_pair(1,20));
+  // mymap.insert(std::make_pair(2,20));
 
-  for (it = mymap.begin(); it!=mymap.end();++it)
-  {
-      std::cout << it->first << " ====>"<< it->second << "\n";
-  }
+  // for (it = mymap.begin(); it!=mymap.end();++it)
+  // {
+  //     std::cout << it->first << " ====>"<< it->second << "\n";
+  // }
 
 
-  std::map<int,int> othermap;
-  std::map<int,int>::iterator  ita;
-  othermap.insert(mymap.begin(),mymap.end());
-  for (ita = othermap.begin(); ita!=othermap.end();++ita)
-  {
-      std::cout << ita->first << " ====>"<< ita->second << "\n";
-  }
+  // std::map<int,int> othermap;
+  // std::map<int,int>::iterator  ita;
+  // othermap.insert(mymap.begin(),mymap.end());
+  // for (ita = othermap.begin(); ita!=othermap.end();++ita)
+  // {
+  //     std::cout << ita->first << " ====>"<< ita->second << "\n";
+  // }
 
 
 

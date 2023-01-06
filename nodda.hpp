@@ -5,7 +5,7 @@
 template <class Key,class Type, typename T , class alloc, class Compare std::less<key,Type>>
 
 class  nodaaa 
-        {
+{
             public: 
             alloc _alloc;
             T* pair;
@@ -69,23 +69,20 @@ class  nodaaa
 		        return (this->_compare(this->get_key(), k) == this->_compare(k, this->get_key()));
             }
         
-		// compare 2 keys and return if they met the condition bellow
-		// @param k element key
-		// @return true if they met the condition, otherwise false.
+		//return true if they met the condition, otherwise false.
 				
-		bool is_lower_bound(key_type k)
-		{
-		    return ((this->_compare(this->get_key(), k)) == false); 
-		}
+		    bool is_lower_bound(key_type k)
+		    {
+		     return ((this->_compare(this->get_key(), k)) == false); 
+		    }
         
-        bool is_upper_boud(key_type k)
-        {
-            return ((this->_compare(this->get_key(), k)) == false); 
-        }
-        
+            bool is_upper_boud(key_type k)
+            {
+                return ((this->_compare(this->get_key(), k)) == false); 
+            }
         
 
-        };
+};
 
 
 

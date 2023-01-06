@@ -152,7 +152,7 @@ namespace ft
 
     private:
     
-  		AVL<value_type,Alloc> avl_tree;    
+  		AVL<Key,Type,value_type,Alloc> avl_tree;    
 
     };
 
