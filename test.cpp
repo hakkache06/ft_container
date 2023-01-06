@@ -1,6 +1,7 @@
 #include "map.hpp"
 #include "pair.hpp"
-
+#include <iostream>
+#include<map>
 
 int main()
 {
@@ -17,17 +18,59 @@ int main()
     ito.insertmap(ft::make_pair(0,44)) ;
 
     
-    //ito.affiche2();
+    ito.affiche2();
 
     
-      for (ft::map<int,int>::iterator it=ito.begin(); it!=ito.end(); ++it)
-    std::cout << it->first << " => " << it->second << '\n';
+     ft::map<int,int>::iterator ita=ito.begin();
+          //std::cout << it->first << " => " << it->second << '\n';
+        //--it;
 
-    
+          std::cout << ita->first << " p => " << ita->second << '\n';
+
+              ita++;
+          std::cout << ita->first << " p => " << ita->second << '\n';
+
+            ita++;
+            std::cout << ita->first << " p => " << ita->second << '\n';
+            
+                        ita++;
+            std::cout << ita->first << " p => " << ita->second << '\n';
+                        ita++;
+            std::cout << ita->first << " p => " << ita->second << '\n';
+                        ita++;
+            std::cout << ita->first << " p => " << ita->second << '\n';
+                                 ita++;
+            std::cout << ita->first << " p => " << ita->second << '\n';
+        
+
+    std::map<int,int> mymap;
+
+  mymap[1] = 100;
+  mymap[2] = 200;
+  mymap[3] = 300;
+  mymap[4] = 300;
+  mymap[5] = 300;
+  mymap[0] = 300;
 
 
-
-
-    // itp = 11 ; if(itp->right != null)  itp = 19 ; while(itp->left)  it=itp<-left
+  // show content:
+  std::map<int,int>::iterator it=mymap.begin();
+  std::cout << it->first<< '\n';
+      it++;
+  std::cout << it->first<< '\n';
+      it++;
+  std::cout << it->first<< '\n';
+      it++;
+  std::cout << it->first<< '\n';
+      it++;
+  std::cout << it->first<< '\n';
+      it++;
+  std::cout << it->first<< '\n';
+  
+       it++;
+  std::cout << it->first<< '\n';
+  
+        // it++;
+  //std::cout << it->first<< '\n';
 
 }

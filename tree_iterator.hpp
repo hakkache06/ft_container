@@ -32,7 +32,6 @@ namespace ft
 	    //     this->avl_tree_iter = rhs.avl_tree_iter;
         //     return (*this);
         // }
-
         ~tree_iterator(){
         }
         
@@ -102,8 +101,7 @@ namespace ft
         }
         return (*this);
     }
-
-	    const tree_iterator operator++(int){
+	    tree_iterator operator++(int){
             tree_iterator tmp(*this);
             operator++();
             return (tmp);
@@ -117,7 +115,7 @@ namespace ft
         pointer operator -> () const {
             return & (operator * ());
       }
-	    const tree_iterator operator--(int){
+	    tree_iterator operator--(int){
 			tree_iterator tmp(*this);
             operator--();
             return (tmp);

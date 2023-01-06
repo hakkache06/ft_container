@@ -40,11 +40,9 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::tree_iterator<value_type, Alloc, AVL<value_type,Alloc> > iterator;
-///	typedef ft::const_map_ite<value_type, value_compare> const_iterator;
+        //typedef ft::tree_iterator<value_type, Alloc, AVL<value_type,Alloc> > iterator;
+        typedef  ft::tree_iterator<value_type, Alloc,AVL<value_type,Alloc> > iterator;
 
-        // typedef typename ft::reverse_iterator < iterator > reverse_iterator;
-        // typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
         // fin iterator
 
 
@@ -102,15 +100,16 @@ namespace ft
             cout << avl_tree._parent->pair->first << "";
         }
 
-       iterator  begin()
-       {
+        iterator  begin()
+        {
            return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
         }
 
         iterator  end()
-       {
+        {
            return iterator(nullptr,avl_tree);
         }
+
 
     private:
     
