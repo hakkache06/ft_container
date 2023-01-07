@@ -25,12 +25,12 @@ namespace ft
         // tree_iterator(const tree_iterator &ref):avl_tree_iter(ref.avl_tree_iter){
         // };
 
-        // const tree_iterator &operator=(const tree_iterator &rhs){
-        //     if (this == &rhs)
-	    // 	    return (*this);
-	    //     this->avl_tree_iter = rhs.avl_tree_iter;
-        //     return (*this);
-        // }
+        const tree_iterator &operator=(const tree_iterator &rhs){
+            if (this == &rhs)
+	    	    return (*this);
+	        this->nodas = rhs.nodas;
+            return (*this);
+        }
         ~tree_iterator(){
         }
         

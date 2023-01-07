@@ -1,20 +1,20 @@
 
 #include <iostream>
-#include<map>
+//#include<map>
 #include "pair.hpp"
 #include "map.hpp"
 int main()
 {
-    ft::map<int,int> ito;
+    // ft::map<int,int> ito;
 
-    ft::map<int,int>::iterator it=ito.begin() ;
-    ito.insert(it,ft::make_pair(4,44)) ;
-    ito.insert(it,ft::make_pair(5,44)) ;
-    ito.insert(it,ft::make_pair(1,12)) ;
+    // ft::map<int,int>::iterator it=ito.begin() ;
+    // //ito.insert(ft::make_pair(4,44)) ;
+    // //ito.insert(ft::make_pair(5,44)) ;
+    // ito.insert(ft::make_pair(1,12)) ;
 
-    //ito[1] = 20;
+    // //ito[1] = 20;
     
-    ito.affiche2();
+    // ito.affiche2();
 
     
     // ft::map<int,int>::iterator ita=ito.begin();
@@ -79,4 +79,27 @@ int main()
     // mymap.insert(it,std::pair<char,int>('k',300));
     // std::cout << it->first <<  std::endl;
   /// kayd7ko 3lina lah yhdihom
+
+    ft::map<int,int> mymap;
+
+  // first insert function version (single parameter):
+  mymap.insert ( ft::make_pair(1,100) );
+  mymap.insert ( ft::make_pair(2,200) );
+  mymap.affiche2();
+
+  // ft::pair<ft::map<int,int>::iterator,bool> ret;
+  // ret = mymap.insert ( ft::make_pair(2,200) );
+  // if (ret.second==false) {
+  //   std::cout << "element 'z' already existed";
+  //   std::cout << " with a value of " << ret.first->second << '\n';
+  // }
+
+
+
+
+
+  
+
+
+
 }

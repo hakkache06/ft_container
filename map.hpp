@@ -40,8 +40,8 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        //typedef ft::tree_iterator<const value_type, Alloc, AVL<value_type,Alloc> > const_iterator;
-        typedef  ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
+        typedef ft::tree_iterator<Key,T,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
+        typedef ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
 
         // fin iterator
 
@@ -97,11 +97,22 @@ namespace ft
         {
            return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
         }
-
         iterator  end()
         {
            return iterator(nullptr,avl_tree);
         }
+
+        // const_iterator  begin()
+        // {
+        //    return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
+        // }
+
+        // const_iterator  end()
+        // {
+        //    return const_iterator(nullptr,avl_tree);
+        // }
+
+
         bool empty() const 
         {
             if (avl_tree.treesize()==0)
@@ -118,17 +129,21 @@ namespace ft
         {
             return (avl_tree.alloc_noode.max_size());
         }
-        // pair<iterator,bool> insert (const value_type& val)
-        // {   
-        //        nodaaa<value_type,Alloc> *temp = avl_tree.find_key(avl_tree._head,val.first);
-        //        if(temp)
-        //         {   
-        //             avl_tree.insert(avl_tree._head,val.first);
-        //             return (pair<iterator,false>) ft;
-        //         } 
-        //     return (pair<iterator,bool>)
+        pair<iterator,bool> insert (const value_type& val)
+        {   
+                iterator it = end();
+                nodaaa<Key,T,value_type,Alloc> * temp = avl_tree.find_key(avl_tree._head,val.first);
+               if(temp == nullptr)
+                {   
+                    avl_tree.insert(avl_tree._head,val);  
+                    std::cout << "ana henya" << std::endl;
+                    return (pair<iterator,bool>(iterator(temp,avl_tree),true));
+                } 
+            return (pair<iterator,bool>(it,false));
+        }    
 
-        // }    
+
+        
         iterator insert(iterator position ,const value_type &x)
         {
             (void)position;
@@ -153,7 +168,7 @@ namespace ft
         ///If k matches the key of an element in the container, the function returns a reference to its mapped value
         mapped_type& operator[] (const key_type& k)
         {
-            return (*((this->insertp(ft::make_pair(k,mapped_type()))).first)).second;
+            return (*((this->insert(ft::make_pair(k,mapped_type()))).first)).second;
         }
         // template <class InputIterator> 
         // void insert (InputIterator first, InputIterator last)

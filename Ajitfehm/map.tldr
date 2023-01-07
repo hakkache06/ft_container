@@ -21883,8 +21883,8 @@
             "parentId": "page",
             "childIndex": 702,
             "point": [
-              -753.51,
-              21163.62
+              -103.07,
+              20758.18
             ],
             "rotation": 0,
             "text": "iterator insert (iterator position, const value_type& val);",
@@ -21905,8 +21905,8 @@
             "parentId": "page",
             "childIndex": 703,
             "point": [
-              -712.23,
-              20945.62
+              -64.35,
+              20668.26
             ],
             "rotation": 0,
             "text": "pair<iterator,bool> insert (const value_type& val);",
@@ -21927,11 +21927,249 @@
             "parentId": "page",
             "childIndex": 703,
             "point": [
-              -999.87,
-              21366.42
+              -435.67,
+              20853.58
             ],
             "rotation": 0,
             "text": "template <class InputIterator>  void insert (InputIterator first, InputIterator last);\n ",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "18362ab3-1681-49b9-2eca-3859473c0280": {
+            "id": "18362ab3-1681-49b9-2eca-3859473c0280",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 702,
+            "point": [
+              -10.66,
+              23746.75
+            ],
+            "size": [
+              1371.08,
+              328.16
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "6a1d517b-3e62-470b-03dc-b301f7d11c8f": {
+            "id": "6a1d517b-3e62-470b-03dc-b301f7d11c8f",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 702,
+            "point": [
+              384.99,
+              23828.48
+            ],
+            "rotation": 0,
+            "text": "map :: find",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "ff5efd8e-fc4f-490e-0aaf-e3af2d490581": {
+            "id": "ff5efd8e-fc4f-490e-0aaf-e3af2d490581",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 703,
+            "point": [
+              -305.69,
+              24138.9
+            ],
+            "rotation": 0,
+            "text": "iterator find (const key_type& k) \n \n-- Shearches the container for an element with a key == k return an iterator to it\n-- else return end();",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "4890ae27-7242-4ddb-0bef-9c5151d0656f": {
+            "id": "4890ae27-7242-4ddb-0bef-9c5151d0656f",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 702,
+            "point": [
+              -20.14,
+              24526.19
+            ],
+            "size": [
+              1371.08,
+              328.16
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "daa41b43-81b5-4f5f-2ef0-5712b3c4d00a": {
+            "id": "daa41b43-81b5-4f5f-2ef0-5712b3c4d00a",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 703,
+            "point": [
+              339.51,
+              24607.92
+            ],
+            "rotation": 0,
+            "text": "map :: count",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "e3b74eb1-8bfa-4f67-289e-ff158d4d1a65": {
+            "id": "e3b74eb1-8bfa-4f67-289e-ff158d4d1a65",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              0.83,
+              24918.34
+            ],
+            "rotation": 0,
+            "text": " size_type count (const key_type& k) const\n-- Searches the container with a key equivalent to k \nreturn 1  if element is found or zero",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "662305b7-b323-4d2d-2c0c-16b37e9efacb": {
+            "id": "662305b7-b323-4d2d-2c0c-16b37e9efacb",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 703,
+            "point": [
+              -73.14,
+              25175.23
+            ],
+            "size": [
+              1371.08,
+              328.16
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "a97c61d9-9d33-4b74-26e6-cfb9f195e625": {
+            "id": "a97c61d9-9d33-4b74-26e6-cfb9f195e625",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              286.51,
+              25256.96
+            ],
+            "rotation": 0,
+            "text": "map :: count",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "a4c86ff8-6a4f-4ddf-1fe6-15f50319e23d": {
+            "id": "a4c86ff8-6a4f-4ddf-1fe6-15f50319e23d",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 705,
+            "point": [
+              -183.49,
+              23010.38
+            ],
+            "rotation": 0,
+            "text": " size_type count (const key_type& k) const\n-- Searches the container with a key equivalent to k \nreturn 1  if element is found or zero",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "fd3fe91c-0cf6-459e-25c0-4aed87fd4177": {
+            "id": "fd3fe91c-0cf6-459e-25c0-4aed87fd4177",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              -18.73,
+              25603.18
+            ],
+            "rotation": 0,
+            "text": "iterator lower_bound (const key_type& k) \n-- return iterator to lower bound \n \nupper_bound --- first elemnt->pair->first > k\nlower_bound ---first element->pair->first > || = k\n ",
             "style": {
               "color": "white",
               "size": "small",
