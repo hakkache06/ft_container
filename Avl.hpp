@@ -228,7 +228,7 @@ class AVL{
             {
                 nodaaa<Key,Type,T,alloc> *temp  = min_noode(noode->right);
                 noode->pair = temp->pair;
-                noode->right = deletenoode(noode->right,temp->pair.first);
+                noode->right = deletenoode(noode->right,temp->pair->first);
 
             }
         }
@@ -257,7 +257,7 @@ class AVL{
 
     // nodaaa<Key,Type,T,alloc> *delet(pair_first_pair first)
     // {
-    //     deletenoode(this._head,first);
+    //     return deletenoode(_head,first);
     // }
 
     // nodaaa<key,Type,alloc> *insertfisrt(pair_first_pair first)
@@ -332,7 +332,7 @@ class AVL{
     cout << endl;
     for (int i = 10; i < space; i++)
         cout << " ";
-    cout << root->pair->first << "\n";
+    cout << root->pair->first << "(" <<root->pair->second << ")" <<"\n";
  
     // Process left child
     print2DUtil(root->left, space);

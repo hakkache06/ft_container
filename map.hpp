@@ -44,7 +44,7 @@ namespace ft
         typedef ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
         typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
-
+		typedef typename value_type::first_type   pair_first_pair;
         // fin iterator
 
 
@@ -143,18 +143,14 @@ namespace ft
 		{
 			return (this->_size == 0);
 		}
-		// size_type size() const
-		// {
-		// 	return (this->size);
-		// }
-		// size_type max_size() const
-		// {
-		// 	return (this->alloc_node.max_size());
-		// }
-		// mapped_type& operator[] (const key_type& k)
-		// {
-		// 	return ((*((this->insert(ft::make_pair(k, mapped_type()))).first)).second);
-		// }
+		size_type size() const
+		{
+			return (this->_size);
+		}
+		size_type max_size() const
+		{
+			return (this->alloc_node.max_size());
+		}
 
         pair<iterator,bool> insert (const value_type& val)
 		{
@@ -174,98 +170,100 @@ namespace ft
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
 			return (iterator(this->avl_tree.find_key(avl_tree._head,val.first),avl_tree));
  		}
-		// template <class InputIterator>
-		// void insert (InputIterator first, InputIterator last)
-		// {
-		// 	while (first != last)
-		// 		this->insert(avl_tree._head,*(first++));
-		// }
-        // void erase (iterator position)
-		// {
-		// 	if (this->avl_tree.find_key(avl_tree._head,(*position).first))
-		// 	{
-		// 		this->avl_tree.delete_node(avl_tree._head,(*position).first);
-		// 		--this->size;
-		// 	}
-		// }
-        // size_type erase (const key_type& k)
-		// {
-		// 	if (this->avl_tree.find_key(avl_tree._head,k)
-		// 	{
-		// 		this->avl_tree.delete_node(avl_tree._head,k);
-		// 		--this->size;
-		// 		return (1);
-		// 	}
-		// 	return (0);
-		// }
-        // void erase (iterator first, iterator last)
-		// {
-		// 	ft::Vector<key_type> tmp;
-		// 	typename ft::Vector<key_type>::iterator it;
+		mapped_type& operator[] (const key_type& k)
+		{
+			return ((*((this->insert(ft::make_pair(k, mapped_type()))).first)).second);
+		}
 
-		// 	while (first != last)
-		// 		tmp.push_back((first++)->first);
-		// 	for (it = tmp.begin(); it != tmp.end(); it++)
-		// 		this->erase(*it);
-		// }
-        // void swap (map& x)
-     	// {
-	    //     std::swap(this->_alloc, x._alloc);
- 	    //     std::swap(this->_key_comp, x._key_comp);
- 	    //     std::swap(this->_size, x._size);
- 	    //     this->avl_tree.swap(x.avl_tree);
- 	    // }
-        // void clear()
- 	    // {
- 	    //     this->erase(this->begin(), avl_tree.max_noode());
- 	    // }
+		template <class InputIterator>
+		void insert (InputIterator first, InputIterator last)
+		{
+			while (first != last)
+				this->insert(*(first++));
+		}
 
-        // iterator find (const key_type& k)
-        // {
-        //     nodaaa<Key,T,value_type> *pointer;
 
-        //     pointer = this->find_key(avl_tree._head,k);
-        //     return (pointer ? iterator(pointer) : this->end());
-        // }
+        void erase (iterator position)
+		{
+			if (this->avl_tree.find_key(avl_tree._head,(*position).first))
+			{
+				avl_tree._head = avl_tree.deletenoode(avl_tree._head,(*position).first);
+				--this->_size;
+			}
+		}
 
-        // const_iterator find (const key_type& k) const
-        // {
-        //     nodaaa<Key,T,value_type> *pointer;
+		void mese7(pair_first_pair val)
+		{
+			avl_tree._head =  avl_tree.deletenoode(avl_tree._head,val);
+		}
 
-        //     pointer = this->find_key(avl_tree._head,k);
-        //     return (pointer ? iterator(pointer) : this->end());
-        // }
+        size_type erase (const key_type& k)
+		{
+			if (this->avl_tree.find_key(avl_tree._head,k))
+			{
+				avl_tree._head = avl_tree.deletenoode(avl_tree._head,k);
+				--this->_size;
+				return (1);
+			}
+			return (0);
+		}
 
-        // size_type count (const key_type& k) const
-     	// {
-     	//   return (avl_tree.find_key(avl_tree._head,k) != NULL);
-        // }
+        void erase (iterator first, iterator last)
+		{
+			ft::Vector<key_type> tmp;
+			typename ft::Vector<key_type>::iterator it;
 
-        // iterator lower_bound (const key_type& k)
-     	// {
- 		// 	nodaaa<Key,T,value_type> *tmp;
+			while (first != last)
+				tmp.push_back((first++)->first);
+			for (it = tmp.begin(); it != tmp.end(); it++)
+				this->erase(*it);
+		}
+        void swap (map& x)
+     	{
+	        std::swap(this->_alloc, x._alloc);
+ 	        std::swap(this->_key_comp, x._key_comp);
+ 	        std::swap(this->_size, x._size);
+ 	        this->avl_tree.swap(x.avl_tree);
+ 	    }
+        void clear()
+ 	    {
+ 	        this->erase(this->begin(), iterator(avl_tree.max_noode(avl_tree._head)),avl_tree);
+ 	    }
 
- 		// 	tmp = this->avl_tree._head.lower_bound(k);
- 		// 	return (tmp ? iterator(tmp) : this->end());
- 		// }
-        
-        // iterator upper_bound (const key_type& k)
-        // {
-        //     node *tmp;
+        iterator find (const key_type& k)
+        {
+            nodaaa<Key,T,value_type,Alloc> *pointer;
 
-        //     tmp = this->avl_tree._head->is_upper_boud(k);
-        //     return (tmp ? iterator(tmp) : this->end());
-        // }
+            pointer = avl_tree.find_key(avl_tree._head,k);
+            return (pointer ? iterator(pointer,avl_tree) : this->end());
+        }
 
-        //pair<iterator,iterator> equal_range (const key_type& k)
-// // 		{
-// // 			return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
-// // 		}
+        size_type count (const key_type& k) 
+     	{
+			nodaaa<Key,T,value_type,Alloc> *pointer;
+     	  	pointer = avl_tree.find_key(avl_tree._head,k);
+			if(pointer)
+		  	return (1);
+		return(0);
+        }
+
+		
+        iterator lower_bound (const key_type& k)
+     	{
+ 			nodaaa<Key,T,value_type> *tmp;
+
+ 			tmp = this->avl_tree._head.find_key(avl_tree);
+			if (tmp)
+				tmp = temp->right;
+
+ 			return (tmp ? iterator(tmp, avl_tree) : this->end());
+ 		}
+  
 	
-// // 		allocator_type get_allocator() const
-// // 		{
-// // 			return (this->_alloc);
-// // 		}
+		allocator_type get_allocator() const
+		{
+			return (this->_alloc);
+		}
 
 // // 	public:
 // // 	    friend bool operator==(const Map &lhs, const Map &rhs)
@@ -279,6 +277,7 @@ namespace ft
 
 // //         friend bool operator<(const Map& lhs,const Map& rhs)
 // // 		{
+
 // // 			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 // // 		}
 
