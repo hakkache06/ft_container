@@ -7,12 +7,12 @@ int main()
 {
     ft::map<int,int> ito;
 
-    ito.insert(ft::make_pair(4,44)) ;
-    ito.insert(ft::make_pair(5,44)) ;
-    ito.inser(ft::make_pair(1,12)) ;
+    ft::map<int,int>::iterator it=ito.begin() ;
+    ito.insert(it,ft::make_pair(4,44)) ;
+    ito.insert(it,ft::make_pair(5,44)) ;
+    ito.insert(it,ft::make_pair(1,12)) ;
 
-    ito.insertmap(ft::make_pair(0,44)) ;
-
+    //ito[1] = 20;
     
     ito.affiche2();
 

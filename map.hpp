@@ -40,8 +40,8 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::tree_iterator<const value_type, Alloc, AVL<value_type,Alloc> > const_iterator;
-        typedef  ft::tree_iterator<value_type, Alloc,AVL<value_type,Alloc> > iterator;
+        //typedef ft::tree_iterator<const value_type, Alloc, AVL<value_type,Alloc> > const_iterator;
+        typedef  ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
 
         // fin iterator
 
@@ -132,9 +132,9 @@ namespace ft
         iterator insert(iterator position ,const value_type &x)
         {
             (void)position;
-            nodaaa <value_type,Alloc> * temp =  avl_tree.find_key(avl_tree._head,x.first);
+            nodaaa <Key,T,value_type,Alloc> * temp =  avl_tree.find_key(avl_tree._head,x.first);
 
-            if (temp ==NULL )
+            if (temp == NULL )
             {
                 avl_tree._head = avl_tree.insert(avl_tree._head,x);
                 return (iterator(avl_tree._head,avl_tree));
@@ -142,6 +142,19 @@ namespace ft
             return iterator(temp,avl_tree);
         }
 
+        // void insertp(const value_type &x)
+        // {
+        //     nodaaa <Key,T,value_type,Alloc> * temp =  avl_tree.find_key(avl_tree._head,x.first);
+
+        //     if (temp == NULL )
+        //         avl_tree._head = avl_tree.insert(avl_tree._head,x);
+
+        // }
+        ///If k matches the key of an element in the container, the function returns a reference to its mapped value
+        mapped_type& operator[] (const key_type& k)
+        {
+            return (*((this->insertp(ft::make_pair(k,mapped_type()))).first)).second;
+        }
         // template <class InputIterator> 
         // void insert (InputIterator first, InputIterator last)
         // {
@@ -152,7 +165,7 @@ namespace ft
 
     private:
     
-  		AVL<Key,Type,value_type,Alloc> avl_tree;    
+  		AVL<Key,T,value_type,Alloc> avl_tree;    
 
     };
 

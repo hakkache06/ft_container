@@ -2,7 +2,9 @@
 #pragma once 
 
 #include<iostream>
-template <class Key,class Type, typename T , class alloc, class Compare std::less<key,Type>>
+# include <algorithm>
+# include <functional>
+template <class Key,class Type, typename T , class alloc, class Compare = std::less<Key> >
 
 class  nodaaa 
 {
@@ -13,11 +15,11 @@ class  nodaaa
             nodaaa * left;
             nodaaa * right;
             size_t height;
-            typedef Key key_type;
-            typedef Type mapped_type;
+            //typedef Key key_type;
+            //typedef Type mapped_type;
             //////////////////////////////////////////////////////////////////////////\//
-            typedef key_type										key_type;
-            typedef mapped_type										mapped_type;
+            typedef Key										key_type;
+            typedef Type									mapped_type;
             Compare													_compare;
             public:
 
@@ -56,7 +58,7 @@ class  nodaaa
         //return the key of the current node
 	        key_type get_key() const
 	        {
-	            return (this->pair>first);
+	            return (this->pair->first);
 	        }
             //return return a reference to the value of the current node				
             mapped_type &get_value()

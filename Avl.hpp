@@ -109,7 +109,7 @@ class AVL{
         alloc_noode.construct(noode,nodaaa<Key,Type,T,alloc>(_pair));
         return noode;
     }
-        nodaaa<Key,Type,T,alloc> *rightRotate(nodaaa<Key,Type,T,alloc>*y)
+        nodaaa<Key,Type,T,alloc> *rightRotate(nodaaa<Key,Type,T,alloc> *y)
         {
             nodaaa<Key,Type,T,alloc> *x = y->left;
             nodaaa<Key,Type,T,alloc> *T2 = x->right;
