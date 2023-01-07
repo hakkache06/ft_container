@@ -22093,12 +22093,12 @@
             "parentId": "page",
             "childIndex": 703,
             "point": [
-              -73.14,
-              25175.23
+              -304.62,
+              25224.87
             ],
             "size": [
-              1371.08,
-              328.16
+              1763.52,
+              228.68
             ],
             "rotation": 0,
             "style": {
@@ -22121,11 +22121,11 @@
             "parentId": "page",
             "childIndex": 704,
             "point": [
-              286.51,
+              -268.49,
               25256.96
             ],
             "rotation": 0,
-            "text": "map :: count",
+            "text": "map :: lower_bound // upper_bound",
             "style": {
               "color": "white",
               "size": "small",
@@ -22165,11 +22165,227 @@
             "parentId": "page",
             "childIndex": 704,
             "point": [
-              -18.73,
-              25603.18
+              -463.57,
+              25505.78
             ],
             "rotation": 0,
-            "text": "iterator lower_bound (const key_type& k) \n-- return iterator to lower bound \n \nupper_bound --- first elemnt->pair->first > k\nlower_bound ---first element->pair->first > || = k\n ",
+            "text": "iterator lower_bound (const key_type& k) \n-- return iterator to lower bound \n \nupper_bound --- first elemnt->pair->first > k return iterator pointing to the next element\nlower_bound ---first element->pair->first > || = k return iterator pointing to that element \n ",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "90f97a86-72e8-489a-377e-2c63dc634da3": {
+            "id": "90f97a86-72e8-489a-377e-2c63dc634da3",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              -328.74,
+              25993.67
+            ],
+            "size": [
+              1763.52,
+              228.68
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "23fc47f1-7ba5-4b6f-2a7c-facf00ec6b37": {
+            "id": "23fc47f1-7ba5-4b6f-2a7c-facf00ec6b37",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              91.38999999999999,
+              26025.76
+            ],
+            "rotation": 0,
+            "text": "map :: equal_range",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "943faadd-fab1-4eff-1a83-b34b70cca80e": {
+            "id": "943faadd-fab1-4eff-1a83-b34b70cca80e",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 705,
+            "point": [
+              -191.55,
+              26264.46
+            ],
+            "rotation": 0,
+            "text": "pair<iterator , iterator> equal_range (const key_type& k)\n \n >k   .........  k >=",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "3c58be28-c540-4bca-3cd1-15f69619846d": {
+            "id": "3c58be28-c540-4bca-3cd1-15f69619846d",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 704,
+            "point": [
+              -343.02,
+              26542.71
+            ],
+            "size": [
+              1763.52,
+              228.68
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "10af921d-424c-42e2-345c-dc1bbb27b6eb": {
+            "id": "10af921d-424c-42e2-345c-dc1bbb27b6eb",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 705,
+            "point": [
+              138.11,
+              26574.8
+            ],
+            "rotation": 0,
+            "text": "map :: key_comp",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "f93311d9-ac57-4011-0134-0d75fede8f0d": {
+            "id": "f93311d9-ac57-4011-0134-0d75fede8f0d",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 706,
+            "point": [
+              -272.43,
+              26819.34
+            ],
+            "rotation": 0,
+            "text": "key_compare key_comp() const;\n \nReturn key comparison object\ntwo kyes are considered equvalent key_comp return false; \n \ncopie de l'objet utilise pour trier les cles au sien d'une classe map \nbool operator(const key& left ,  const Key& right)\nreturn true si left pre et n'est pas eqal a right dans l'ordre de tri\n ",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 2.4801421317649814,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "28702eba-3078-46fc-3cfe-4f2be8f4d5b2": {
+            "id": "28702eba-3078-46fc-3cfe-4f2be8f4d5b2",
+            "type": "rectangle",
+            "name": "Rectangle",
+            "parentId": "page",
+            "childIndex": 705,
+            "point": [
+              -327.18,
+              27529.19
+            ],
+            "size": [
+              1763.52,
+              228.68
+            ],
+            "rotation": 0,
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 1
+            },
+            "label": "",
+            "labelPoint": [
+              0.5,
+              0.5
+            ]
+          },
+          "d5144938-949f-4b28-13b3-a06569084e9a": {
+            "id": "d5144938-949f-4b28-13b3-a06569084e9a",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 706,
+            "point": [
+              110.44999999999999,
+              27561.28
+            ],
+            "rotation": 0,
+            "text": "map :: value_comp",
+            "style": {
+              "color": "white",
+              "size": "small",
+              "isFilled": false,
+              "dash": "draw",
+              "scale": 5.065838619557205,
+              "font": "script",
+              "textAlign": "middle"
+            }
+          },
+          "93636e64-34e6-4093-175c-f802ce62a17f": {
+            "id": "93636e64-34e6-4093-175c-f802ce62a17f",
+            "type": "text",
+            "name": "Text",
+            "parentId": "page",
+            "childIndex": 707,
+            "point": [
+              -256.59,
+              27805.82
+            ],
+            "rotation": 0,
+            "text": "key_compare key_comp() const;\n \nReturn key comparison object\ntwo kyes are considered equvalent key_comp return false; \n \ncopie de l'objet utilise pour trier les cles au sien d'une classe map \nbool operator(const key& left ,  const Key& right)\nreturn true si left pre et n'est pas eqal a right dans l'ordre de tri\n ",
             "style": {
               "color": "white",
               "size": "small",
