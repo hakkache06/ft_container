@@ -255,15 +255,15 @@ class AVL{
         return (noode);
     }
 
-    nodaaa<Key,Type,T,alloc> *delet(pair_first_pair first)
-    {
-        deletenoode(this._head,first);
-    }
+    // nodaaa<Key,Type,T,alloc> *delet(pair_first_pair first)
+    // {
+    //     deletenoode(this._head,first);
+    // }
 
-    nodaaa<key,Type,alloc> *insertfisrt(pair_first_pair first)
-    {
-        insert(this._head,first);
-    }
+    // nodaaa<key,Type,alloc> *insertfisrt(pair_first_pair first)
+    // {
+    //     insert(this._head,first);
+    // }
     void dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
         if (noode){
             dellocate_noode(noode->left);

@@ -22,8 +22,8 @@ namespace ft
             tree = _tree;
          }
 
-        // tree_iterator(const tree_iterator &ref):avl_tree_iter(ref.avl_tree_iter){
-        // };
+        tree_iterator(const tree_iterator &ref):nodas(ref.nodas){
+        };
 
         const tree_iterator &operator=(const tree_iterator &rhs){
             if (this == &rhs)
