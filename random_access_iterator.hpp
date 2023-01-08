@@ -16,7 +16,7 @@ namespace ft {
       T > > ::reference reference;
       typedef typename ft::iterator_traits < ft::iterator < std::random_access_iterator_tag,
       T > > ::iterator_category iterator_category;
-
+ 
       random_access_iterator(): _pointer(nullptr) {};
       random_access_iterator(value_type * ptr): _pointer(ptr) {};
       ~random_access_iterator() {};

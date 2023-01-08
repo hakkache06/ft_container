@@ -8,7 +8,7 @@
 #include "pair.hpp"
 #include "vector.hpp"
 #include "tree_iterator.hpp"
-//#include "reverse_iterator.hpp"
+#include "const_tree.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
 #include "sfinae.hpp"
@@ -41,9 +41,10 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer; 
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::tree_iterator<Key,T,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
+        typedef ft::const_tree<Key,T,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
         typedef ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
-        typedef typename ft::reverse_iterator < iterator > reverse_iterator;
+
+    	typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
 		typedef typename value_type::first_type   pair_first_pair;
         // fin iterator
@@ -58,19 +59,18 @@ namespace ft
       
     // size_t _capacity;
  
-        // class value compare
-        // class value_compare: public std::binary_function<value_type,value_type,bool> 
-        // {
-        //     friend class map;
-        // protected:
-        //     Compare comp;
-        //     value_compare(Compare c) : comp(c) {}
-        // public:
-        //     bool operator()(const value_type& x, const value_type& y) const
-        //      {
-        //         return comp(x.first, y.first);
-        //     }
-        // };
+        class value_compare: public std::binary_function<value_type,value_type,bool> 
+        {
+            friend class map;
+        protected:
+            Compare comp;
+            value_compare(Compare c) : comp(c) {}
+        public:
+            bool operator()(const value_type& x, const value_type& y) const
+             {
+                return comp(x.first, y.first);
+            }
+        };
 
         public :
 
@@ -107,19 +107,19 @@ namespace ft
 		{
  			return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
  		}
-        const_iterator begin() const
-		{
- 			return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
- 		}
+        // const_iterator begin() const
+		// {
+ 		// 	return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
+ 		// }
 
 		iterator end()
 		{
 			return (iterator(nullptr,avl_tree));
 		}
-		const_iterator end() const
-		{
-			return (const_iterator(nullptr,avl_tree));
-		}
+		// const_iterator end() const
+		// {
+		// 	return (const_iterator(nullptr,avl_tree));
+		// }
 
 		reverse_iterator rbegin()
 		{
@@ -239,6 +239,14 @@ namespace ft
             return (pointer ? iterator(pointer,avl_tree) : this->end());
         }
 
+		iterator find (const key_type& k) const
+        {
+            nodaaa<Key,T,value_type,Alloc> *pointer;
+
+            pointer = avl_tree.find_key(avl_tree._head,k);
+            return (pointer ? iterator(pointer,avl_tree) : this->end());
+        }
+
         size_type count (const key_type& k) 
      	{
 			nodaaa<Key,T,value_type,Alloc> *pointer;
@@ -248,7 +256,7 @@ namespace ft
 		return(0);
         }
 
-        iterator upper_bound (const key_type& k)
+        iterator upper_bound (const key_type& k) const
      	{
 			nodaaa<Key,T,value_type,Alloc> *temp;
 			nodaaa<Key,T,value_type,Alloc> *parent;
@@ -268,20 +276,28 @@ namespace ft
 			}	
 				 return iterator(temp,avl_tree);
  		}
-
-
-		iterator lower_bound (const key_type& k)
+		iterator lower_bound (const key_type& k) const
      	{	
 			nodaaa<Key,T,value_type,Alloc> *pointer;
+			iterator it = upper_bound(k);
      	  	pointer = avl_tree.find_key(avl_tree._head,k);
-			if(pointer)
-				return iterator(pointer,avl_tree);
+			if(pointer && it != end())
+				return it;
 			else
-				return upper_bound(k);
+				return iterator(pointer,avl_tree);
  		}
-
-
-  	
+		pair<iterator,iterator>	equal_range (const key_type& k) const
+		{	
+			return (ft::make_pair(lower_bound(k),upper_bound(k)));
+		}
+		key_compare key_comp() const
+		{
+			return (_key_comp);
+		}
+		value_compare	value_comp() const
+		{
+			return(value_compare(_key_comp));
+		}
 		allocator_type get_allocator() const
 		{
 			return (this->_alloc);

@@ -1,28 +1,23 @@
 
 #include <iostream>
-//#include<map>
 #include "pair.hpp"
 #include "map.hpp"
 int main()
 {
-    ft::map<int,int> ito;
+    ft::map<char,char> ito;
 
-    ft::pair<int,int> f1;
-    f1.first = 21;
-    ito.insert(ft::make_pair(1,45)) ;
-    ito.insert(ft::make_pair(2,12)) ;
-    ito.insert(ft::make_pair(3,63)) ;
-    ito.insert(ft::make_pair(4,12)) ;
-    ito.insert(ft::make_pair(20,12)) ;
-    ito.insert(ft::make_pair(21,12)) ;
+    ito.insert(ft::make_pair('A','A')) ;
+    ito.insert(ft::make_pair('B','B')) ;
+    ito.insert(ft::make_pair('C','c')) ;
+    ito.insert(ft::make_pair('D','s')) ;
+    ito.insert(ft::make_pair('E','e')) ;
+    ito.insert(ft::make_pair('F','s')) ;
 
-
-    //ito.affiche2();
-
-    ft::map<int,int>::iterator a = ito.lower_bound(20);
-    std::cout << a->first << std::endl;
- 
-  
+    ft::map<char,char>::iterator it = ito.begin();
+    ito.affiche2();
+    it++;
+    it++;
+    std::cout<<it->first<<std::endl;
 
 
 

@@ -18,7 +18,6 @@ namespace ft {
       // (2) copy / move constructor (and implicit conversion)
       template < class U, class V >
         pair(const pair < U, V > & pr): first(pr.first),second(pr.second) {
-          //rachid 
           // first = pr.first;
           // second = pr.second;   dy3atli me 7yati nhar
         }

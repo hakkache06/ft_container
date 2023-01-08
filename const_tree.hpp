@@ -5,17 +5,17 @@
 namespace ft
 {
         template <class Key ,class Type,class T, class Alloc, class U>
-    class tree_iterator{
+    class const_tree{
     public:
 
 
 
     public: 
-      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,T > > ::value_type value_type;
-      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,T > > ::difference_type difference_type;
-      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,T > > ::pointer pointer;
-      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,T > > ::reference reference;
-      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,T > > ::iterator_category iterator_category;
+      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,Type > > ::value_type value_type;
+      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,Type > > ::difference_type difference_type;
+      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,Type > > ::pointer pointer;
+      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,Type > > ::reference reference;
+      typedef typename ft::iterator_traits < ft::iterator < std::bidirectional_iterator_tag,Type > > ::iterator_category iterator_category;
 
         // typedef T value_type;
         // typedef std::ptrdiff_t difference_type; 
@@ -28,48 +28,25 @@ namespace ft
 
         U tree;
 
-        tree_iterator():nodas(NULL),tree(){
+        const_tree():nodas(NULL),tree(){
         }
-        tree_iterator(nodaaa<Key,Type,T,Alloc> *node, U _tree):nodas(node),tree(_tree){
+        const_tree( nodaaa<Key,Type,T,Alloc> *node, U _tree):nodas(node),tree(_tree){
  
          }
-        tree_iterator(const tree_iterator &ref):nodas(ref.nodas),tree(ref.tree){
+        const_tree(const const_tree &ref):nodas(ref.nodas),tree(ref.tree){
         };
-        tree_iterator &operator=(const tree_iterator &rhs){
+        const_tree &operator=(const const_tree &rhs){
             if (this == &rhs)
 	    	    return (*this);
 	        this->nodas = rhs.nodas;
             this->tree = rhs.tree;
             return (*this);
         }
-        ~tree_iterator(){
+        ~const_tree(){
         }
-    nodaaa<Key,Type,T,Alloc> *min_noode(nodaaa<Key,Type,T,Alloc> *noode) 
-    {
-        if (noode)
-        {
-            while (noode->left)
-                noode = noode->left;
-        }
-        return (noode);
-    }       
 
-    nodaaa<Key,Type,T,Alloc> *parent_noode(nodaaa<Key,Type,T,Alloc> *root, pair_first_pair k)
-    {
 
-        if(root == NULL || root->pair->first == k)
-            return NULL;
-            
-        if ((root->left != NULL && root->left->pair->first == k) || (root->right != NULL && root->right->pair->first == k))
-                return root;
-        nodaaa<Key,Type,T,Alloc> *noode  = parent_noode(root->left,k);
-        if (noode != NULL)
-         return noode;
-        noode = parent_noode(root->right,k);
-        return noode;            
-    }
-
-    const tree_iterator& operator--()
+    const_tree& operator--()
     {
         if(nodas ==  nullptr)
             return (*this);
@@ -92,7 +69,7 @@ namespace ft
         return (*this);
     }
 
-    const tree_iterator& operator++()
+    const_tree& operator++()
     {
         if(nodas ==  nullptr)
             return (*this);
@@ -111,8 +88,8 @@ namespace ft
         }
         return (*this);
     }
-	    tree_iterator operator++(int){
-            tree_iterator tmp(*this);
+	    const_tree operator++(int){
+            const_tree tmp(*this);
             operator++();
             return (tmp);
         }
@@ -125,14 +102,14 @@ namespace ft
         pointer operator -> () const {
             return & (operator * ());
       }
-	    tree_iterator operator--(int)
+	    const_tree operator--(int)
         {
-			tree_iterator tmp(*this);
+			const_tree tmp(*this);
             operator--();
             return (tmp);
 		} 
 
-        // const tree_iterator& operator--() {
+        // const const_tree& operator--() {
         //     if (nodas->left) {
         //         nodas = nodas->left;
         //         while (nodas->right) {
@@ -150,16 +127,16 @@ namespace ft
         // }
 
 
-        bool operator==(const tree_iterator &it)const{
+        bool operator==(const const_tree &it)const{
             return (nodas == it.nodas);
         };
-        bool operator!=(const tree_iterator &it)const{
+        bool operator!=(const const_tree &it)const{
             return (nodas != it.nodas);
         };
-        bool operator==(tree_iterator &x){
+        bool operator==(const_tree &x){
             return(this->nodas == x.nodas);
         }
-        bool operator!=(tree_iterator &x){
+        bool operator!=(const_tree &x){
             return(this->nodas != x.nodas);
         }
         public:
