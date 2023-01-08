@@ -37,7 +37,7 @@ class AVL{
         nodaaa<Key,Type,T,alloc> *_head;
         _noode_alloc  alloc_noode;
         size_type _size;
-        nodaaa<Key,Type,T,alloc> *_root;
+        //nodaaa<Key,Type,T,alloc> *_root;
 
 
     AVL()
@@ -359,6 +359,26 @@ nodaaa<Key,Type,T,alloc> *parent_noode( pair_first_pair k)
         noode = parent_noode(_head->right,k);
     return noode;            
 
+}
+
+void swap (AVL& x)
+{
+	AVL tmp;
+
+	tmp._head = this->_head;
+	tmp._alloc = this->_alloc;
+	tmp._alloc_node = this->_alloc_node;
+	tmp._compare = this->_compare;
+				
+	this->_head = x._head;
+	this->_alloc = x._alloc;
+	this->_alloc_node = x._alloc_node;
+	this->_compare = x._compare;
+                
+	x._head = tmp._head;
+	x._alloc = tmp._alloc;
+	x._alloc_node = tmp._alloc_node;
+	x._compare = tmp._compare;
 }
 
 

@@ -6,22 +6,21 @@
 int main()
 {
     ft::map<int,int> ito;
-    ft::map<int,int>::iterator it = ito.begin();
 
     ft::pair<int,int> f1;
-    f1.first = 3;
-
-
+    f1.first = 21;
     ito.insert(ft::make_pair(1,45)) ;
     ito.insert(ft::make_pair(2,12)) ;
     ito.insert(ft::make_pair(3,63)) ;
     ito.insert(ft::make_pair(4,12)) ;
+    ito.insert(ft::make_pair(20,12)) ;
+    ito.insert(ft::make_pair(21,12)) ;
 
-    ito.affiche2();
 
-    ft::map<int,int>::iterator a = ito.find(f1.first);
-    std::cout << ito.count(f1.first) << "\n";
-    ito.affiche2();
+    //ito.affiche2();
+
+    ft::map<int,int>::iterator a = ito.lower_bound(20);
+    std::cout << a->first << std::endl;
  
   
 

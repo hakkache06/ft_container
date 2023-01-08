@@ -11,6 +11,7 @@
 //#include "reverse_iterator.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
+#include "sfinae.hpp"
 //#include "map_ite.hpp"
 namespace ft
 {
@@ -106,38 +107,38 @@ namespace ft
 		{
  			return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
  		}
-        // const_iterator begin() const
-		// {
- 		// 	return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
- 		// }
+        const_iterator begin() const
+		{
+ 			return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
+ 		}
 
 		iterator end()
 		{
 			return (iterator(nullptr,avl_tree));
 		}
-		// const_iterator end() const
-		// {
-		// 	return (const_iterator(nullptr,avl_tree));
-		// }
+		const_iterator end() const
+		{
+			return (const_iterator(nullptr,avl_tree));
+		}
 
-		// reverse_iterator rbegin()
-		// {
-		// 	return (reverse_iterator(this->end()));
-		// }
+		reverse_iterator rbegin()
+		{
+			return (reverse_iterator(this->end()));
+		}
 
-		// const_reverse_iterator rbegin() const
-		// {
-		// 	return (const_reverse_iterator(this->end()));
-		// }
-		// reverse_iterator rend()
-		// {
-		// 	return (reverse_iterator(this->begin()));
-		// }
+		const_reverse_iterator rbegin() const
+		{
+			return (const_reverse_iterator(this->end()));
+		}
+		reverse_iterator rend()
+		{
+			return (reverse_iterator(this->begin()));
+		}
 
-		// const_reverse_iterator rend() const
-		// {
-		// 	return (const_reverse_iterator(this->begin()));
-		// }
+		const_reverse_iterator rend() const
+		{
+			return (const_reverse_iterator(this->begin()));
+		}
 
 		bool empty() const
 		{
@@ -247,69 +248,90 @@ namespace ft
 		return(0);
         }
 
-		
-        iterator lower_bound (const key_type& k)
+        iterator upper_bound (const key_type& k)
      	{
- 			nodaaa<Key,T,value_type> *tmp;
+			nodaaa<Key,T,value_type,Alloc> *temp;
+			nodaaa<Key,T,value_type,Alloc> *parent;
+			temp = avl_tree._head;
 
- 			tmp = this->avl_tree._head.find_key(avl_tree);
-			if (tmp)
-				tmp = temp->right;
-
- 			return (tmp ? iterator(tmp, avl_tree) : this->end());
+			while (temp != NULL)
+			{
+				if (temp->pair->first > k)
+				{
+					parent = temp;
+					temp = temp->left;	
+				}
+				else
+				{
+					temp = temp->right;
+				}
+			}	
+				 return iterator(temp,avl_tree);
  		}
-  
-	
+
+
+		iterator lower_bound (const key_type& k)
+     	{	
+			nodaaa<Key,T,value_type,Alloc> *pointer;
+     	  	pointer = avl_tree.find_key(avl_tree._head,k);
+			if(pointer)
+				return iterator(pointer,avl_tree);
+			else
+				return upper_bound(k);
+ 		}
+
+
+  	
 		allocator_type get_allocator() const
 		{
 			return (this->_alloc);
 		}
-
-// // 	public:
-// // 	    friend bool operator==(const Map &lhs, const Map &rhs)
-// // 		{
-// // 			return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
-// // 		}
-// //         friend bool operator!=(const Map& lhs, const Map& rhs)
-// // 		{
-// // 			return !(lhs == rhs);
-// // 		}
-
-// //         friend bool operator<(const Map& lhs,const Map& rhs)
-// // 		{
-
-// // 			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-// // 		}
-
-// //         friend bool operator<=(const Map& lhs,const Map& rhs)
-// // 		{
-// // 			return !(rhs < lhs);
-// // 		}
-
-// //         friend bool operator>(const Map& lhs, const Map& rhs )
-// // 		{
-// // 			return (rhs < lhs);
-// // 		}
-
-// //         friend bool operator>=(const Map& lhs,const Map& rhs )
-// // 		{
-// // 			return !(rhs > lhs);
-// // 		}
-// // };
-
-// // template <class Key, class T, class Compare, class Alloc>
-// // void swap (Map<Key,T,Compare,Alloc>& x, Map<Key,T,Compare,Alloc>& y)
-// // {
-// // 	x.swap(y);
-// // }
-
     private:
     
   		AVL<Key,T,value_type,Alloc> avl_tree;    
 
-    };
+	public:
+	    friend bool operator==(const map &lhs, const map &rhs)
+		{
+			return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+		}
+        friend bool operator!=(const map& lhs, const map& rhs)
+		{
+			return !(lhs == rhs);
+		}
 
+        friend bool operator<(const map& lhs,const map& rhs)
+		{
+
+			return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+		}
+
+        friend bool operator<=(const map& lhs,const map& rhs)
+		{
+			return !(rhs < lhs);
+		}
+
+        friend bool operator>(const map& lhs, const map& rhs )
+		{
+			return (rhs < lhs);
+		}
+
+        friend bool operator>=(const map& lhs,const map& rhs )
+		{
+			return !(rhs > lhs);
+		}
+};
+
+template <class Key, class T, class Compare, class Alloc>
+void swap (map<Key,T,Compare,Alloc>& x, map<Key,T,Compare,Alloc>& y)
+{
+	x.swap(y);
 }
+
+
+};
+
+
         // void    testparentnode(const value_type &x)
         // {
 
