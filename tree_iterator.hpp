@@ -30,9 +30,12 @@ namespace ft
 
         tree_iterator():nodas(NULL),tree(){
         }
-        tree_iterator(nodaaa<Key,Type,T,Alloc> *node, U _tree):nodas(node),tree(_tree){
+        tree_iterator(nodaaa<Key,Type,T,Alloc> *node, U _tree):nodas(node),tree(_tree)
+        {
  
          }
+        tree_iterator(nodaaa<Key,Type,T,Alloc> *node):nodas(node){
+        }
         tree_iterator(const tree_iterator &ref):nodas(ref.nodas),tree(ref.tree){
         };
         tree_iterator &operator=(const tree_iterator &rhs){
@@ -52,33 +55,48 @@ namespace ft
                 noode = noode->left;
         }
         return (noode);
-    }       
+    }     
+    nodaaa<Key,Type,T,Alloc> *max_noode(nodaaa<Key,Type,T,Alloc> *noode)
+    {
+        if (noode)
+        {
+            while (noode->right)
+                noode = noode->right;
+        }
+        return (noode);
+    }  
 
     nodaaa<Key,Type,T,Alloc> *parent_noode(nodaaa<Key,Type,T,Alloc> *root, pair_first_pair k)
     {
-
+        nodaaa<Key,Type,T,Alloc> *noode;
         if(root == NULL || root->pair->first == k)
             return NULL;
             
         if ((root->left != NULL && root->left->pair->first == k) || (root->right != NULL && root->right->pair->first == k))
                 return root;
-        nodaaa<Key,Type,T,Alloc> *noode  = parent_noode(root->left,k);
-        if (noode != NULL)
-         return noode;
+        else if(root->pair->first > k)
+        {
+
+            noode  = parent_noode(root->left,k);
+            if (noode != NULL)
+            return noode;
+
+        }
         noode = parent_noode(root->right,k);
         return noode;            
     }
 
     const tree_iterator& operator--()
     {
-        if(nodas ==  nullptr)
-            return (*this);
-        if(nodas->left == NULL && nodas->right == NULL)
-            return (*this);
 
+        if(nodas ==  nullptr)
+        {
+            nodas=max_noode(tree._head);
+            return (*this);
+        }
         if (nodas->left != nullptr)
         {
-            nodas = min_noode(nodas->left);
+            nodas = max_noode(nodas->left);
         }else
         {
             nodaaa<Key,Type,T,Alloc> *parent = parent_noode(tree._head,nodas->pair->first);
@@ -92,7 +110,7 @@ namespace ft
         return (*this);
     }
 
-    const tree_iterator& operator++()
+    tree_iterator& operator++()
     {
         if(nodas ==  nullptr)
             return (*this);
@@ -111,6 +129,7 @@ namespace ft
         }
         return (*this);
     }
+
 	    tree_iterator operator++(int){
             tree_iterator tmp(*this);
             operator++();
@@ -131,24 +150,6 @@ namespace ft
             operator--();
             return (tmp);
 		} 
-
-        // const tree_iterator& operator--() {
-        //     if (nodas->left) {
-        //         nodas = nodas->left;
-        //         while (nodas->right) {
-        //             nodas = nodas->right;
-        //         }
-        //     } else {
-        //         nodaaa<T,Alloc> *parent = parent_noode(tree._head,nodas->pair->first);
-        //         while (parent && parent->left == nodas) {
-        //             nodas = parent;
-        //             parent = parent_noode(tree._head,parent->pair->first);;
-        //         }
-        //         nodas = parent;
-        //     }
-        //     return *this;
-        // }
-
 
         bool operator==(const tree_iterator &it)const{
             return (nodas == it.nodas);

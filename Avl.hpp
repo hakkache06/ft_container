@@ -160,6 +160,7 @@ class AVL{
         else 
             return (noode);
 
+
         noode->height = 1 + max(height(noode->left), height(noode->right));
 
         int balance = getBalance(noode);
@@ -184,6 +185,7 @@ class AVL{
         return (noode);
     }
             ////////////////////// insert //////////////////////////
+
 
     size_type   treesize()
     {
@@ -279,11 +281,16 @@ class AVL{
                 return (NULL);
             if (noode->pair->first == first)
                 return(noode);
-            nodaaa<Key,Type,T,alloc> *n1 = find_key(noode->left, first);
-            if (n1)
-                return (n1);
-            nodaaa<Key,Type,T,alloc> *n2 = find_key(noode->right, first);
-            return (n2);
+            else if (noode->pair->first > first)
+            {
+                nodaaa<Key,Type,T,alloc> *n1 = find_key(noode->left, first);
+                if (n1)
+                    return (n1);
+            }else if (noode->pair->first < first){
+                nodaaa<Key,Type,T,alloc> *n2 = find_key(noode->right, first);
+                return (n2);
+            }    
+            return noode;   
         }
 
 
@@ -353,12 +360,12 @@ nodaaa<Key,Type,T,alloc> *parent_noode( pair_first_pair k)
             
         if ((_head->left != NULL && _head->left->pair->first == k) || (_head->right != NULL && _head->right->pair->first == k))
                 return _head;
-        nodaaa<Key,Type,T,alloc> *noode  = parent_noode(_head->left,k);
-        if (noode != NULL)
-         return noode;
-        noode = parent_noode(_head->right,k);
-    return noode;            
-
+        if (_head->pair->first < k)
+        {
+            return(parent_noode(_head->right,k));
+        }
+        else
+            return (parent_noode(_head->left,k));
 }
 
 void swap (AVL& x)

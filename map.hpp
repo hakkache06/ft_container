@@ -75,13 +75,12 @@ namespace ft
         public :
 
         // Construct empty
-        explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
+        explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()):_size(0)
         {
-            
         }
 
 		template <class InputIterator> 
-		 map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),const allocator_type& alloc = allocator_type())
+		 map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),const allocator_type& alloc = allocator_type()):_size()
 		 {
 			this->insert(first,last);
 		 }
@@ -126,15 +125,17 @@ namespace ft
 			return (reverse_iterator(this->end()));
 		}
 
-		const_reverse_iterator rbegin() const
-		{
-			return (const_reverse_iterator(this->end()));
-		}
 		reverse_iterator rend()
 		{
 			return (reverse_iterator(this->begin()));
 		}
 
+
+
+		const_reverse_iterator rbegin() const
+		{
+			return (const_reverse_iterator(this->end()));
+		}
 		const_reverse_iterator rend() const
 		{
 			return (const_reverse_iterator(this->begin()));
@@ -157,18 +158,21 @@ namespace ft
 		{
 			nodaaa<Key,T,value_type,Alloc>	*tmp;
 
+			++this->_size;
 			tmp = this->avl_tree.find_key(this->avl_tree._head,val.first);
 			if (tmp)
-				return (pair<iterator, bool>(iterator(tmp,avl_tree), false));
-			++this->_size;
+				return (pair<iterator, bool>(iterator(tmp), false));
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
-			return (pair<iterator, bool>(iterator(this->avl_tree.find_key(this->avl_tree._head,val.first),avl_tree), true));
+			
+			return (pair<iterator, bool>(iterator(this->avl_tree.find_key(this->avl_tree._head,val.first)), true));
 		}
 
-        iterator insert (iterator position, const value_type& val)
+		
+
+        iterator insert (iterator, const value_type& val)
  		{
- 			(void) position;
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
+			++this->_size;
 			return (iterator(this->avl_tree.find_key(avl_tree._head,val.first),avl_tree));
  		}
 		mapped_type& operator[] (const key_type& k)
@@ -180,13 +184,18 @@ namespace ft
 		void insert (InputIterator first, InputIterator last)
 		{
 			while (first != last)
+			{	
 				this->insert(*(first++));
+			}
 		}
 
 
         void erase (iterator position)
 		{
-			if (this->avl_tree.find_key(avl_tree._head,(*position).first))
+			nodaaa<Key,T,value_type,Alloc> *pointer;
+			pointer = this->avl_tree.find_key(avl_tree._head,(*position).first);
+			std::cout<<pointer->pair->first<<"\n";
+			if (pointer)
 			{
 				avl_tree._head = avl_tree.deletenoode(avl_tree._head,(*position).first);
 				--this->_size;
