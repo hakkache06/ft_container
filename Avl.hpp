@@ -308,8 +308,7 @@ class AVL{
             else if (noode->pair->first > first)
             {
                 nodaaa<Key,Type,T,alloc> *n1 = find_key(noode->left, first);
-                if (n1)
-                    return (n1);
+                return (n1);
             }else if (noode->pair->first < first){
                 nodaaa<Key,Type,T,alloc> *n2 = find_key(noode->right, first);
                 return (n2);

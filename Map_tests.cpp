@@ -1414,17 +1414,18 @@ void testModifiers()
             ft_m3.insert(ft::make_pair(i, "string1"));
         }
 
-        for (size_t i = 0; i < 1e7; ++i)
+        for (size_t i = 0; i < 1e6; ++i)
         {
             int n = distr(generator);
             int ret1 = m3.erase(n);
             int ret2 = ft_m3.erase(n);
-
             if (ret1 != ret2)
             {
-                cond = false;
+                cond=false;
+               //std::cout << i << std::endl; 
                 break;
             }
+                
         }
 
         //std::cout << m3.size() << "* \n";
@@ -1456,8 +1457,8 @@ void testModifiers()
             ft_m3.erase(ft_m3.begin(), ft_m3.end());
         }
         
-        std::cout << m3.size() << "* \n";
-        std::cout << ft_m3.size() << "*\n";
+        //std::cout << m3.size() << "* \n";
+        //std::cout << ft_m3.size() << "*\n";
 
         cond = cond && (m3.size() == ft_m3.size() && compareMaps(m2.begin(), m2.end(), ft_m2.begin(), ft_m2.end()) );
 

@@ -191,8 +191,8 @@ namespace ft
 			pointer = this->avl_tree.find_key(avl_tree._head,(*position).first);
 			if (pointer)
 			{
-				this->_size--;
 				avl_tree._head = avl_tree.dele(avl_tree._head,(*position).first);
+				this->_size--;
 			}
 		}
 
@@ -208,8 +208,8 @@ namespace ft
 
 			if (pointer)
 			{
-				this->_size--;
 				avl_tree._head = avl_tree.dele(avl_tree._head,k);
+				this->_size--;
 				return (1);
 			}
 			return (0);
