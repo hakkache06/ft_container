@@ -80,7 +80,7 @@ namespace ft
         }
 
 		template <class InputIterator> 
-		 map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),const allocator_type& alloc = allocator_type()):_size()
+		 map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),const allocator_type& alloc = allocator_type()):_size(0)
 		 {
 			this->insert(first,last);
 		 }
@@ -156,23 +156,18 @@ namespace ft
 
         pair<iterator,bool> insert (const value_type& val)
 		{
-			nodaaa<Key,T,value_type,Alloc>	*tmp;
-
-			++this->_size;
+			nodaaa<Key,T,value_type,Alloc>	*tmp;		
 			tmp = this->avl_tree.find_key(this->avl_tree._head,val.first);
 			if (tmp)
 				return (pair<iterator, bool>(iterator(tmp), false));
+			++this->_size;			
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
-			
 			return (pair<iterator, bool>(iterator(this->avl_tree.find_key(this->avl_tree._head,val.first)), true));
 		}
-
-		
 
         iterator insert (iterator, const value_type& val)
  		{
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
-			++this->_size;
 			return (iterator(this->avl_tree.find_key(avl_tree._head,val.first),avl_tree));
  		}
 		mapped_type& operator[] (const key_type& k)
@@ -185,20 +180,19 @@ namespace ft
 		{
 			while (first != last)
 			{	
-				this->insert(*(first++));
+				avl_tree._head =  avl_tree.insert(avl_tree._head,(*(first++)));
+				this->_size++;
 			}
 		}
-
 
         void erase (iterator position)
 		{
 			nodaaa<Key,T,value_type,Alloc> *pointer;
 			pointer = this->avl_tree.find_key(avl_tree._head,(*position).first);
-			std::cout<<pointer->pair->first<<"\n";
 			if (pointer)
 			{
-				avl_tree._head = avl_tree.deletenoode(avl_tree._head,(*position).first);
-				--this->_size;
+				this->_size--;
+				avl_tree._head = avl_tree.dele(avl_tree._head,(*position).first);
 			}
 		}
 
@@ -209,10 +203,13 @@ namespace ft
 
         size_type erase (const key_type& k)
 		{
-			if (this->avl_tree.find_key(avl_tree._head,k))
+			nodaaa<Key,T,value_type,Alloc> *pointer;
+			pointer = this->avl_tree.find_key(avl_tree._head,k);
+
+			if (pointer)
 			{
-				avl_tree._head = avl_tree.deletenoode(avl_tree._head,k);
-				--this->_size;
+				this->_size--;
+				avl_tree._head = avl_tree.dele(avl_tree._head,k);
 				return (1);
 			}
 			return (0);
@@ -226,15 +223,21 @@ namespace ft
 			while (first != last)
 				tmp.push_back((first++)->first);
 			for (it = tmp.begin(); it != tmp.end(); it++)
-				this->erase(*it);
+			{
+				avl_tree._head= this->avl_tree.dele(avl_tree._head,*it);
+				this->_size--;
+			}
+				
+				
 		}
         void swap (map& x)
      	{
 	        std::swap(this->_alloc, x._alloc);
  	        std::swap(this->_key_comp, x._key_comp);
  	        std::swap(this->_size, x._size);
- 	        this->avl_tree.swap(x.avl_tree);
+ 	        //this->avl_tree.swap(x.avl_tree);
  	    }
+
         void clear()
  	    {
  	        this->erase(this->begin(), iterator(avl_tree.max_noode(avl_tree._head)),avl_tree);

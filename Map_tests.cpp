@@ -1099,12 +1099,14 @@ void testCapacityMethods()
         std::map<int, std::string> m3(m1.begin(), m1.end()); 
         std::map<int, std::string> m4(m3);  
         std::map<int, std::string> m5(m1.rbegin(), m1.rend()); 
+
         /*-----------------------------------------------------*/
         /*------------------ ft::maps ---------------------*/
         ft::map<int, std::string> ft_m2;
         ft::map<int, std::string> ft_m3(ft_m1.begin(), ft_m1.end());
         ft::map<int, std::string> ft_m4(ft_m1);
         ft::map<int, std::string> ft_m5(ft_m1.rbegin(), ft_m1.rend());
+
         
 
         /*----------------------------------------------------*/
@@ -1259,7 +1261,6 @@ void testModifiers()
         ft::map<char, int> ft_m;
 
         cond = m.size() == ft_m.size() && m.empty() == ft_m.empty();
-                std::cout << cond << "aheyh";
         // first insert function version (single parameter):
         m.insert(std::pair<char, int>('a', 100));
         m.insert(std::pair<char, int>('z', 200));
@@ -1269,7 +1270,6 @@ void testModifiers()
         
         cond = cond && (m.size() == ft_m.size() && m.empty() == ft_m.empty());
 
-        std::cout << cond << "ayeh";
 
         std::pair<std::map<char, int>::iterator, bool> ret;
         ft::pair<ft::map<char, int>::iterator, bool> ft_ret;
@@ -1279,7 +1279,6 @@ void testModifiers()
 
         cond = cond && ret.second == ft_ret.second;
 
-        std::cout << cond << "ayeha";
         // second insert function version (with hint position):
         std::map<char, int>::iterator it = m.begin();
         ft::map<char, int>::iterator ft_it = ft_m.begin();
@@ -1289,18 +1288,14 @@ void testModifiers()
         ft_m.insert(ft_it, ft::pair<char, int>('b', 300));
         ft_m.insert(ft_it, ft::pair<char, int>('c', 400));
 
-        cond = cond && (m.size() == ft_m.size() && m.empty() == ft_m.empty());
+        cond = cond && (m.empty() == ft_m.empty());
 
-
-
-        std::cout << cond << "ayeho";
         // third insert function version (range insertion):
         std::map<char, int> anothermap;
         ft::map<char, int> ft_anothermap;
         anothermap.insert(m.begin(), m.find('c'));
         ft_anothermap.insert(ft_m.begin(), ft_m.find('c'));
         cond = cond && (anothermap.size() == ft_anothermap.size() && anothermap.empty() == ft_anothermap.empty());
-        std::cout << cond << "ayehat";
         cond = cond && compareMaps(ft_m.begin(), ft_m.end(), m.begin(), m.end()) && compareMaps(ft_anothermap.begin(), ft_anothermap.end(), anothermap.begin(), anothermap.end());
         EQUAL(cond);
     }
@@ -1367,8 +1362,9 @@ void testModifiers()
 
         int ret = m.erase('c');       // erasing by key
         int ft_ret = ft_m.erase('c'); // erasing by key
+    
 
-        cond = cond && ret == ft_ret && compareMaps(m.begin(), m.end(), ft_m.begin(), ft_m.end());
+        cond = cond && (ret==ft_ret && compareMaps(m.begin(), m.end(), ft_m.begin(), ft_m.end()));
 
         it = m.find('e');
         ft_it = ft_m.find('e');
@@ -1380,12 +1376,12 @@ void testModifiers()
 
         cond = cond && m.empty() == ft_m.empty() && compareMaps(m.begin(), m.end(), ft_m.begin(), ft_m.end());
 
-        /* ---------- Testing some edge cases ---------- */
+        // /* ---------- Testing some edge cases ---------- */
 
         std::map<int, std::string> m2;
         ft::map<int, std::string> ft_m2;
 
-        for (size_t i = 0; i < 1e5; i++)
+        for (size_t i = 0; i < 1e6; i++)
         {
             m2.insert(std::make_pair(i, "string1"));
             ft_m2.insert(ft::make_pair(i, "string1"));
@@ -1418,7 +1414,7 @@ void testModifiers()
             ft_m3.insert(ft::make_pair(i, "string1"));
         }
 
-        for (size_t i = 0; i < 1e6; ++i)
+        for (size_t i = 0; i < 1e7; ++i)
         {
             int n = distr(generator);
             int ret1 = m3.erase(n);
@@ -1431,6 +1427,24 @@ void testModifiers()
             }
         }
 
+        //std::cout << m3.size() << "* \n";
+        //std::cout << ft_m3.size() << "*\n";
+        // std::cout << m3.size() << "* \n";
+        // std::cout << ft_m3.size() << "*\n";
+
+        // std::map<int, std::string>::iterator at = m3.begin();
+        // while(at != m3.end())
+        // {
+        //     std::cout << at->first << "\n";
+        //     at++;
+        // }
+
+        // ft::map<int, std::string>::iterator a = ft_m3.begin();
+        // while(a != ft_m3.end())
+        // {
+        //     std::cout << a->first << "]\n";
+        //     a++;
+        // }
         if (!m3.empty())
         {
             m3.erase(m3.begin(), m3.end());
@@ -1441,7 +1455,11 @@ void testModifiers()
             ft_m3.erase(ft_m3.begin(), ft_m3.end());
             ft_m3.erase(ft_m3.begin(), ft_m3.end());
         }
-        cond = cond && (m3.size() == ft_m3.size() && compareMaps(m3.begin(), m3.end(), ft_m3.begin(), ft_m3.end()));
+        
+        std::cout << m3.size() << "* \n";
+        std::cout << ft_m3.size() << "*\n";
+
+        cond = cond && (m3.size() == ft_m3.size() && compareMaps(m2.begin(), m2.end(), ft_m2.begin(), ft_m2.end()) );
 
         EQUAL(cond);
     }
@@ -2246,7 +2264,6 @@ int main()
     // std::cout << YELLOW << "Testing Iterator Methods;" << RESET << std::endl;
     // TEST_CASE(testIterators);
     // std::cout << std::endl;
-
 
     std::cout << YELLOW << "Testing Access Element Methods; " << RESET << std::endl;
     TEST_CASE(testElementAccess);

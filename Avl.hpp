@@ -46,6 +46,19 @@ class AVL{
         _size = 0;
     }
 
+    void swap (AVL& x)
+{
+	AVL tmp;
+
+	tmp._head = this->_head;
+	tmp.alloc_node = this->alloc_node;
+				
+	this->_head = x._head;
+	this->alloc_node = x.alloc_node;
+                
+	x._head = tmp._head;
+	x.alloc_node = tmp.alloc_node;
+}
     AVL(const AVL &ref)
     {
         *this = ref;
@@ -199,62 +212,73 @@ class AVL{
         is_balanced -= (root->right) ? (root->right->heghit): 0;
     }
 
-    nodaaa<Key,Type,T,alloc> *deletenoode(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first){
-
-        if (noode == NULL)
-            return (noode);
-
-        if (first < noode->pair->first){
-            noode->left = deletenoode(noode->left, first);
-        }
-        else if (first > noode->pair->first){
-            noode->right = deletenoode(noode->right, first);
-
-        }
-        else {
-            if ((noode->left == NULL) || (noode->right == NULL)){
-                nodaaa<Key,Type,T,alloc> *temp = noode->left ? noode->left : noode->right;
-
-                if (temp == NULL){
-                    temp = noode;
-                    noode = NULL;
-                }
-                else{
-                    *noode = *temp;
-                }
-                     --_size;
-                    alloc_noode.destroy(temp);
-                    alloc_noode.deallocate(temp,1);
-    
-            }else
-            {
-                nodaaa<Key,Type,T,alloc> *temp  = min_noode(noode->right);
-                noode->pair = temp->pair;
-                noode->right = deletenoode(noode->right,temp->pair->first);
-
+    nodaaa<Key,Type,T,alloc> *dele(nodaaa<Key,Type,T,alloc> *node,const  pair_first_pair key)
+    {
+        	if (node == NULL) 
+            return NULL;
+	        
+	        if (key < node->pair->first){        
+	            node->left = dele(node->left, key);
+	        }
+	        else if (key > node->pair->first)
+	        {
+	            node->right = dele(node->right, key);
+	        }
+	        else  
+	        {
+	             
+	            if (node->left == NULL)
+	            {
+	                node = node->right;
+	            }
+	            else if (node->right == NULL)
+	            {
+	                node = node->left;
+	            }
+	            
+	            else
+	            {
+	                nodaaa<Key,Type,T,alloc> *a = min_noode(node->right);
+	                node->pair = a->pair;
+	                node->right = dele(node->right, a->pair->first);
+                }	     
             }
-        }
-        if (noode == NULL)
-            return (noode);
+	
+	         
+	        if (node == NULL)
+	        {
+	            return NULL;
+	        }
+	                 node->height = 1 + max(height(node->left), height(node->right));
+        
+	        int balance = getBalance(node);
 
-        noode->height = 1 + max(height(noode->left), height(noode->right));
-        int balance = getBalance(noode);
-        if (balance > 1 && getBalance(noode->left) >= 0)
-            return (rightRotate(noode));
-
-
-        if (balance > 1 && getBalance(noode->left) < 0){
-            noode->left = leftRotate(noode->left);
-            return (rightRotate(noode));
-        }
-
-        if (balance < -1 && getBalance(noode->right) <= 0)
-            return (leftRotate(noode));
-        if (balance < -1 && getBalance(noode->right) > 0){
-            noode->right = rightRotate(noode->right);
-            return (leftRotate(noode));
-        }
-        return (noode);
+	        if (balance > 1)  
+	        {
+	            if (getBalance(node->left) >= 0)  
+	            {
+	                node = rightRotate(node);
+	            }
+	            else  
+	            {
+	                node->left = leftRotate(node->left);
+	                node = rightRotate(node);
+	            }
+	        }
+	        
+	        else if (balance < -1)  
+	        {
+	            if (getBalance(node->right) <= 0)  
+	            {
+	                node = leftRotate(node);
+	            }
+	            else  
+	            {
+	                node->right = rightRotate(node->right);
+	                node = leftRotate(node);
+	            }
+	        }
+	        return node;
     }
 
     // nodaaa<Key,Type,T,alloc> *delet(pair_first_pair first)
@@ -368,25 +392,7 @@ nodaaa<Key,Type,T,alloc> *parent_noode( pair_first_pair k)
             return (parent_noode(_head->left,k));
 }
 
-void swap (AVL& x)
-{
-	AVL tmp;
 
-	tmp._head = this->_head;
-	tmp._alloc = this->_alloc;
-	tmp._alloc_node = this->_alloc_node;
-	tmp._compare = this->_compare;
-				
-	this->_head = x._head;
-	this->_alloc = x._alloc;
-	this->_alloc_node = x._alloc_node;
-	this->_compare = x._compare;
-                
-	x._head = tmp._head;
-	x._alloc = tmp._alloc;
-	x._alloc_node = tmp._alloc_node;
-	x._compare = tmp._compare;
-}
 
 
 };
