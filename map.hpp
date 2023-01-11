@@ -15,7 +15,6 @@
 //#include "map_ite.hpp"
 namespace ft
 {
-  
   	template <
 		class Key, /*Type de données de clé à stocker dans le map.*/
         class T, /*Type de données d'élément à stocker dans le map.*/
@@ -32,17 +31,18 @@ namespace ft
         typedef T   mapped_type;
         typedef typename ft::pair<const key_type,mapped_type>  value_type;
         typedef Alloc   allocator_type;
+        typedef nodaaa<Key,T,value_type,Alloc> Node;
         typedef size_t  size_type;
         typedef Compare key_compare;
         typedef ptrdiff_t difference_type;
         typedef typename Alloc::reference reference;
         typedef typename Alloc::const_reference const_reference;
         typedef typename Alloc::pointer pointer;
-        typedef typename Alloc::const_pointer const_pointer; 
+        typedef typename Alloc::const_pointer const_pointer;
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::const_tree<Key,T,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
-        typedef ft::tree_iterator<Key,T,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
+        typedef ft::tree_iterator<Key, const Node,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
+        typedef ft::tree_iterator<Key, Node,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
 
     	typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
@@ -102,23 +102,25 @@ namespace ft
             this->avl_tree.affiche(avl_tree._head);
         }
 
-        iterator begin()
+        iterator begin() 
 		{
  			return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
  		}
-        // const_iterator begin() const
-		// {
- 		// 	return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
- 		// }
+
+        const_iterator begin() const
+		{
+ 			return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
+ 		}
 
 		iterator end()
 		{
 			return (iterator(nullptr,avl_tree));
 		}
-		// const_iterator end() const
-		// {
-		// 	return (const_iterator(nullptr,avl_tree));
-		// }
+
+		const_iterator end() const
+		{
+			return (const_iterator(nullptr,avl_tree));
+		}
 
 		reverse_iterator rbegin()
 		{
@@ -129,8 +131,6 @@ namespace ft
 		{
 			return (reverse_iterator(this->begin()));
 		}
-
-
 
 		const_reverse_iterator rbegin() const
 		{
@@ -156,7 +156,7 @@ namespace ft
 
         pair<iterator,bool> insert (const value_type& val)
 		{
-			nodaaa<Key,T,value_type,Alloc>	*tmp;		
+			Node	*tmp;		
 			tmp = this->avl_tree.find_key(this->avl_tree._head,val.first);
 			if (tmp)
 				return (pair<iterator, bool>(iterator(tmp), false));
@@ -187,7 +187,7 @@ namespace ft
 
         void erase (iterator position)
 		{
-			nodaaa<Key,T,value_type,Alloc> *pointer;
+			Node *pointer;
 			pointer = this->avl_tree.find_key(avl_tree._head,(*position).first);
 			if (pointer)
 			{
@@ -203,7 +203,7 @@ namespace ft
 
         size_type erase (const key_type& k)
 		{
-			nodaaa<Key,T,value_type,Alloc> *pointer;
+			Node *pointer;
 			pointer = this->avl_tree.find_key(avl_tree._head,k);
 
 			if (pointer)
@@ -245,7 +245,7 @@ namespace ft
 
         iterator find (const key_type& k)
         {
-            nodaaa<Key,T,value_type,Alloc> *pointer;
+            Node *pointer;
 
             pointer = avl_tree.find_key(avl_tree._head,k);
             return (pointer ? iterator(pointer,avl_tree) : this->end());
@@ -253,7 +253,7 @@ namespace ft
 
 		iterator find (const key_type& k) const
         {
-            nodaaa<Key,T,value_type,Alloc> *pointer;
+            Node *pointer;
 
             pointer = avl_tree.find_key(avl_tree._head,k);
             return (pointer ? iterator(pointer,avl_tree) : this->end());
@@ -261,7 +261,7 @@ namespace ft
 
         size_type count (const key_type& k) 
      	{
-			nodaaa<Key,T,value_type,Alloc> *pointer;
+			Node *pointer;
      	  	pointer = avl_tree.find_key(avl_tree._head,k);
 			if(pointer)
 		  	return (1);
@@ -270,8 +270,8 @@ namespace ft
 
         iterator upper_bound (const key_type& k) const
      	{
-			nodaaa<Key,T,value_type,Alloc> *temp;
-			nodaaa<Key,T,value_type,Alloc> *parent;
+			Node *temp;
+			Node *parent;
 			temp = avl_tree._head;
 
 			while (temp != NULL)
@@ -290,7 +290,7 @@ namespace ft
  		}
 		iterator lower_bound (const key_type& k) const
      	{	
-			nodaaa<Key,T,value_type,Alloc> *pointer;
+			Node *pointer;
 			iterator it = upper_bound(k);
      	  	pointer = avl_tree.find_key(avl_tree._head,k);
 			if(pointer && it != end())

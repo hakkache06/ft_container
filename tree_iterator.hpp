@@ -1,10 +1,9 @@
 #pragma once
 
-#include "nodda.hpp"
 #include "Avl.hpp"
 namespace ft
 {
-        template <class Key ,class Type,class T, class Alloc, class U>
+        template <class Key ,class Node,class T, class Alloc, class U>
     class tree_iterator{
     public:
 
@@ -26,15 +25,14 @@ namespace ft
 		// typedef std::bidirectional_iterator_tag iterator_category;
         typedef typename T::first_type   pair_first_pair;
 
-        U tree;
 
         tree_iterator():nodas(NULL),tree(){
         }
-        tree_iterator(nodaaa<Key,Type,T,Alloc> *node, U _tree):nodas(node),tree(_tree)
+        tree_iterator(Node *node, U _tree):nodas(node),tree(_tree)
         {
  
-         }
-        tree_iterator(nodaaa<Key,Type,T,Alloc> *node):nodas(node){
+        }
+        tree_iterator(Node *node):nodas(node){
         }
         tree_iterator(const tree_iterator &ref):nodas(ref.nodas),tree(ref.tree){
         };
@@ -47,7 +45,13 @@ namespace ft
         }
         ~tree_iterator(){
         }
-    nodaaa<Key,Type,T,Alloc> *min_noode(nodaaa<Key,Type,T,Alloc> *noode) 
+
+        operator tree_iterator<Key,const Node,const T,Alloc,U>() const
+        {
+            return tree_iterator<Key, const Node,const T,Alloc,U>(nodas,tree);
+        }
+
+    Node *min_noode(Node *noode) const
     {
         if (noode)
         {
@@ -56,7 +60,7 @@ namespace ft
         }
         return (noode);
     }     
-    nodaaa<Key,Type,T,Alloc> *max_noode(nodaaa<Key,Type,T,Alloc> *noode)
+    Node *max_noode(Node *noode) const
     {
         if (noode)
         {
@@ -66,9 +70,9 @@ namespace ft
         return (noode);
     }  
 
-    nodaaa<Key,Type,T,Alloc> *parent_noode(nodaaa<Key,Type,T,Alloc> *root, pair_first_pair k)
+    Node *parent_noode(Node *root, pair_first_pair k)
     {
-        nodaaa<Key,Type,T,Alloc> *noode;
+        Node *noode;
         if(root == NULL || root->pair->first == k)
             return NULL;
             
@@ -99,7 +103,7 @@ namespace ft
             nodas = max_noode(nodas->left);
         }else
         {
-            nodaaa<Key,Type,T,Alloc> *parent = parent_noode(tree._head,nodas->pair->first);
+            Node *parent = parent_noode(tree._head,nodas->pair->first);
             while (parent != nullptr && nodas == parent->left)
             {
                 nodas = parent;
@@ -119,7 +123,7 @@ namespace ft
             nodas = min_noode(nodas->right);
         }else
         {
-            nodaaa<Key,Type,T,Alloc> *parent = parent_noode(tree._head,nodas->pair->first);
+            Node *parent = parent_noode(tree._head,nodas->pair->first);
             while (parent != nullptr && nodas == parent->right)
             {
                 nodas = parent;
@@ -164,7 +168,8 @@ namespace ft
             return(this->nodas != x.nodas);
         }
         public:
-        nodaaa<Key,Type,T,Alloc> *nodas;
+        Node *nodas;
+        U tree;
     }; 
 
 }

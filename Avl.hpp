@@ -80,7 +80,7 @@ class AVL{
         return n->height;
     }
 
-    nodaaa<Key,Type,T,alloc> *min_noode(nodaaa<Key,Type,T,alloc> *noode) 
+    nodaaa<Key,Type,T,alloc> *min_noode(nodaaa<Key,Type,T,alloc> *noode) const
     {
         if (noode)
         {
