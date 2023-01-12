@@ -12,19 +12,9 @@ using namespace std;
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++**/
 /// AVL Tree implementation using C | AVL Tree Code | rotations in AVL Tree | LL RR LR RL rotation // https://www.youtube.com/watch?v=L0cDtyphZRc
 
-// class value_compare
-//           : public binary_function<value_type,value_type,bool> {
-//         friend class AVL;
-//         protected:
-//           Compare comp;
-//           value_compare(Compare c) : comp(c) {}
-//         public:
-//           bool operator()(const value_type& x, const value_type& y) const {
-//             return comp(x.first, y.first);
-// } };
 
 //AVL Tree
-template <class Key,class Type ,class T , class alloc>
+template <class Key,class Type ,class T , class alloc , class Compare>
 class AVL{
     public:
         typedef typename T::first_type   pair_first_pair;
@@ -32,13 +22,14 @@ class AVL{
         typedef typename alloc::template rebind<nodaaa<Key,Type,T,alloc> >::other _noode_alloc; // alloc noode
         typedef alloc											allocator_type;
         typedef size_t                                          size_type;
+        typedef Compare                                          ft_compare;                                                 
 
     public:
         nodaaa<Key,Type,T,alloc> *_head;
         _noode_alloc  alloc_noode;
         size_type _size;
         //nodaaa<Key,Type,T,alloc> *_root;
-
+        ft_compare  _comp;
 
     AVL()
     {
@@ -51,13 +42,13 @@ class AVL{
 	AVL tmp;
 
 	tmp._head = this->_head;
-	tmp.alloc_node = this->alloc_node;
+	tmp.alloc_noode = this->alloc_noode;
 				
 	this->_head = x._head;
-	this->alloc_node = x.alloc_node;
+	this->alloc_noode = x.alloc_noode;
                 
 	x._head = tmp._head;
-	x.alloc_node = tmp.alloc_node;
+	x.alloc_node = tmp.alloc_noode;
 }
     AVL(const AVL &ref)
     {
@@ -164,11 +155,12 @@ class AVL{
             _size++;
              return (allocate_new_noode(pair));
         }
-        if (pair.first < noode->pair->first){
+            
+        if (_comp(pair.first,noode->pair->first)){
             noode->left = insert(noode->left, pair);
         }
-        else if (pair.first > noode->pair->first ){
-            noode->right =  insert(noode->right, pair);;
+        else if (_comp(noode->pair->first,pair.first)){
+            noode->right =  insert(noode->right, pair);
         }
         else 
             return (noode);
@@ -179,19 +171,19 @@ class AVL{
         int balance = getBalance(noode);
 
         /// second cases
-        if (balance > 1 && pair.first < noode->left->pair->first)
+        if (balance > 1 && _comp(pair.first , noode->pair->first) )
             return (rightRotate(noode));
        
-        if (balance > 1 &&  pair.first > noode->left->pair->first ){
+        if (balance > 1 &&  _comp(noode->pair->first,pair.first)  ){
             noode->left = leftRotate(noode->left);
             return (rightRotate(noode));
         }
 
         /// First cases
-        if (balance < -1 &&  pair.first > noode->right->pair->first )
+        if (balance < -1 &&  _comp(noode->right->pair->first,pair.first) )
             return (leftRotate(noode));
 
-        if (balance < -1 && pair.first < noode->right->pair->first){
+        if (balance < -1 && _comp(pair.first,noode->right->pair->first)){
             noode->right = rightRotate(noode->right);
             return (leftRotate(noode));
         }
@@ -216,11 +208,11 @@ class AVL{
     {
         	if (node == NULL) 
             return NULL;
-	        
-	        if (key < node->pair->first){        
+	        // 1 < 2 true
+	        if (_comp(key,node->pair->first)){        
 	            node->left = dele(node->left, key);
 	        }
-	        else if (key > node->pair->first)
+	        else if (_comp(node->pair->first,key))
 	        {
 	            node->right = dele(node->right, key);
 	        }
@@ -290,13 +282,17 @@ class AVL{
     // {
     //     insert(this._head,first);
     // }
-    void dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
+
+   
+   
+    nodaaa<Key,Type,T,alloc> *dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
         if (noode){
             dellocate_noode(noode->left);
             dellocate_noode(noode->right);
             alloc_noode.destroy(noode);
             alloc_noode.deallocate(noode,1);
-        }
+        }  
+        return (NULL);
     }
 
         nodaaa<Key,Type,T,alloc> *find_key(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first)
@@ -305,11 +301,11 @@ class AVL{
                 return (NULL);
             if (noode->pair->first == first)
                 return(noode);
-            else if (noode->pair->first > first)
+            else if (_comp(first,noode->pair->first))
             {
                 nodaaa<Key,Type,T,alloc> *n1 = find_key(noode->left, first);
                 return (n1);
-            }else if (noode->pair->first < first){
+            }else if (_comp(noode->pair->first,first)){
                 nodaaa<Key,Type,T,alloc> *n2 = find_key(noode->right, first);
                 return (n2);
             }    
@@ -383,16 +379,13 @@ nodaaa<Key,Type,T,alloc> *parent_noode( pair_first_pair k)
             
         if ((_head->left != NULL && _head->left->pair->first == k) || (_head->right != NULL && _head->right->pair->first == k))
                 return _head;
-        if (_head->pair->first < k)
+        if (_comp(k,_head->pair->first))
         {
             return(parent_noode(_head->right,k));
         }
         else
             return (parent_noode(_head->left,k));
 }
-
-
-
 
 };
 

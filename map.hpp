@@ -41,8 +41,8 @@ namespace ft
         typedef typename Alloc::const_pointer const_pointer;
         //typedef	nodaaa<value_type,Alloc> _node;
         //// iterator 
-        typedef ft::tree_iterator<Key, const Node,const value_type, Alloc, AVL<Key,T,value_type,Alloc> > const_iterator;
-        typedef ft::tree_iterator<Key, Node,value_type, Alloc,AVL<Key,T,value_type,Alloc> > iterator;
+        typedef ft::tree_iterator<Key, const Node,const value_type, Alloc, AVL<Key,T,value_type,Alloc,Compare> > const_iterator;
+        typedef ft::tree_iterator<Key, Node,value_type, Alloc,AVL<Key,T,value_type,Alloc,Compare> > iterator;
 
     	typedef typename ft::reverse_iterator < iterator > reverse_iterator;
         typedef typename ft::reverse_iterator < const_iterator > const_reverse_iterator;
@@ -85,13 +85,23 @@ namespace ft
 			this->insert(first,last);
 		 }
 
+		map<Key,T,Compare,Alloc> &operator= (const map<Key,T,Compare,Alloc>& x)
+		{
+			if(this == &x)
+				return (*this);
+			this->avl_tree = x.avl_tree;
+			this->_alloc = x._alloc;
+			this->_key_comp = x._key_comp;
+			this->_size = x._size;
+			return (*this);
+		}
+
         //insert first -- last
         // ~map()
         // {
         //     avl_tree.dellocate_node(_node); 
 		// };
         // iterator 
-    	
 	   map (const map& x)
 	   {
 	        (*this) = x;
@@ -226,21 +236,25 @@ namespace ft
 			{
 				avl_tree._head= this->avl_tree.dele(avl_tree._head,*it);
 				this->_size--;
-			}
-				
-				
+			}	
 		}
         void swap (map& x)
-     	{
-	        std::swap(this->_alloc, x._alloc);
- 	        std::swap(this->_key_comp, x._key_comp);
- 	        std::swap(this->_size, x._size);
- 	        //this->avl_tree.swap(x.avl_tree);
- 	    }
+     	{	
+			//_alloc
+			//_key_comp
+			//_size
+			// std::swap(_alloc,x._alloc);
+			// std::swap(_key_comp,x._key_comp);
+			// std::swap(_size,x._size);
+	        std::swap(*this, x);
 
+ 	    }
+		
         void clear()
- 	    {
- 	        this->erase(this->begin(), iterator(avl_tree.max_noode(avl_tree._head)),avl_tree);
+ 	    {	
+
+ 	        this->erase(this->begin(), this->end());
+			avl_tree._head = NULL;
  	    }
 
         iterator find (const key_type& k)
@@ -316,7 +330,7 @@ namespace ft
 		}
     private:
     
-  		AVL<Key,T,value_type,Alloc> avl_tree;    
+  		AVL<Key,T,value_type,Alloc,Compare> avl_tree;    
 
 	public:
 	    friend bool operator==(const map &lhs, const map &rhs)

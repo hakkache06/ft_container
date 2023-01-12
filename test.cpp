@@ -9,26 +9,28 @@
 
 int main()
 {
-        ft::map<int, int> ft_m;
-        ft::map<int, int>::const_iterator ft_it = ft_m.begin();
+  
+    std::map<int, std::string> m1;
+        std::map<int, std::string> m2;
+        ft::map<int, std::string> ft_m2;
+        ft::map<int, std::string> ft_m1;
+        for (int i = 0; i < 1e4; ++i)
+        {
+            m2.insert(std::make_pair(i, "string2"));
+            ft_m2.insert(ft::make_pair(i, "string2"));
+        }
+
+        m1 = m2;
+        ft_m1 = ft_m2;
+        
+        m2.begin()->second = "hello";
+        ft_m2.begin()->second = "hello";
 
 
-        // insert some values:
-        // ft_m[1] = 10;
-        // ft_m[2] = 20;
-        // ft_m[3] = 30;
-        // ft_m[4] = 40;
-        // ft_m[5] = 50;
-        // ft_m[6] = 60;
+        int i = 0;
+        i = (ft_m1.begin()->second != ft_m2.begin()->second);
+        std::cout << i << std::endl;
 
-        // m[1] = 10;
-        // m[2] = 20;
-        // m[3] = 30;
-        // m[4] = 40;
-        // m[5] = 50;
-        // m[6] = 60;
-
-
-
+        ///ft_m1.begin()->second != ft_m2.begin()->second
 
 }
