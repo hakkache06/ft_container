@@ -8,7 +8,6 @@
 #include "pair.hpp"
 #include "vector.hpp"
 #include "tree_iterator.hpp"
-#include "const_tree.hpp"
 #include "nodda.hpp"
 #include "Avl.hpp"
 #include "sfinae.hpp"
@@ -74,17 +73,23 @@ namespace ft
 
         public :
 
-        // Construct empty
+        // (1) empty container constructor (default constructor)
         explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()):_size(0)
         {
         }
-
+		// (2) Range constuctor
 		template <class InputIterator> 
 		 map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),const allocator_type& alloc = allocator_type()):_size(0)
 		 {
 			this->insert(first,last);
 		 }
+		// destructor
+        ~map()
+        {
+            this->clear(); 
+		};
 
+		// operator=
 		map<Key,T,Compare,Alloc> &operator= (const map<Key,T,Compare,Alloc>& x)
 		{
 			if(this == &x)
@@ -94,12 +99,7 @@ namespace ft
 			return (*this);
 		}
 
-        //insert first -- last
-        // ~map()
-        // {
-        //     avl_tree.dellocate_node(_node); 
-		// };
-        // iterator 
+		// copy const
 	   map (const map& x)
 	   {
 	        (*this) = x;
@@ -109,7 +109,8 @@ namespace ft
         {
             this->avl_tree.affiche(avl_tree._head);
         }
-
+						// return iterator to beginning \\/
+		/////////////////////////////////////////////////////////////////////
         iterator begin() 
 		{
  			return iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
@@ -119,6 +120,10 @@ namespace ft
 		{
  			return const_iterator(avl_tree.min_noode(avl_tree._head),avl_tree);
  		}
+		//////////////////////////////////////////////////////////////////////
+		
+
+		//////////////////////////////////////////////////////////////////////
 
 		iterator end()
 		{
@@ -178,10 +183,7 @@ namespace ft
 			avl_tree._head = avl_tree.insert(avl_tree._head,val);
 			return (iterator(this->avl_tree.find_key(avl_tree._head,val.first),avl_tree));
  		}
-		mapped_type& operator[] (const key_type& k)
-		{
-			return ((*((this->insert(ft::make_pair(k, mapped_type()))).first)).second);
-		}
+
 
 		template <class InputIterator>
 		void insert (InputIterator first, InputIterator last)
@@ -193,6 +195,11 @@ namespace ft
 			}
 		}
 
+		mapped_type& operator[] (const key_type& k)
+		{
+			return ((*((this->insert(ft::make_pair(k, mapped_type()))).first)).second);
+		}
+		
         void erase (iterator position)
 		{
 			Node *pointer;
@@ -204,10 +211,10 @@ namespace ft
 			}
 		}
 
-		void mese7(pair_first_pair val)
-		{
-			avl_tree._head =  avl_tree.deletenoode(avl_tree._head,val);
-		}
+		// void mese7(pair_first_pair val)
+		// {
+		// 	avl_tree._head =  avl_tree.deletenoode(avl_tree._head,val);
+		// }
 
         size_type erase (const key_type& k)
 		{
@@ -236,6 +243,7 @@ namespace ft
 				this->_size--;
 			}	
 		}
+
         void swap (map& x)
      	{	
 			//_alloc
@@ -257,6 +265,7 @@ namespace ft
 			avl_tree._head = NULL;
  	    }
 
+
         iterator find (const key_type& k)
         {
             Node *pointer;
@@ -265,15 +274,15 @@ namespace ft
             return (pointer ? iterator(pointer,avl_tree) : this->end());
         }
 
-		iterator find (const key_type& k) const
+		const_iterator find (const key_type& k) const
         {
             Node *pointer;
 
             pointer = avl_tree.find_key(avl_tree._head,k);
-            return (pointer ? iterator(pointer,avl_tree) : this->end());
+            return (pointer ? const_iterator(pointer,avl_tree) : this->end());
         }
 
-        size_type count (const key_type& k) 
+        size_type count (const key_type& k) const
      	{
 			Node *pointer;
      	  	pointer = avl_tree.find_key(avl_tree._head,k);
@@ -282,15 +291,16 @@ namespace ft
 		return(0);
         }
 
-        iterator upper_bound (const key_type& k) const
+
+       const_iterator upper_bound (const key_type& k) const
      	{
 			Node *temp;
-			Node *parent;
+			Node *parent = nullptr;
 			temp = avl_tree._head;
 
-			while (temp != NULL)
+			while (temp)
 			{
-				if (temp->pair->first > k)
+				if (_key_comp(k, temp->pair->first))
 				{
 					parent = temp;
 					temp = temp->left;	
@@ -300,22 +310,87 @@ namespace ft
 					temp = temp->right;
 				}
 			}	
-				 return iterator(temp,avl_tree);
+			return const_iterator(parent,avl_tree);
  		}
-		// iterator lower_bound (const key_type& k) const
-     	// {	
-		// 	Node *pointer;
-		// 	iterator it = upper_bound(k);
-     	//   	pointer = avl_tree.find_key(avl_tree._head,k);
-		// 	if(pointer && it != end())
-		// 		return it;
-		// 	else
-		// 		return iterator(pointer,avl_tree);
- 		// }
-		// pair<iterator,iterator>	equal_range (const key_type& k) const
-		// {	
-		// 	return (ft::make_pair(lower_bound(k),upper_bound(k)));
-		// }
+		
+		iterator upper_bound (const key_type& k) 
+     	{
+			Node *temp;
+			Node *parent = nullptr;
+			temp = avl_tree._head;
+
+			while (temp)
+			{
+				if (_key_comp(k, temp->pair->first))
+				{
+					parent = temp;
+					temp = temp->left;	
+				}
+				else
+				{
+					temp = temp->right;
+				}
+			}	
+			return iterator(parent,avl_tree);
+ 		}
+
+
+		iterator lower_bound (const key_type& k) 
+     	{	
+
+			Node *temp;
+			Node *parent = nullptr;
+			temp = avl_tree._head;
+
+			while (temp)
+			{
+
+				if (_key_comp(k, temp->pair->first) || temp->pair->first == k)
+				{
+					parent = temp;
+					temp = temp->left;	
+				}
+				else
+				{
+					temp = temp->right;
+				}
+			}	
+			return (iterator(parent));
+ 		}
+		
+		const_iterator lower_bound (const key_type& k) const
+     	{	
+
+			Node *temp;
+			Node *parent = nullptr;
+			temp = avl_tree._head;
+
+			while (temp)
+			{
+
+				if (_key_comp(k, temp->pair->first) || temp->pair->first == k)
+				{
+					parent = temp;
+					temp = temp->left;	
+				}
+				else
+				{
+					temp = temp->right;
+				}
+			}	
+			return (const_iterator(parent));
+ 		}
+
+		pair<iterator,iterator>	equal_range (const key_type& k) 
+		{	
+			return (ft::make_pair(lower_bound(k),upper_bound(k)));
+		}
+
+		pair<const_iterator,const_iterator>	equal_range (const key_type& k) const
+		{	
+			return (ft::make_pair(lower_bound(k),upper_bound(k)));
+		}
+
 		key_compare key_comp() const
 		{
 			return (_key_comp);

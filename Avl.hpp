@@ -295,7 +295,7 @@ void swap (AVL& x)
         }  
     }
 
-        nodaaa<Key,Type,T,alloc> *find_key(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first)
+        nodaaa<Key,Type,T,alloc> *find_key(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first) const 
         {
             if (noode == NULL)
                 return (NULL);
