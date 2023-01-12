@@ -37,7 +37,7 @@ class AVL{
         _size = 0;
     }
 
-    void swap (AVL& x)
+void swap (AVL& x)
 {
 	AVL tmp;
 
@@ -48,8 +48,9 @@ class AVL{
 	this->alloc_noode = x.alloc_noode;
                 
 	x._head = tmp._head;
-	x.alloc_node = tmp.alloc_noode;
+	x.alloc_noode = tmp.alloc_noode;
 }
+
     AVL(const AVL &ref)
     {
         *this = ref;
@@ -285,14 +286,13 @@ class AVL{
 
    
    
-    nodaaa<Key,Type,T,alloc> *dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
+    void    dellocate_noode(nodaaa<Key,Type,T,alloc> *noode){
         if (noode){
             dellocate_noode(noode->left);
             dellocate_noode(noode->right);
             alloc_noode.destroy(noode);
             alloc_noode.deallocate(noode,1);
         }  
-        return (NULL);
     }
 
         nodaaa<Key,Type,T,alloc> *find_key(nodaaa<Key,Type,T,alloc> *noode,  pair_first_pair first)

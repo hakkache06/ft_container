@@ -88,11 +88,9 @@ namespace ft
 		map<Key,T,Compare,Alloc> &operator= (const map<Key,T,Compare,Alloc>& x)
 		{
 			if(this == &x)
-				return (*this);
-			this->avl_tree = x.avl_tree;
-			this->_alloc = x._alloc;
-			this->_key_comp = x._key_comp;
-			this->_size = x._size;
+				return (*this);	
+				this->clear();		
+			insert(x.begin(),x.end());
 			return (*this);
 		}
 
@@ -243,17 +241,19 @@ namespace ft
 			//_alloc
 			//_key_comp
 			//_size
-			// std::swap(_alloc,x._alloc);
-			// std::swap(_key_comp,x._key_comp);
-			// std::swap(_size,x._size);
-	        std::swap(*this, x);
+			std::swap(_alloc,x._alloc);
+			std::swap(_key_comp,x._key_comp);
+			std::swap(_size,x._size);
+			avl_tree.swap(x.avl_tree);
+	        //std::swap(*this, x);
 
  	    }
 		
         void clear()
  	    {	
 
- 	        this->erase(this->begin(), this->end());
+ 	       	avl_tree.dellocate_noode(avl_tree._head);
+			this->_size = 0;
 			avl_tree._head = NULL;
  	    }
 
@@ -302,20 +302,20 @@ namespace ft
 			}	
 				 return iterator(temp,avl_tree);
  		}
-		iterator lower_bound (const key_type& k) const
-     	{	
-			Node *pointer;
-			iterator it = upper_bound(k);
-     	  	pointer = avl_tree.find_key(avl_tree._head,k);
-			if(pointer && it != end())
-				return it;
-			else
-				return iterator(pointer,avl_tree);
- 		}
-		pair<iterator,iterator>	equal_range (const key_type& k) const
-		{	
-			return (ft::make_pair(lower_bound(k),upper_bound(k)));
-		}
+		// iterator lower_bound (const key_type& k) const
+     	// {	
+		// 	Node *pointer;
+		// 	iterator it = upper_bound(k);
+     	//   	pointer = avl_tree.find_key(avl_tree._head,k);
+		// 	if(pointer && it != end())
+		// 		return it;
+		// 	else
+		// 		return iterator(pointer,avl_tree);
+ 		// }
+		// pair<iterator,iterator>	equal_range (const key_type& k) const
+		// {	
+		// 	return (ft::make_pair(lower_bound(k),upper_bound(k)));
+		// }
 		key_compare key_comp() const
 		{
 			return (_key_comp);
